@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost; dbname=employee',
+	'dsn'	=> 'mysql:host=localhost; dbname=registration',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'Hari@902',
-	'database' => 'employee',
+	'database' => 'registration',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
