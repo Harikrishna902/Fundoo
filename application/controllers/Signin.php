@@ -8,7 +8,7 @@ class Signin extends CI_Controller
         $this->load->model('login');
     }
     /**
-     * function to check all the fields and 
+     * function to check all the fields of registration and
      * to throw a message if empty
      */
     public function add()
@@ -30,9 +30,9 @@ class Signin extends CI_Controller
                 $data[':email'] = $request['email'];
             }
         }
-		if(!($request['password']== $request['cpassword'])){
-			$error[] = 'password should be same';
-		}
+        if (!($request['password'] == $request['cpassword'])) {
+            $error[] = 'password should be same';
+        }
         if (empty($request['password'])) {
             $error[] = 'Password is Required';
         } else {
@@ -42,7 +42,7 @@ class Signin extends CI_Controller
             $data = $this->login->insert_form($request);
             if ($data) {
                 $message = 'Registration Sucessful';
-            } 
+            }
             //  $this->fetchdata();
         } else {
             $validation_error = implode(", ", $error);
@@ -62,7 +62,7 @@ class Signin extends CI_Controller
         $email = $request->email;
         $text = '';
         if ($email != '') {
-            $sel = $this->db->query("SELECT  count(*) as all from Registration where email = '$email' ")->row();
+            $sel = $this->db->query("SELECT  count(*) as all from registration where email = '$email' ")->row();
             $text = "Available";
             if ($sel['all'] > 0) {
                 $text = "Not available";
@@ -70,9 +70,9 @@ class Signin extends CI_Controller
         }
         echo $text;
     }
-     /**
-      * function to fetch the data from database table
-      */
+    /**
+     * function to fetch the data from database table
+     */
     public function fetchdata()
     {
         // $data['fetchdata']=$this->ektreemodel->get_users();
@@ -86,17 +86,18 @@ class Signin extends CI_Controller
             $i++;
         }
         echo json_encode($arr_data);
-    } 
-    /**
-     * function to logout the page 
-     */
-    public function logout(){
-            session_start();
-            session_destroy();
-            header("location:index.php");
     }
     /**
-     * function to login the page 
+     * function to logout the page
+     */
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+        header("location:index.php");
+    }
+    /**
+     * function to login the page
      * and validating the fields
      */
     public function login()
@@ -117,15 +118,16 @@ class Signin extends CI_Controller
             $errr[] = 'Password is Required';
         }
         if (empty($errr)) {
-			$data = $this->login->find($form_data);
-		
-        } else { 
+            $data = $this->login->find($form_data);
+            if ($data) {
+                $message = "login Success";
+            }
+        } else {
             $validation_error = implode(", ", $errr);
         }
         $output = array(
             'errr' => $validation_error,
         );
-        echo json_encode($output);  
+        echo json_encode($output);
     }
 }
-?>

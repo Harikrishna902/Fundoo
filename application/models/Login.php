@@ -6,11 +6,11 @@ public function insert_form($request)
   //   $insertStatus=$this->db->insert('registration',array('firstName'=>$request['fname'],'lastname'=>$request['lname'],
   //   'email'=>$request['email'],'password'=>$request['password']));
   // return $insertStatus;
-      $fname = $request[fname];
-      $lname = $request[lname];
-      $email = $request[email];
-      $pass = $request[password];
-    $query = $this->db->query("INSERT INTO registration (firstname,lastname,email,password) VALUES ('" . $fname . "','" . $lname . "','" . $email . "','".$pass."')");
+      $fname = $request['fname'];
+      $lname = $request['lname'];
+      $email = $request['email'];
+      $pass = $request['password'];
+    $query = $this->db->query("INSERT INTO registration (firstname,lastname,email,password)  VALUES ('" . $fname . "','" . $lname . "','" . $email . "','".$pass."')");
     return $query;
  }
  
