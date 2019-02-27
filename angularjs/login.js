@@ -1,50 +1,54 @@
+
+
 angular.module('loginFormApp', [])
-  .controller('ExampleController', ['$scope', '$http',
-    function ($scope, $http) {
+  .controller('ExampleController', ['$scope', '$http', '$window',
+    function ($scope, $http, $window) {
+
       $scope.user = {};
-      $scope.login_form = true;
-      /**
-       * method to get register page
-       */
+      $scope.login_form = true
+
       $scope.showRegister = function () {
         $scope.login_form = false;
         $scope.register_form = true;
         $scope.alertMsg = false
       };
-      /**
-      * method to get login page
-      */
+
       $scope.showLogin = function () {
         $scope.register_form = false;
         $scope.login_form = true;
         $scope.alertMsg = false
       };
+
       $scope.login = function () {
         $scope.registrations = {};
         $http({
           method: 'post',
           dataType: 'json',
           data: $scope.user,
-          url: 'http://localhost/codeigniter/login',
-
+          /**
+           * calling the api
+           */
+          url: 'http://localhost/codeigniter/sigin',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(function (data) {
           debugger
-          /**
-           * condition to get alert message
-           */
+          // alert(data);
+          // alert(data[error]);
           if (data.data.errr != '') {
             $scope.alertMsg = true;
             $scope.alertClass = 'alert-danger';
             $scope.alertMessage = data.data.errr;
           }
           else {
-            location.reload();
+            //   location.reload(); 
+
+            $window.location.href = 'http://localhost/codeigniter/angularjs/welcome.html';
+            $scope.alertMsg = true;
+
+
+            $scope.successMessage = "LOGIN successfully";
+            $scope.registrations = data;
           }
-          $scope.alertMessage = data.data.message;
-          $scope.alertMsg = true;
-          $scope.successMessage = "LOGIN successfully";
-          $scope.registrations = data;
 
         });
 
@@ -57,7 +61,10 @@ angular.module('loginFormApp', [])
           method: 'post',
           dataType: 'json',
           data: $scope.user,
-          url: 'http://localhost/codeigniter/insert',
+          /**
+           * calling the api
+           */
+          url: 'httd://localhost/codeigniter/insert',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(function (data) {
           debugger
@@ -75,7 +82,17 @@ angular.module('loginFormApp', [])
         });
 
       };
-      // $scope.reset();
     }]);
+/**
+ * jquery mouse event
+ */
+$(document).ready(function () {
+  $(".id").mouseover(function () {
+    $(".id").css("background-color", "lightgray");
+  })
+  $(".id").mouseout(function () {
+    $(".id").css("background-color", "white");
+  })
+});
 
 

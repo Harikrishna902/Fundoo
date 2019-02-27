@@ -22,5 +22,14 @@ public function insert_form($request)
       // return $this->db->get('registration')->row();
       return $data;
  }
+ public function findname($request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        $data = $this->db->query("SELECT * FROM registration WHERE email = '$email' AND password = '$password'  ")->row();
+        $name = $data->firstname;
+        return $name;
+    }
+
 }
 ?>
