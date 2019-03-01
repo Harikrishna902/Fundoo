@@ -21,6 +21,9 @@ angular.module('loginFormApp', [])
 
       $scope.login = function () {
         $scope.registrations = {};
+        /**
+         * ajax
+         */
         $http({
           method: 'post',
           dataType: 'json',
@@ -84,7 +87,7 @@ angular.module('loginFormApp', [])
       };
     }]);
 /**
- * jquery mouse event
+ * jquery mouseover event
  */
 $(document).ready(function () {
   $(".id").mouseover(function () {
