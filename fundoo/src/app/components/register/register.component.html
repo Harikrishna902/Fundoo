@@ -2,6 +2,28 @@
 
   <form class="example-form" [formGroup]="registerForm">
     <mat-card class="card">
+      <div style="text-align:center">
+        <h2>
+          <span class="blue">
+            F
+          </span>
+          <span class="orange">
+            u
+          </span>
+          <span class="black">
+            n
+          </span>
+          <span class="green">
+            d
+          </span>
+          <span class="blue">
+            o
+          </span>
+          <span class="orange">
+            o
+          </span>
+        </h2>
+      </div>
       <h1 class="header">Register</h1>
       <div>
         <mat-form-field class="example-full-width">
@@ -39,7 +61,7 @@
           <mat-error *ngIf="registerForm.controls['confirm'].invalid">
             passowrd doesn't matches
           </mat-error>
-          <!-- <mat matSuffix>mail</mat-icon> -->
+          <mat-icon matSuffix>visibility</mat-icon>
         </mat-form-field>
 
 
@@ -65,10 +87,20 @@
 
         </mat-form-field> -->
 
-        <div fxLayout="row" fxLayoutAlign="center center"></div>
-        <button type="submit" mat-raised-button color="Link">Submit</button>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <a routerLink="../login"> <button mat-raised-button color="Link">Register</button></a>
+
+        <!-- <div class="button">
+        <button mat-raised-button [disabled]="registerForm.controls['FirstName'].invalid || registerForm.controls['Lastname'].invalid ||registerForm.controls['username'].invalid ||registerForm.controls['passowrd'].invalid ||registerForm.controls['confirm'].invalid"
+        (click)="Register()"
+        class="buttonregister">
+      </button>
+    </div> -->
+
+        <div fxLayout="row" fxLayoutGap="20px"  fxLayoutAlign="center center"> 
+            <div ><button type="submit" mat-raised-button color="primary">Submit</button>      </div>
+            <div ><a routerLink="../login"> <button mat-raised-button color="primary" click="register()">Register</button></a>    </div>
+
+        </div>
+
       </div>
     </mat-card>
   </form>

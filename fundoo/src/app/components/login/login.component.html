@@ -11,9 +11,31 @@
   </div>
 </div> -->
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
-  <form class="example-form" [formGroup]="LoginForm">
-    <mat-card class="card">
-      
+
+  <mat-card class="card">
+    <form class="example-form" [formGroup]="LoginForm">
+      <div style="text-align:center">
+        <h2>
+          <span class="blue">
+            F
+          </span>
+          <span class="orange">
+            u
+          </span>
+          <span class="black">
+            n
+          </span>
+          <span class="green">
+            d
+          </span>
+          <span class="blue">
+            o
+          </span>
+          <span class="orange">
+            o
+          </span>
+        </h2>
+      </div>
       <h1 class="header"> SignIn</h1>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Email" formControlName="username">
@@ -23,25 +45,25 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="password" formControlName="password">
+        <input type="password" matInput placeholder="password" formControlName="password">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         <mat-error *ngIf="LoginForm.controls['password'].invalid">
-           enter valid password
+          enter valid password
         </mat-error>
       </mat-form-field>
       <!-- <mat-form-field class="example-full-width">
          <input class="class" matInput placeholder="Email">
         <mat-form-field class="example-full-width"> -->
-          <!-- <input matInput placeholder="Enter your email" formControlName="email" autocomplete="on" required> -->
-          <!-- <mat-icon matSuffix>mail</mat-icon>
+      <!-- <input matInput placeholder="Enter your email" formControlName="email" autocomplete="on" required> -->
+      <!-- <mat-icon matSuffix>mail</mat-icon>
           <mat-error *ngIf="email.hasError('required')">Please, enter the email id</mat-error>
-        </mat-form-field> --> 
-        <!-- <mat-form-field class="example-full-width">
+        </mat-form-field> -->
+      <!-- <mat-form-field class="example-full-width">
           <input matInput placeholder="password">
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" autocomplete="off" -->
 
-            <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="password.hasError('required')">Enter your password</mat-error>
           </mat-form-field>
            <div fxLayout="row" fxLayoutAlign="center center">
@@ -52,10 +74,11 @@
 
        </mat-card> -->
       <div fxLayout="row" fxLayoutAlign="center center">
-        <button mat-raised-button>Login</button>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <a routerLink="../register"> <button mat-raised-button color="Link">Register</button></a>
+        <button mat-raised-button color="primary">Login</button>
+        <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+        <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
       </div>
-    </mat-card>
-  </form>
+    </form>
+  </mat-card>
+
 </div>
