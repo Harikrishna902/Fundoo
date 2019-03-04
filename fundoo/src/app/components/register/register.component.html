@@ -1,28 +1,74 @@
-<form class="example-form">
-    <mat-card class=card>
-      <h1>Register</h1>
-  <div>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="FirstName" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="LastName" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" required>
-      <mat-icon matSuffix>mail</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="password" required>
-      <mat-icon matSuffix>visibility</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="confirm password" required>
-    </mat-form-field>
-   
+<div class="center" fxLayout="row" fxLayoutAlign="center center">
 
-    <a class="refReg" routerLink = "../login"> <button mat-button color="Link">Submit</button></a>
-    
-  </div>
-</mat-card>
-</form>
+  <form class="example-form" [formGroup]="registerForm">
+    <mat-card class="card">
+      <h1 class="header">Register</h1>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="FirstName" formControlName="FirstName">
+          <mat-error *ngIf="registerForm.controls['FirstName'].invalid">
+            firstname is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="LastName" formControlName="Lastname">
+          <mat-error *ngIf="registerForm.controls['Lastname'].invalid">
+            lastname is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="username">
+          <mat-icon matSuffix>mail</mat-icon>
+          <mat-error *ngIf="registerForm.controls['username'].invalid">
+            invalid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="password" formControlName="password">
+          <mat-icon matSuffix>visibility</mat-icon>
+          <mat-error *ngIf="registerForm.controls['password'].invalid">
+            enter valid password
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="conform password" formControlName="confirm">
+          <!-- <mat-icon matSuffix>visibility</mat-icon> -->
+          <mat-error *ngIf="registerForm.controls['confirm'].invalid">
+            passowrd doesn't matches
+          </mat-error>
+          <!-- <mat matSuffix>mail</mat-icon> -->
+        </mat-form-field>
+
+
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="LastName" formControlName="LastName">
+          <mat-error *ngIf="LastName.invalid">plz enter lastname</mat-error>
+        </mat-form-field> -->
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="username" required formControlName="username">
+          <mat-error *ngIf="username.invalid">plz enter valid</mat-error>
+ 
+          <mat matSuffix>mail</mat-icon>-icon
+        </mat-form-field> -->
+        <!-- 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="password" [type]="password" formControlName="password">
+          <mat-error *ngIf="password.hasError('required')">mandatory</mat-error>
+          <mat-icon matSuffix>visibility</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="confirm password" [type]="password" formControlName="conformpassword">
+          <mat-error *ngIf="conformpassword.hasError('required')">mandatory</mat-error>
+
+        </mat-form-field> -->
+
+        <div fxLayout="row" fxLayoutAlign="center center"></div>
+        <button type="submit" mat-raised-button color="Link">Submit</button>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <a routerLink="../login"> <button mat-raised-button color="Link">Register</button></a>
+      </div>
+    </mat-card>
+  </form>

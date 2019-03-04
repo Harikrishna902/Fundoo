@@ -5,12 +5,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import {CustomMaterialModule} from './material.module';
-import {FormsModule} from '@angular/forms';
+
 import { FlexLayoutModule } from "@angular/flex-layout"
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 
+import{} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,ReactiveFormsModule
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
