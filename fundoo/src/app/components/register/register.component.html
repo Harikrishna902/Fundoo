@@ -1,6 +1,6 @@
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
 
-  <form class="example-form" [formGroup]="registerForm">
+  <form class="example-form" [formGroup]="registerForm" >
     <mat-card class="card">
       <div style="text-align:center">
         <h2>
@@ -41,15 +41,15 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" formControlName="username">
+          <input matInput placeholder="Email" formControlName="email">
           <mat-icon matSuffix>mail</mat-icon>
-          <mat-error *ngIf="registerForm.controls['username'].invalid">
+          <mat-error *ngIf="registerForm.controls['email'].invalid">
             invalid email
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="password" formControlName="password">
+          <input type="password" matInput placeholder="password" formControlName="password">
           <mat-icon matSuffix>visibility</mat-icon>
           <mat-error *ngIf="registerForm.controls['password'].invalid">
             enter valid password
@@ -96,11 +96,11 @@
     </div> -->
 
         <div fxLayout="row" fxLayoutGap="20px"  fxLayoutAlign="center center"> 
-            <div ><button type="submit" mat-raised-button color="primary">Submit</button>      </div>
-            <div ><a routerLink="../login"> <button mat-raised-button color="primary" click="register()">Register</button></a>    </div>
+            <div ><button type="submit" mat-raised-button color="primary" (click)="register()">Submit</button>      </div>
+            <div ><a routerLink="../login" mat-raised-button color="primary"  >Register</a>    </div>
 
         </div>
-
+        <div align="center">{{ errormsg }}</div>
       </div>
     </mat-card>
   </form>

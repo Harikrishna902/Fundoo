@@ -60,3 +60,6 @@ $route['update'] = 'Product/update';
 $route['delete/(:num)'] = 'Product/delete/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['register'] = 'registerController/registration';
