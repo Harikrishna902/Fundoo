@@ -20,6 +20,7 @@ class RegisterController extends CI_Controller
     {
         parent::__construct();
         $this->serviceReference = new registerService();
+        $this->serviceReference =new loginService();
     }
     /**
      * @method registration() Adds data into the database
@@ -42,6 +43,7 @@ class RegisterController extends CI_Controller
     {
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $this->serviceReference->login($email,$password);
     }
 
 }

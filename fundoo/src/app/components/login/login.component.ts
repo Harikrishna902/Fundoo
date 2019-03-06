@@ -11,8 +11,8 @@
 *************************************************************************************************/
 
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormBuilder,FormGroup,Validators, FormControl } from '@angular/forms';
-
+import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { LoginserviceService } from '../../services/loginservice/loginservice.service';
 //import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
@@ -21,11 +21,11 @@ import { FormsModule, FormBuilder,FormGroup,Validators, FormControl } from '@ang
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  model:any;
+  model: any;
   response: any;
-  message='';
+ errormsg = '';
 
-  LoginForm:FormGroup;
+  LoginForm: FormGroup;
   // FirstName = new FormControl('', [Validators.required]);
   // Lastname = new FormControl('', [Validators.required]);
   // username = new FormControl('', [Validators.required, Validators.email]);
@@ -33,15 +33,41 @@ export class LoginComponent implements OnInit {
   // confirm = new FormControl('', [Validators.required]);
   // service = new FormControl('', [Validators.required]);
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private S_login: LoginserviceService ) { }
 
   ngOnInit() {
-    this.LoginForm=this.formBuilder.group({
-      //FirstName: ['', Validators.required],
-     // Lastname: ['', Validators.required],
+    this.LoginForm = this.formBuilder.group({
+      /**
+       * validations for email and password 
+       */
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-     // confirm: ['', Validators.required]
-});
+
+    });
+  }
+  login() {
+    if(this.LoginForm.invalid){
+      return;
+    }
+    debugger;
+    let obj = this.S_login.UserLoginData(this.LoginForm.value);
+    /**
+     * error handling and 
+     * sends response  
+     */
+    debugger;
+    obj.subscribe((res: any) => {
+      console.log(res.message);
+      if (res.message == "200") {
+        this.errormsg = "login is succesfull \n ";
+      } else if (res.message == "304") {
+        this.errormsg = "not registred user,enter valid data";
+      } else if (res.message == "201") {
+        this.errormsg = "invalid user";
+
+      } else {
+        this.errormsg = "error 204 no content";
+      }
+    });
   }
 }

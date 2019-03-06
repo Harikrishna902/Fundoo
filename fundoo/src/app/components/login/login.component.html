@@ -10,11 +10,13 @@
   <div fxFlex="20">
   </div>
 </div> -->
+<!-- flex layout  -->
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
-
+  <!-- mat card starts -->
   <mat-card class="card">
     <form class="example-form" [formGroup]="LoginForm">
       <div style="text-align:center">
+        <!-- header for fundoo -->
         <h2>
           <span class="blue">
             F
@@ -36,6 +38,7 @@
           </span>
         </h2>
       </div>
+      <!-- header for singin -->
       <h1 class="header"> SignIn</h1>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Email" formControlName="username">
@@ -75,10 +78,14 @@
        </mat-card> -->
       <div fxLayout="row" fxLayoutAlign="center center">
         <button mat-raised-button color="primary">Login</button>
-        <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+        
         <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
-      </div>
-    </form>
-  </mat-card>
 
+      </div>
+      <!-- form ends -->
+    </form>
+    <div align="center">{{errormsg}}</div>
+    <!-- mat card ends -->
+  </mat-card>
+  <!--maain devision ends -->
 </div>

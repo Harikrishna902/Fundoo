@@ -17,35 +17,37 @@ header("Access-Control-Allow-Headers: Authorization");
 class registerService extends CI_controller
 {
     public function registration($FirstName, $LastName, $email, $password)
-    { 
-        $data=[
-        'FirstName'=> $FirstName,
-        'Lastname'=> $Lastname,
-        'email'=>$email,
-        'password'=>$password
+    {
+        $dataOne = [
+            'FirstName' => $FirstName,
+            'Lastname' => $LastName,
+            'email' => $email,
+            'password' => $password,
         ];
 
         $query = "INSERT INTO registrations(FirstName,Lastname,email,password) VALUES ('$FirstName','$LastName','$email','$password')";
-       $stat = $this->db->conn_id->prepare($query);
-       $statement=$stat->execute($data);
-        if (statement) {
+        $stat = $this->db->conn_id->prepare($query);
+        $statement = $stat->execute($dataOne);
+        if ($statement) {
             $data = array("message" => "200",
             );
-            print jason_encode()($data);
+            print json_encode($data);
             return "200";
         }
-        if (statement) {
+        if ($statement) {
             $data = array("message" => "204",
             );
-            print jason_encode()($data);
+            print json_encode($data);
             return "204";
         }
-        if (statement) {
+        if ($statement) {
             $data = array("message" => "304",
             );
-            print jason_encode()($data);
+            print json_encode($data);
             return "304";
         }
+
+        return $data;
     }
 
 }

@@ -4,10 +4,11 @@
 
 
 export const environment = {
-  baseURL: "https://localhost/php_codeigniter/codeigniter/",
-
+  baseURL: "http://localhost/codeigniter/",
   production: false
 };
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -1,31 +1,38 @@
+<!-- flex layout  -->
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
+  <!-- matcard starts -->
+  <mat-card class="card">
 
-  <form class="example-form" [formGroup]="registerForm" >
-    <mat-card class="card">
-      <div style="text-align:center">
-        <h2>
-          <span class="blue">
-            F
-          </span>
-          <span class="orange">
-            u
-          </span>
-          <span class="black">
-            n
-          </span>
-          <span class="green">
-            d
-          </span>
-          <span class="blue">
-            o
-          </span>
-          <span class="orange">
-            o
-          </span>
-        </h2>
-      </div>
-      <h1 class="header">Register</h1>
-      <div>
+    <div style="text-align:center">
+      <!-- header for fundoo -->
+      <h2>
+        <span class="blue">
+          F
+        </span>
+        <span class="orange">
+          u
+        </span>
+        <span class="black">
+          n
+        </span>
+        <span class="green">
+          d
+        </span>
+        <span class="blue">
+          o
+        </span>
+        <span class="orange">
+          o
+        </span>
+      </h2>
+    </div>
+
+    <!-- header for register -->
+    <h1 class="header">Register</h1>
+    <div>
+      <form class="example-form" [formGroup]="registerForm">
+        <!-- mat forms for firstname
+        lastname,password,email,confirm password -->
         <mat-form-field class="example-full-width">
           <input matInput placeholder="FirstName" formControlName="FirstName">
           <mat-error *ngIf="registerForm.controls['FirstName'].invalid">
@@ -50,32 +57,54 @@
 
         <mat-form-field class="example-full-width">
           <input type="password" matInput placeholder="password" formControlName="password">
-          <mat-icon matSuffix>visibility</mat-icon>
+          <!-- <mat-icon matSuffix>visibility</mat-icon> -->
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="registerForm.controls['password'].invalid">
             enter valid password
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="conform password" formControlName="confirm">
+          <input type="password" matInput placeholder="conform password" formControlName="confirm">
           <!-- <mat-icon matSuffix>visibility</mat-icon> -->
           <mat-error *ngIf="registerForm.controls['confirm'].invalid">
+            passowrd invalid
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['confirm'].MatchPassword">
             passowrd doesn't matches
           </mat-error>
-          <mat-icon matSuffix>visibility</mat-icon>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <!-- <mat-icon matSuffix>visibility</mat-icon> -->
         </mat-form-field>
 
 
-        <!-- <mat-form-field class="example-full-width">
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+          <div><button type="submit" mat-raised-button color="primary" (click)="register()">Register</button> </div>
+          <div><a routerLink="../login" mat-raised-button color="primary">Login</a> </div>
+        </div>
+        <!-- form ends -->
+      </form>
+    </div>
+
+    <!-- to get message and print in center -->
+    <div align="center">{{errormsg}}</div>
+    <!-- matcard ends -->
+  </mat-card>
+  <!-- div ends -->
+</div>
+
+
+
+<!-- <mat-form-field class="example-full-width">
           <input matInput placeholder="LastName" formControlName="LastName">
           <mat-error *ngIf="LastName.invalid">plz enter lastname</mat-error>
         </mat-form-field> -->
-        <!-- <mat-form-field class="example-full-width">
+<!-- <mat-form-field class="example-full-width">
           <input matInput placeholder="username" required formControlName="username">
           <mat-error *ngIf="username.invalid">plz enter valid</mat-error>
  
           <mat matSuffix>mail</mat-icon>-icon
         </mat-form-field> -->
-        <!-- 
+<!-- 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="password" [type]="password" formControlName="password">
           <mat-error *ngIf="password.hasError('required')">mandatory</mat-error>
@@ -88,19 +117,9 @@
         </mat-form-field> -->
 
 
-        <!-- <div class="button">
+<!-- <div class="button">
         <button mat-raised-button [disabled]="registerForm.controls['FirstName'].invalid || registerForm.controls['Lastname'].invalid ||registerForm.controls['username'].invalid ||registerForm.controls['passowrd'].invalid ||registerForm.controls['confirm'].invalid"
         (click)="Register()"
         class="buttonregister">
       </button>
     </div> -->
-
-        <div fxLayout="row" fxLayoutGap="20px"  fxLayoutAlign="center center"> 
-            <div ><button type="submit" mat-raised-button color="primary" (click)="register()">Submit</button>      </div>
-            <div ><a routerLink="../login" mat-raised-button color="primary"  >Register</a>    </div>
-
-        </div>
-        <div align="center">{{ errormsg }}</div>
-      </div>
-    </mat-card>
-  </form>

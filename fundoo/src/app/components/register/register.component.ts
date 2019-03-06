@@ -14,8 +14,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 //import { HttpService } from '../../service/register.service';
 //import { Router } from '@angular/router';
-import { RegisterService } from '../../services/register.service';
-
+import { RegisterService } from '../../services/registerservice/register.service';
+import { PasswordValidation } from '../../passwordMatches';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -42,6 +42,9 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private S_register: RegisterService) { }
   model: any;
   errormsg: string = "";
+  /**
+   * validations for register page
+   */
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       FirstName: ['', Validators.required],
@@ -49,15 +52,23 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['', Validators.required]
-    });
+    },
+      {
+        Validators: PasswordValidation.MatchPassword
+
+      });
   }
   register() {
-    debugger
+    if(this.registerForm.invalid){
+      return;
+    }
+    debugger;
     let obj = this.S_register.CreateUser(this.registerForm.value);
     /**
-     * error handling
+     * error handling and 
+     * sends response  
      */
-    debugger
+    debugger;
     obj.subscribe((res: any) => {
       console.log(res.message);
       if (res.message == "200") {
@@ -99,19 +110,19 @@ export class RegisterComponent implements OnInit {
   //     this.message ="password and confirm password should be same ";
   //     }
 
-  //       // this.httpService.postRequest('/user/userSignUp', this.model).subscribe(data => {
+  // this.httpService.postRequest('/codeiginter/SignUp', this.model).subscribe(data => {
 
-  //       //   this.responce=data;
-  //       //    this.messageOne=this.responce.message;
-  //       //   console.log(data);
-  //       //   // this.router.navigate(['login']);
+  //   this.responce=data;
+  //    this.messageOne=this.responce.message;
+  //   console.log(data);
+  //   // this.router.navigate(['login']);
 
-  //         // 
-  //         // else {
-  //         //   this.message = "registered successfully";
-  //         //   }
-  //         //   alert('Something is about to display');
-  //         //   console.log(this.model);
+    // 
+    // else {
+    //   this.message = "registered successfully";
+    //   }
+    //   alert('Something is about to display');
+    //   console.log(this.model);
 
   //     }
   //   }
