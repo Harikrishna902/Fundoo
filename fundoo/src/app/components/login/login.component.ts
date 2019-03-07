@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
 
     });
   }
+
   login() {
     if(this.LoginForm.invalid){
       return;
@@ -60,14 +61,12 @@ export class LoginComponent implements OnInit {
       console.log(res.message);
       if (res.message == "200") {
         this.errormsg = "login is succesfull \n ";
-      } else if (res.message == "304") {
-        this.errormsg = "not registred user,enter valid data";
-      } else if (res.message == "201") {
-        this.errormsg = "invalid user";
-
-      } else {
-        this.errormsg = "error 204 no content";
-      }
+      } else if(res.message == "204"){
+        this.errormsg = "login unsuccesfull";
+      } 
     });
-  }
+  
 }
+}
+  
+

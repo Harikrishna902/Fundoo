@@ -10,10 +10,12 @@ import { FlexLayoutModule } from "@angular/flex-layout"
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import{} from '@angular/forms';
+import { ForgotComponent } from './components/forgot/forgot.component';
 @NgModule({
   /**
    * array of components created
@@ -21,7 +23,8 @@ import{} from '@angular/forms';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotComponent
   ],
   /**
    * array of modules required to be used in application

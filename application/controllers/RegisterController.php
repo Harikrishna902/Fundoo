@@ -6,6 +6,7 @@ header("Access-Control-Allow-Headers: Authorization");
  * @discription  Controller API
  *********************************************************************/
 include '/var/www/html/codeigniter/application/services/registerService.php';
+include '/var/www/html/codeigniter/application/services/loginService.php';
 
 class RegisterController extends CI_Controller
 {
@@ -13,6 +14,7 @@ class RegisterController extends CI_Controller
      * @var string $serviceReference serviceReference
      */
     public $serviceReference = "";
+    public $loginservice ="";
     /**
      * constructor establish DB connection
      */
@@ -20,7 +22,7 @@ class RegisterController extends CI_Controller
     {
         parent::__construct();
         $this->serviceReference = new registerService();
-        $this->serviceReference =new loginService();
+        $this->loginservice =new loginService();
     }
     /**
      * @method registration() Adds data into the database
@@ -43,7 +45,7 @@ class RegisterController extends CI_Controller
     {
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $this->serviceReference->login($email,$password);
+        $this->loginservice->login($email,$password);
     }
 
 }

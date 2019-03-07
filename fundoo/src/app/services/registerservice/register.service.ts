@@ -9,13 +9,12 @@ import {Register} from '../../components/models/note';
 })
 export class RegisterService {
 constructor(private http: HttpClient,private serviceUrl:serviceUrl) {}
- // baseUrl : string ="http://localhost/codeigniter/register"
-
+ 
 /**
  * @method CreateUser()
  * @return observable data
  * @param register
- *  @description Function to send register data to server
+ * @description Function to send register data to server
  */
 
   CreateUser(register:Register){
@@ -25,8 +24,7 @@ constructor(private http: HttpClient,private serviceUrl:serviceUrl) {}
     createuser.append("Lastname",register.Lastname);
     createuser.append("email",register.email);
     createuser.append("password",register.password);
-   // return this.http.post(this.baseUrl,createuser);
-  return this.http.post(this.serviceUrl.host+this.serviceUrl.register,createuser);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.register,createuser);
   }
 }
 
