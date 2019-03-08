@@ -41,15 +41,15 @@
       <!-- header for singin -->
       <h1 class="header"> SignIn</h1>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" formControlName="username">
+        <input matInput placeholder="Email" formControlName="username" required>
         <mat-icon matSuffix>mail</mat-icon>
         <mat-error *ngIf="LoginForm.controls['username'].invalid">
           enter valid email
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input type="password" matInput placeholder="password" formControlName="password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <input  matInput placeholder="password" formControlName="password" type="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :'visibility'}} </mat-icon>
         <mat-error *ngIf="LoginForm.controls['password'].invalid">
           enter valid password
         </mat-error>
@@ -76,9 +76,10 @@
           </div> 
 
        </mat-card> -->
-      <div fxLayout="row" fxLayoutAlign="center center">
+       <a routerLink="/forgot" style="color:  #3373e8;" href="">Forgot Password?</a>
+       <div fxLayout="row" fxLayoutAlign="center center" >
         <button mat-raised-button color="primary" (click)="login()">Login</button>
-        
+       
         <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
 
       </div>

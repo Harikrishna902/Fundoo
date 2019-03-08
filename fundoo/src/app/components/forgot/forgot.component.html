@@ -1,25 +1,23 @@
-<!-- <div class="center" fxLayout="row" fxLayoutAlign="center center">
+<div class="center" fxLayout="row" fxLayoutAlign="center center">
 
   <mat-card class="card">
     <form class="example-form" [formGroup]="ForgotForm">
+      <h3 class="header">ForgotPassword</h3>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="password" formControlName="password">
-        <mat-error *ngIf="ForgotForm.controls['password'].invalid">
+        <input matInput placeholder="Email" formControlName="email" required>
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error *ngIf="ForgotForm.controls['email'].invalid">
           enter valid email
         </mat-error>
+        
       </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <matInput placeholder="confirm password" formControlName="confirm password">
-          <mat-error *ngIf="ForgotForm.controls['confirmpassword'].invalid">
-            enter valid email
-          </mat-error>
-      </mat-form-field>
-      <div class="button">
-        <button mat-raised-button (click)="forgot()" [disabled]="email.invalid" class="buttonregister">
+      <!-- <div class="button"> -->
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button color="primary">
           Submit
         </button>
       </div>
+
+    </form>
   </mat-card>
-  </form>
-</div> -->
+</div>

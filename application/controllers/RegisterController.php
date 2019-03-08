@@ -15,6 +15,7 @@ class RegisterController extends CI_Controller
      */
     public $serviceReference = "";
     public $loginservice ="";
+    public $forgotservice="";
     /**
      * constructor establish DB connection
      */
@@ -23,6 +24,7 @@ class RegisterController extends CI_Controller
         parent::__construct();
         $this->serviceReference = new registerService();
         $this->loginservice =new loginService();
+        $this->forgotservice=new forgotService();
     }
     /**
      * @method registration() Adds data into the database
@@ -46,6 +48,16 @@ class RegisterController extends CI_Controller
         $email = $_POST["email"];
         $password = $_POST["password"];
         $this->loginservice->login($email,$password);
+    }
+     
+    /**
+     * @method  for forgotpassword
+     * @return void 
+     */
+    public function forgot(){
+        $email=$_POST["email"];
+        $this->forgotservice->forgot($email);
+
     }
 
 }

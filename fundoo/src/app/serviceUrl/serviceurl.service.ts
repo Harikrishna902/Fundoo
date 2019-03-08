@@ -10,7 +10,8 @@ export class serviceUrl {
 	public host = environment.baseURL;
 
 	public register = "register";
-    public login = "login";
+	public login = "login";
+	public forgot="forgot";
 }
 
 

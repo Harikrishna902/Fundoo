@@ -34,21 +34,21 @@
         <!-- mat forms for firstname
         lastname,password,email,confirm password -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="FirstName" formControlName="FirstName">
+          <input matInput placeholder="FirstName" formControlName="FirstName" required>
           <mat-error *ngIf="registerForm.controls['FirstName'].invalid">
             firstname is required
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="LastName" formControlName="Lastname">
+          <input matInput placeholder="LastName" formControlName="Lastname" required>
           <mat-error *ngIf="registerForm.controls['Lastname'].invalid">
             lastname is required
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" formControlName="email">
+          <input matInput placeholder="Email" formControlName="email" required>
           <mat-icon matSuffix>mail</mat-icon>
           <mat-error *ngIf="registerForm.controls['email'].invalid">
             invalid email
@@ -56,7 +56,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input type="password" matInput placeholder="password" formControlName="password">
+          <input type="password" matInput placeholder="password" formControlName="password" required>
           <!-- <mat-icon matSuffix>visibility</mat-icon> -->
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="registerForm.controls['password'].invalid">
@@ -64,7 +64,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input type="password" matInput placeholder="conform password" formControlName="confirm">
+          <input type="password" matInput placeholder="conform password" formControlName="confirm" required>
           <!-- <mat-icon matSuffix>visibility</mat-icon> -->
           <mat-error *ngIf="registerForm.controls['confirm'].invalid">
             passowrd invalid
