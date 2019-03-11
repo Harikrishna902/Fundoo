@@ -11,7 +11,7 @@ export class ForgotComponent implements OnInit
 {
   model: any;
   response: any;
- errormsg = '';
+  errormsg = '';
 
   ForgotForm: FormGroup;
   constructor(private formBuilder: FormBuilder,private S_forgot:ForgotserviceService) { }

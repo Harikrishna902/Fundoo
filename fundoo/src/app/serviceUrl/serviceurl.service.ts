@@ -12,6 +12,9 @@ export class serviceUrl {
 	public register = "register";
 	public login = "login";
 	public forgot="forgot";
+	public reset="reset";
+	//public reset = "resetpass";
+  public fetchmail = "fetchemail";
 }
 
 

@@ -1,0 +1,36 @@
+<div class="center" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="card">
+    <form class="example-form" [formGroup]="ResetForm">
+      <h3 class="header">ResetPassword</h3>
+     
+        <mat-form-field class="example-full-width">
+          <input  matInput placeholder="password" formControlName="password" required>
+         
+          <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+          <mat-error *ngIf="ResetForm.controls['password'].invalid">
+            enter valid password
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+          <input type="password" matInput placeholder="conform password" formControlName="confirm" required>
+         
+          <mat-error *ngIf="ResetForm.controls['confirm'].invalid">
+            passowrd invalid
+          </mat-error>
+          <mat-error *ngIf="ResetForm.controls['confirm'].MatchPassword">
+            passowrd doesn't matches
+          </mat-error>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          -->
+      
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button color="primary" (click)="login()">
+          Reset
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

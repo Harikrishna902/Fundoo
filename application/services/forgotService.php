@@ -1,6 +1,9 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
+include '/var/www/html/codeigniter/application/rabbitMq/sender.php';
+include '/var/www/html/codeigniter/application/static/LinkConstants.php';
+
 /*********************************************************************
  * @discription  Controller API
  *********************************************************************/
@@ -10,6 +13,7 @@ class forgotService extends CI_controller
      * @method forgot() login in to fundo logic
      * @return void
      */
+
     public function forgot($email)
     {
         // $data = [
@@ -18,11 +22,12 @@ class forgotService extends CI_controller
         if (forgotService::checkEmail($email)) {
             $ref = new Send();
             $token = md5($email);
-            $query = "UPDATE registrations SET reset_key= '$token where email='$email'";
-            $statement = $this->conn_id->prepare($query);
+            $query = "UPDATE registrations SET reset_password= '$token' where email='$email'";
+            $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
             $sub = 'password recovery mail';
-            $body = "";
+            $body = "click here to reset password http://localhost:4200/verify?token=.$token";
+            // $body = "click here to " . $this->constants->resetLink . $token;
             $response = $ref->sendEmail($email, $sub, $body);
             if (response == "sent") {
                 $data = array("message" => "200");
@@ -51,7 +56,7 @@ class forgotService extends CI_controller
         $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($arr as $titleData) {
-            if ($titleData['email'] == $email && $titleData['active'] == '1') {
+            if ($titleData['email'] == $email) {
                 return true;
             }
         }

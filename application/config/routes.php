@@ -62,5 +62,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['register'] = 'registerController/registration';
+$route['register'] ='registerController/registration';
 $route['login']='registerController/login';
+$route['forgot']='registerController/forgot';

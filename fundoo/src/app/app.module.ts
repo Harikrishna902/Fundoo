@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import{} from '@angular/forms';
 import { ForgotComponent } from './components/forgot/forgot.component';
+import { ResetComponent } from './components/reset/reset.component';
 @NgModule({
   /**
    * array of components created
@@ -24,7 +25,8 @@ import { ForgotComponent } from './components/forgot/forgot.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotComponent
+    ForgotComponent,
+    ResetComponent
   ],
   /**
    * array of modules required to be used in application
