@@ -24,7 +24,9 @@ class registerService extends CI_controller
             'email' => $email,
             'password' => $password,
         ];
-
+         /**
+          * query to insert the data
+          */
         $query = "INSERT INTO registrations(FirstName,Lastname,email,password) VALUES ('$FirstName','$LastName','$email','$password')";
         $stat = $this->db->conn_id->prepare($query);
         $statement = $stat->execute($dataOne);

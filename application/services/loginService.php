@@ -41,10 +41,10 @@ class loginService extends CI_controller{
 
     public function fetchemailid($token)
 {
-    $query = "SELECT email From registrations where reset_passowrd ='$token' ";
-    $stmt = $this->db->conn_id->prepare($query);
-    $stmt->execute();
-    $arr = $stmt->fetch(PDO::FETCH_ASSOC);
+    $query = "SELECT * From registrations where reset_password ='$token' ";
+    $statement = $this->db->conn_id->prepare($query);
+    $statement->execute();
+    $arr = $statement->fetch(PDO::FETCH_ASSOC);
     if ($arr) {
         $data = array(
             'key'     => $arr['email'],
@@ -61,20 +61,28 @@ class loginService extends CI_controller{
     }
     return $data;
 }
+
+/**
+ * function to reset password
+ * @param password,token
+ */
     public function resetpass($password, $token)
 {
-    $query = "UPDATE registerations set password = '$password' where reset_password='$token' ";
-    $stmt = $this->db->conn_id->prepare($query);
-    $stmt->execute();
-    $que1 = "SELECT reset_password from registerations where password ='$password' ";
-    $stmt1 = $this->db->conn_id->prepare($que1);
-    $stmt1->execute();
-    $arr = $stmt1->fetch(PDO::FETCH_ASSOC);
+    $query = "UPDATE registrations set password = '$password' where reset_password='$token' ";
+    $statement = $this->db->conn_id->prepare($query);
+    $statement->execute();
+    $queOne = "SELECT reset_password from registrations where password ='$password' ";
+    $statementOne= $this->db->conn_id->prepare($queOne);
+    $statementOne->execute();
+    $arr = $statementOne->fetch(PDO::FETCH_ASSOC);
     if($arr['reset_password']==null){
         $data = array(
             'message'=>404
         );
     }else{
+        $queryOne = "UPDATE registrations set reset_password='' where password='$password'";
+        $statementOne = $this->db->conn_id->prepare($queryOne);
+        $statementOne->execute();
         $data = array(
             'message'=>200
         );

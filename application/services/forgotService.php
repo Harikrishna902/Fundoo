@@ -16,9 +16,7 @@ class forgotService extends CI_controller
 
     public function forgot($email)
     {
-        // $data = [
-        //     'email' => $email
-        //     ];
+        
         if (forgotService::checkEmail($email)) {
             $ref = new Send();
             $token = md5($email);
@@ -26,7 +24,7 @@ class forgotService extends CI_controller
             $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
             $sub = 'password recovery mail';
-            $body = "click here to reset password http://localhost:4200/verify?token=.$token";
+            $body = "click here to reset password http://localhost:4200/reset?token=$token";
             // $body = "click here to " . $this->constants->resetLink . $token;
             $response = $ref->sendEmail($email, $sub, $body);
             if (response == "sent") {

@@ -1,6 +1,10 @@
+<!-- main div starts and flexlayout aligniment -->
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
-
+<!-- mar-card starts -->
   <mat-card class="card">
+    <!--  clalling session  and databinding -->
+    <div>{{value}} {{session}}</div>
+    <!-- form starts -->
     <form class="example-form" [formGroup]="ResetForm">
       <h3 class="header">ResetPassword</h3>
      
@@ -26,11 +30,13 @@
           -->
       
       <div fxLayout="row" fxLayoutAlign="center center">
-        <button mat-raised-button color="primary" (click)="login()">
+        <button mat-raised-button color="primary" (click)="reset()">
           Reset
         </button>
       </div>
-
+<!-- form ends -->
     </form>
+    <!-- mat-card ends -->
   </mat-card>
+  <!-- main div ends -->
 </div>

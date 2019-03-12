@@ -65,3 +65,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['register'] ='registerController/registration';
 $route['login']='registerController/login';
 $route['forgot']='registerController/forgot';
+$route['fetchemail'] = 'registerController/fetchemail';
+$route['reset'] = 'registerController/resetpassword'; 

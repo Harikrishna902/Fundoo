@@ -62,16 +62,22 @@ class RegisterController extends CI_Controller
 
     }
 
-    // public function reset()
-    // {
+        /**
+        * function to fetchmail
+        */
+    
         public function fetchemail(){
             $email = $_POST['token'];
-            $res = $this->loginService->fetchemailid($email);
+            $res = $this->loginservice->fetchemailid($email);
         }   
+        
+        /**
+         * function to reset password 
+         */
         public function resetpassword(){
             $password = $_POST['password'];
             $token = $_POST['token'];
-            $res = $this->loginService->resetpass($password,$token);
+            $res = $this->loginservice->resetpass($password,$token);
         }    
 
 }

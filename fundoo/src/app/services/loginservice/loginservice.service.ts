@@ -17,7 +17,6 @@ export class LoginserviceService {
  * @returns obseravble data
  * @function sends login data 
  */
-
   UserLoginData(login:Login) {
 		let userLoginData = new FormData();
 		userLoginData.append("email", login.email);
@@ -26,19 +25,30 @@ export class LoginserviceService {
 			this.serviceUrl.host + this.serviceUrl.login,userLoginData
 			
 		);
-	}
+  }
+  
+  /**
+   * @method getEmail
+   * @param resetemail 
+   * @returns observable data
+   */
 	getEmail(resetemail){
     let getemail= new FormData();
     getemail.append("token",this.route.snapshot.queryParamMap.get("token"));
    return this.http.post(this.serviceUrl.host+this.serviceUrl.fetchmail,getemail);
   }
-
+   
+  /**
+   * @method userResetPass
+   * @param reset 
+   * @returns obseravble data
+   */
   userResetPass(reset) {
-    let resett = new FormData();
-    resett.append("token", this.route.snapshot.queryParamMap.get("token"));
-    resett.append("password", reset.password);
+    let resetOne = new FormData();
+    resetOne.append("token", this.route.snapshot.queryParamMap.get("token"));
+    resetOne.append("password", reset.password);
 
-    return this.http.post(this.serviceUrl.host+this.serviceUrl.reset, resett);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.reset, resetOne);
   }
 
 }

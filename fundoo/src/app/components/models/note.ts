@@ -14,4 +14,8 @@ export interface Register {
   export interface Forgot{
     email:string;
   }
+
+  export interface reset{
+    password:string;
+  }
   

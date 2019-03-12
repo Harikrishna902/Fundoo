@@ -1,12 +1,12 @@
 /************************************************************************************************
-* Execution : 1. default node cmd> login.ts 
+* Execution : 1. default node cmd> register.ts 
 * 
 * Purpose :Register to fundoo
 * 
 * @file :register.ts
 * @module :register.ts - This is optional if expeclictly its an npm or local package
 * @author : harikrishna <nalluri.harikrishna1@gmail.com>
-* @since : 2-3-2019
+* @since : 3-3-2019
 *
 *************************************************************************************************/
 
