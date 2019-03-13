@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
     debugger;
     let obj = this.S_register.CreateUser(this.registerForm.value);
     /**
-     * error handling and 
+     * error handling and returns observable
      * sends response  
      */
     debugger;

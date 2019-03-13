@@ -43,7 +43,7 @@ login() {
   debugger;
   let obj = this.S_forgot.UserForgotData(this.ForgotForm.value);
   /**
-   * error handling and 
+   * error handling and returns observable
    * sends response  
    */
   debugger;

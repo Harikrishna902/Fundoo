@@ -2,6 +2,9 @@
 
 require_once '/var/www/html/codeigniter/application/rabbitMq/vendor/autoload.php';
 //require_once "C:/xampp/htdocs/php_CodeIgniter/CodeIgniter/application/static/RabbitMQConstants.php";
+/**
+ * allows to create new connection to rabbitmq server
+ */
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 
@@ -20,7 +23,9 @@ class Receiver
         
         $connection = new AMQPStreamConnection($RabbitMQConstantsObj->host,$RabbitMQConstantsObj->port,$RabbitMQConstantsObj->username,$RabbitMQConstantsObj->password);
         $channel    = $connection->channel();
-
+         /**
+          * ddeclaring a queue
+          */
         $channel->queue_declare($RabbitMQConstantsObj->queuename, false, false, false, false);
         $email=$RabbitMQConstantsObj->senderEmailID;
         $pass=$RabbitMQConstantsObj->senderPassword;
@@ -29,13 +34,13 @@ class Receiver
             $RabbitMQConstantsObj = new RabbitMQConstants();
             $data = json_decode($msg->body, true);
 
-            // $from       = $data['from'];
-            // $from_email = $data['from_email'];
+           
             $to_email   = $data['to_email'];
             $subject    = $data['subject'];
             $message    = $data['message'];
             /**
              * Create the Transport
+             * @param host,port,encrypt
              */
             $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
                 ->setUsername($RabbitMQConstantsObj->senderEmailID)

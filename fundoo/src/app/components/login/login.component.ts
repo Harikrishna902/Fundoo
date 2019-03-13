@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     debugger;
     let obj = this.S_login.UserLoginData(this.LoginForm.value);
     /**
-     * error handling and 
+     * error handling and returns observable
      * sends response  
      */
     debugger;
