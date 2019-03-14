@@ -63,7 +63,6 @@ class Send
          * calling the receiver
          */
         $obj = new Receiver();
-
         $obj->receiverMail();
         $channel->close();
         $connection->close();

@@ -1,48 +1,87 @@
-
-<mat-toolbar >
-    <mat-toolbar-row>
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        <!-- <md-icon>search</md-icon> -->
-        
-      </button>
-     
-      <span class="blue">
-          F
-        </span>
-        <span class="orange">
-          u
-        </span>
-        <span class="black">
-          n
-        </span>
-        <span class="green">
-          d
-        </span>
-        <span class="blue">
-          o
-        </span>
-        <span class="orange">
-          o
-        </span>
-        <input placeholder="search" type="search"   >
-    <div class="spacer"></div>
-    <div><mat-icon matSuffix>refresh</mat-icon></div>
-   
-    <div><mat-icon matSuffix>notifications_none</mat-icon></div>
-    <div><mat-icon matSuffix>lightbulbs_on</mat-icon></div>
-    <!-- <div><mat-icon matSuffix>refresh</mat-icon></div> -->
+<mat-toolbar>
+  <mat-toolbar-row>
     
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <mat-sidenav-container class="example-container">
-    <mat-sidenav #drawer mode="side" role="navigation">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+
+    </button>
+    <mat-icon> <img src="../../../assets/keep_48dp.png " /></mat-icon>
+    <div class="fundoo">
+    <span class="blue">
+      F
+    </span>
+    <span class="orange">
+      u
+    </span>
+    <span class="black">
+      n
+    </span>
+    <span class="green">
+      d
+    </span>
+    <span class="blue">
+      o
+    </span>
+    <span class="orange">
+      o
+    </span>
+  </div>
+
+  
+    <input class="ip" matInput placeholder="search"> 
+
+    <!-- <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="sendSearchData()" class="searchicon">
+        <mat-icon class="example-icon">search</mat-icon>
+        </button>
+        <input class="searchbar" type="text" placeholder="Search" /> -->
+
+    <div fxLayout="row" fxLayoutAlign="space-around center" style="flex: 0 0 20%;">
+
+
+      <mat-icon>refresh</mat-icon>
+      <mat-icon matuffix>view_agenda</mat-icon>
+      <mat-icon matuffix>apps</mat-icon>
+      <mat-icon matSuffix>account_circle</mat-icon>
+     
+      <!-- </button> -->
+    </div>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav class="width" #drawer mode="side" role="navigation">
+    <div fxLayout="column"  fxLayoutAlign="center center">
       <mat-nav-list>
-        <a mat-list-item routerLink='/notes'>Notes</a>
-        <a mat-list-item routerLink='/remainder'>Remainders</a>
+        <a mat-list-item routerLink="notes">
+          <mat-icon>lightbulb_outline</mat-icon><span class="abc">Notes</span>
+        </a><br>
+        <a mat-list-item routerLink="Reminders">
+          <mat-icon> notifications_none</mat-icon><span class="abc">Reminders</span>
+        </a><br>
+        <mat-divider></mat-divider>
+        <p class="sansserif">LABLES</p>
+       <!-- <h3>label</h3> -->
+        <a mat-list-item routerLink="editlabels">
+            <mat-icon> mode_edit</mat-icon><span class="abc">Edit labels</span>
+          </a><br>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="Archive">
+              <mat-icon> archive</mat-icon><span class="abc">Archive</span>
+            </a><br>
+            <a mat-list-item routerLink="Trash">
+                <mat-icon>delete</mat-icon><span class="abc">Trash</span>
+              </a>
+
       </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

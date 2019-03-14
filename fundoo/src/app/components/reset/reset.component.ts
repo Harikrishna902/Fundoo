@@ -67,9 +67,9 @@ reset() {
   obj.subscribe((res: any) => {
     console.log(res.message);
     if (res.message == "200") {
-      this.errormsg = "reset link has been sent to your mail \n ";
+      this.errormsg = "reset sucessful \n ";
     } else {
-      this.errormsg = "mail not registered";
+      this.errormsg = "password should be above 6 letters";
     } 
   });
 
