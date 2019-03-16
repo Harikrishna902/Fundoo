@@ -18,6 +18,9 @@ import{} from '@angular/forms';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SimpleComponent } from './components/simple/simple.component';
+import { NotesComponent } from './components/notes/notes.component';
+
 @NgModule({
   /**
    * array of components created
@@ -28,7 +31,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     RegisterComponent,
     ForgotComponent,
     ResetComponent,
-    DashboardComponent
+    DashboardComponent,
+    SimpleComponent,
+    NotesComponent,
+   
   ],
   /**
    * array of modules required to be used in application
