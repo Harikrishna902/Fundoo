@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-
+  flag = true;
   constructor() { }
 
   ngOnInit() {
   }
+  flip()
+  {
+    this.flag = !this.flag;
+  }
+  
+  }
 
-}
+
+
+
+

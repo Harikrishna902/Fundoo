@@ -15,6 +15,7 @@ export class serviceUrl {
 	public reset="reset";
 	//public reset = "resetpass";
   public fetchmail = "fetchemail";
+  public changeDateTime = "changeDateTime";
 }
 
 
