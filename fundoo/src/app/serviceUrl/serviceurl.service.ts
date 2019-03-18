@@ -13,9 +13,11 @@ export class serviceUrl {
 	public login = "login";
 	public forgot="forgot";
 	public reset="reset";
-	//public reset = "resetpass";
-  public fetchmail = "fetchemail";
-  public changeDateTime = "changeDateTime";
+	public fetchmail = "fetchemail";
+	public changeDateTime = "changeDateTime";
+	public createnotes="createNotes";
+    public displaynotes = "displaynotes";
+  
 }
 
 

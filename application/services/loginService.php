@@ -21,19 +21,39 @@ class loginService extends CI_controller{
         /**
          * Returns an array indexed by column name as returned in your result set.
          */
-        $arr = $statement->fetchColumn();
+        $arr = $statement->rowcount();
         $arr1 = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($res as $login){
+            $key = $login['email'];
+            $email = $login['email'];
+            $randnum = rand(1111111111,9999999999);
+        }
         if ($arr>0) {
-            $data = array("message" => "200",
+            $token = array(
+                "email" =>$email,
+                "random" => $randomnum
+            );
+            $jwt = JWT::encode($token, $key);
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+            $client = new Predis\Client(array(
+                'host' => '127.0.0.1',
+                'port' => 6379,
+                'password' => null,
+              ));
+              $client->set('token',$jwt);
+              $response = $client->get('token');
+              $data = array(
+                "token" => $jwt,  
+                "message" => "200",
             );
             print json_encode($data);
             
-        }
-        else {
-            $data = array("message" => "204",
+        } else {
+            $data = array(
+                "message" => "204",
             );
             print json_encode($data);
-           
+            return "204";
         }
         return $data;
     }

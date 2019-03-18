@@ -26,12 +26,13 @@
 
 <div fxLayout="row wrap" style="width:100%; height: 90%;">
   <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 80%">
-
+      <form class="example-form" [formGroup]="NotesForm">
     <div *ngIf="flag===true" (click)="flip()">
       <mat-card class="note">
+     
         <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
           <mat-form-field appearance="null">
-            <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
+            <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." formControlName="note" />
           </mat-form-field>
         </div>
         <div style="margin-top:-80px;" fxLayout="row" fxLayoutAlign="end start">
@@ -56,12 +57,14 @@
         </button>
         <input role="textarea" style="margin-top: 15px; margin-left: 10px;" matInput placeholder="Take a note" />
        <div>
-         <!-- <mat-icon>notifications_none</mat-icon> -->
+        
          <div fxLayout="row" fxLayoutAlign="end end" >
         <button mat-button color="primary">close</button></div>
       </div>
         
       </mat-card>
     </div>
-
+  </form>
 </div>
+
+

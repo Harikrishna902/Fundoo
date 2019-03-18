@@ -28,7 +28,7 @@ class forgotService extends CI_controller
             // $body = "click here to " . $this->constants->resetLink . $token;
             $response = $ref->sendEmail($email, $sub, $body);
             if (response == "sent") {
-                $data = array("message" => "200");
+                $data = array("message" =>"200");
                 echo json_encode($data);
                 return "200";
 
