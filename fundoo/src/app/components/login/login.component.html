@@ -41,9 +41,9 @@
       <!-- header for singin -->
       <h1 class="header"> SignIn</h1>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" formControlName="username" required>
+        <input matInput placeholder="Email" formControlName="email" required>
         <mat-icon matSuffix>mail</mat-icon>
-        <mat-error *ngIf="LoginForm.controls['username'].invalid">
+        <mat-error *ngIf="LoginForm.controls['email'].invalid">
           enter valid email
         </mat-error>
       </mat-form-field>
@@ -57,7 +57,7 @@
     
        <a routerLink="/forgot" style="color:  #3373e8;" href="">Forgot Password?</a>
        <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center center" >
-        <a routerLink="../dashboard"><button mat-raised-button color="primary" (click)="login()">Login</button></a>
+       <button mat-raised-button color="primary" (click)="login(LoginForm.value)">Login</button>
        
         <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
 

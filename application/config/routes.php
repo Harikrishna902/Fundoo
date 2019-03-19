@@ -67,3 +67,6 @@ $route['login']='registerController/login';
 $route['forgot']='registerController/forgot';
 $route['fetchemail'] = 'registerController/fetchemail';
 $route['reset'] = 'registerController/resetpassword'; 
+$route['dashboard']='notes/dashboard';
+$route['createnotes'] = 'Notes/createNotes';
+$route['fetchnotes'] = 'Notes/getNotes';

@@ -26,13 +26,13 @@
 
 <div fxLayout="row wrap" style="width:100%; height: 90%;">
   <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 80%">
-      <form class="example-form" [formGroup]="NotesForm">
+
     <div *ngIf="flag===true" (click)="flip()">
       <mat-card class="note">
-     
+
         <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
           <mat-form-field appearance="null">
-            <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." formControlName="note" />
+            <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
           </mat-form-field>
         </div>
         <div style="margin-top:-80px;" fxLayout="row" fxLayoutAlign="end start">
@@ -43,7 +43,7 @@
             <mat-icon matTooltip="Drawing is not available">brush</mat-icon>
           </button>
           <button mat-icon-button>
-            <mat-icon matTooltip="New note with image"><img src="../../assets/picture(2).png" /></mat-icon>
+            <mat-icon matTooltip="New note with image">insert_photo</mat-icon>
           </button>
         </div>
       </mat-card>
@@ -51,20 +51,95 @@
 
     <div *ngIf="flag===false">
       <mat-card class="notes">
-        <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput placeholder="Title" />
-        <button style="padding-top: 5px;" mat-icon-button>
-          <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
-        </button>
-        <input role="textarea" style="margin-top: 15px; margin-left: 10px;" matInput placeholder="Take a note" />
-       <div>
-        
-         <div fxLayout="row" fxLayoutAlign="end end" >
-        <button mat-button color="primary">close</button></div>
-      </div>
-        
+        <form class="example-form" [formGroup]="noteform">
+          <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput placeholder="Title"
+            formControlName="title" />
+          <button mat-icon-button style="padding-top:5px;">
+            <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
+          </button>
+          <input role="textarea" style="margin-top: 25px; margin-left: 10px;" matInput placeholder="Take a note"
+            formControlName="description" />
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+            <button mat-icon-button>
+              <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
+            </button>
+         
+          <mat-menu [overlapTrigger]="false" #remainder="matMenu">
+            <button mat-menu-item>Remainder:</button>
+            <button mat-menu-item (click)="today(01)">Later today 8:00AM</button>
+            <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00AM</button>
+            <button mat-menu-item (click)="nextWeek(01)">
+              Next week Mon,8:00AM
+            </button>
+            <!-- <button mat-menu-item (click)="timer_panel = true">
+              <mat-icon>></mat-icon>Pick date & time
+            </button> -->
+          </mat-menu>
+          
+           
+           
+           
+           
+           
+           
+           
+            <button mat-icon-button>
+              <mat-icon matTooltip="collaborator">person_add</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="change color">color_lens</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="Archive">archive</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="more">more_vert</mat-icon>
+            </button>
+          </div>
+          <div class="close" fxLayout="row" fxLayoutAlign="end  end">
+            <button mat-button color="primary" (click)="notescreate(noteform.value)">close</button>
+          </div>
+
+        </form>
       </mat-card>
     </div>
-  </form>
-</div>
+  </div>
+   
 
-
+    <div style="margin-top: -510px; margin-left: 880px;">
+      <mat-grid-list cols="4" rowHeight="3:1" class="noteList">
+         
+        <mat-card *ngFor="let n of note" class="notescard">
+            <button mat-icon-button style="padding-left:550px;">
+                <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
+              </button>
+            <p style="margin-top: -35px;">{{n.title}}</p>
+            <p style="font-size: 20px;">{{n.description}}</p>
+            
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+                <button mat-icon-button>
+                  <mat-icon matTooltip="Remind me">notification_important</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon matTooltip="collaborator">person_add</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon matTooltip="change color">color_lens</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon matTooltip="Archive">archive</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon matTooltip="more">more_vert</mat-icon>
+                </button>
+              </div>
+          
+        </mat-card>
+      </mat-grid-list>
+    </div>

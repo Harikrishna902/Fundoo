@@ -1,9 +1,12 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
+include '/var/www/html/codeigniter/application/services/JWT.php';
+include '/var/www/html/codeigniter/application/predis-1.1/autoload.php';
 /*********************************************************************
  * @discription  Controller API
  *********************************************************************/
+use \Firebase\JWT\JWT;
 class loginService extends CI_controller{
     /**
      * @method login() login in to fundo logic
@@ -23,10 +26,10 @@ class loginService extends CI_controller{
          */
         $arr = $statement->rowcount();
         $arr1 = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach($res as $login){
+        foreach($arr1 as $login){
             $key = $login['email'];
             $email = $login['email'];
-            $randnum = rand(1111111111,9999999999);
+            $randomnum = rand(1111111111,9999999999);
         }
         if ($arr>0) {
             $token = array(

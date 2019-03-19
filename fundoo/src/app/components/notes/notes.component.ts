@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {NoteService } from '../../services/noteservice/note.service';
+import { NoteService } from '../../services/noteservice/note.service';
 import decode from 'jwt-decode';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -9,59 +10,67 @@ import decode from 'jwt-decode';
 })
 export class NotesComponent implements OnInit {
   flag = true;
-  email:string;
+  email: string;
   response: any;
-  note:string;
-  
-  description:"";
-  tokenOne:"";
+  note;
+
+  description: "";
+  tokenOne: "";
   //createNotes:string;
-  NoteForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService) { }
+  noteform: FormGroup;
+  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router) { }
 
   ngOnInit() {
+
+    this.noteform = this.formBuilder.group({
+      title: '',
+      description: '',
+
+    });
+
+    this.getNotes();
+
   }
-  //   this.NoteForm = this.fb.group({
-  //     desc: '',
-  //     title: ''
-  //   });
 
-  //   this.getNotes();
-
-  // }
- 
-  // getNotes() {
-  //   const token = localStorage.getItem('token');
-  //   const tokenPayload = decode(token);
-  //   const emailid = tokenPayload.email;
-  //   debugger
-  //   let noteobj = this.notes.displayNotes(emailid);
-  //   noteobj.subscribe((data: any) => {
-  //     this.note = data as string;
-  //   });
-  // }
+  getNotes() {
+    const token = localStorage.getItem('token');
+    // decode the token to get its payload
+    const tokenPayload = decode(token);
+    const emailid = tokenPayload.email;
+    debugger
+    let noteobj = this.notes.displayNotes(emailid);
+    noteobj.subscribe((data: any) => {
+      debugger
+      this.note = data as string[];
+    });
+  }
 
 
-  
-  flip( value:any)
-  {
+
+  flip() {
     debugger;
     this.flag = !this.flag;
-  
+
+
+  }
+
+
+
+  notescreate(value: any) {
+    debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value,email);
+    let obj = this.notes.createNotes(value, email);
 
     obj.subscribe((res: any) => {
       debugger
       console.log(res.status);
       if (res.status == "200") {
         this.tokenOne = res.token;
-      } 
+      }
     });
-  
+  }
 }
-}
-  
+
 
 
 

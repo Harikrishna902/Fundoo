@@ -10,7 +10,14 @@ class NoteService extends CI_Controller
         parent::__construct();
         
     }
-    public function addNotes($email,$title,$desc){
+    
+    /**
+     * @method to addnotes
+     * @param email,title,desc
+     *@return void
+     *@desc Function to send email to server
+     */
+    public function addNotes($email,$title,$description){
         $query = "INSERT into notes (title,description,email) values ('$title','$description','$email')";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
@@ -27,11 +34,16 @@ class NoteService extends CI_Controller
             return "204";
         }
     }
+
+    /**
+     * @method to displaynotes
+     * @param email
+     */
     public function dispalynotes($email){
         $query = "SELECT * from notes Where email ='$email' ORDER BY id DESC ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
-        $arr = $$statement->fetchAll(PDO::FETCH_ASSOC);
+        $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach($arr as $notes){
             $title = $notes['title'];
             $description = $notes['description'];

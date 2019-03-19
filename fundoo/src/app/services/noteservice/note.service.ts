@@ -8,22 +8,34 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NoteService {
 
-  constructor(private http: HttpClient,private serviceUrl:serviceUrl,private route: ActivatedRoute){ }
+  constructor(private http: HttpClient, private serviceUrl: serviceUrl, private route: ActivatedRoute) { }
 
-createNotes(note,email){
-  let createnotes = new FormData();
-  createnotes.append("email",email);
-  createnotes.append("title",note.title);
-  createnotes.append("description",note.description);
-  return this.http.post(this.serviceUrl.host+this.serviceUrl.createnotes,createnotes);
+  /**
+   * function to create note
+   * @method createNotes
+   * @param note 
+   * @param email 
+   * @returns obseravble data
+   */
+  createNotes(note, email) {
+    let createnotes = new FormData();
+    createnotes.append("email", email);
+    createnotes.append("title", note.title);
+    createnotes.append("description", note.description);
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
 
-}
+  }
 
+/**
+ * function to dispaly notes
+ * @method displayNotes
+ * @param data 
+ * @returns obseravble data
+ */
+  displayNotes(data) {
+    let emaildata = new FormData();
+    emaildata.append("email", data);
 
-displayNotes(data){
-let emaildata = new FormData();
- emaildata.append("email",data);
-  
-return this.http.post(this.serviceUrl.host+this.serviceUrl.displaynotes,emaildata);
-}
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.displaynotes, emaildata);
+  }
 }
