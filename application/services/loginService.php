@@ -3,6 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
 include '/var/www/html/codeigniter/application/services/JWT.php';
 include '/var/www/html/codeigniter/application/predis-1.1/autoload.php';
+include '/var/www/html/codeigniter/application/services/Redish.php';
 /*********************************************************************
  * @discription  Controller API
  *********************************************************************/
@@ -25,8 +26,8 @@ class loginService extends CI_controller{
          * Returns an array indexed by column name as returned in your result set.
          */
         $arr = $statement->rowcount();
-        $arr1 = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach($arr1 as $login){
+        $arrOne = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($arrOne as $login){
             $key = $login['email'];
             $email = $login['email'];
             $randomnum = rand(1111111111,9999999999);
@@ -38,12 +39,9 @@ class loginService extends CI_controller{
             );
             $jwt = JWT::encode($token, $key);
             $decoded = JWT::decode($jwt, $key, array('HS256'));
-            $client = new Predis\Client(array(
-                'host' => '127.0.0.1',
-                'port' => 6379,
-                'password' => null,
-              ));
-              $client->set('token',$jwt);
+            $redis = new Redis();
+            $connection = $redis->connection();
+            $client->set('token',$jwt);
               $response = $client->get('token');
               $data = array(
                 "token" => $jwt,  

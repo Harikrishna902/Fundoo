@@ -24,7 +24,8 @@ class Notes extends CI_Controller
         $email = $_POST['email'];
         $title = $_POST['title'];
         $description = $_POST['description'];
-        $this->serviceReference->addNotes($email,$title,$description);
+        $reminder =$_POST['reminder'];
+        $this->serviceReference->addNotes($email,$title,$description,$reminder);
     }
 
     /**
@@ -32,7 +33,7 @@ class Notes extends CI_Controller
      *@return void
      */
     public function getNotes(){
-        $email = $_POST['email'];
-        $this->serviceReference->dispalynotes($email);
+    $email = $_POST['email'];
+    $this->serviceReference->dispalynotes($email);
     }
 }

@@ -17,8 +17,19 @@ class NoteService extends CI_Controller
      *@return void
      *@desc Function to send email to server
      */
-    public function addNotes($email,$title,$description){
-        $query = "INSERT into notes (title,description,email) values ('$title','$description','$email')";
+    public function addNotes($email,$title,$description,$reminder){
+
+        // $flag = 0;        
+        // if(empty($title)||empty($desc)){
+        //     $flag = 1;
+        // }
+        // if($flag == 0){
+        //     $redis = new RedisConn();
+        //     $connection = $redis->connection();
+        //     $response = $client->get('token');
+        // }
+
+        $query = "INSERT into notes (title,description,email,reminder) values ('$title','$description','$email','$reminder')";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {

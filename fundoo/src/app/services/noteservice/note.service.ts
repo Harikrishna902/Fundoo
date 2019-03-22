@@ -15,13 +15,15 @@ export class NoteService {
    * @method createNotes
    * @param note 
    * @param email 
+   * @param time
    * @returns obseravble data
    */
-  createNotes(note, email) {
+  createNotes(note, email,time) {
     let createnotes = new FormData();
     createnotes.append("email", email);
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
+    createnotes.append("reminder",time);
     return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
 
   }

@@ -1,33 +1,10 @@
-<!-- 
- <div fxLayout="row wrap" style="width:100%; height:10%">
-    <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 100%">
-      <div *ngIf="flag===true" (click)="flip()" >
-        <mat-card class="note" >
-            <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
-                <mat-form-field appearance="null">
-                  <input matInput  style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
-                </mat-form-field>
-            </div>
-            <div style="margin-top:-80px;" fxLayout = "row" fxLayoutAlign="end start">
-              <button mat-icon-button><mat-icon matTooltip="New List">check_box</mat-icon></button> 
-              <button mat-icon-button><mat-icon matTooltip="Drawing is not available">brush</mat-icon></button>
-              <button mat-icon-button><mat-icon matTooltip="New note with image"><img src="../../assets/picture(2).png" /></mat-icon></button>           
-            </div>
-        </mat-card>
-      </div>
-       <mat-card class="box" [ngStyle]="{ 'background-color': color }"> 
- <div style="margin-bottom: -30px;" *ngIf="!displayMain">
-          <mat-form-field appearance="null">
-            <input matInput (click)="displayMain = !displayMain" placeholder="Take a note..." />
-          </mat-form-field>
-        </div>
-        </div> -->
+
 
 
 <div fxLayout="row wrap" style="width:100%; height: 90%;">
   <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 80%">
 
-    <div *ngIf="flag===true" (click)="flip()">
+    <div *ngIf="flag==true" (click)="flip()">
       <mat-card class="note">
 
         <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
@@ -35,6 +12,7 @@
             <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
           </mat-form-field>
         </div>
+       
         <div style="margin-top:-80px;" fxLayout="row" fxLayoutAlign="end start">
           <button mat-icon-button>
             <mat-icon matTooltip="New List">check_box</mat-icon>
@@ -51,17 +29,24 @@
 
     <div *ngIf="flag===false">
       <mat-card class="notes">
+        
         <form class="example-form" [formGroup]="noteform">
           <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput placeholder="Title"
             formControlName="title" />
           <button mat-icon-button style="padding-top:5px;">
             <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
           </button>
-          <input role="textarea" style="margin-top: 25px; margin-left: 10px;" matInput placeholder="Take a note"
+          <input role="textarea" style="margin-top: 5px; margin-left: 10px;" matInput placeholder="Take a note"
             formControlName="description" />
+            
+             <div> <button mat-icon-button  *ngIf="timer" >
+              <mat-icon class="icon">schedule</mat-icon>{{currentDateAndTime}}
+            </button>
+          </div>
+             
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
             <button mat-icon-button>
-              <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
+              <mat-icon matTooltip="Remind me"   [matMenuTriggerFor]="remainder">notification_important</mat-icon>
             </button>
          
           <mat-menu [overlapTrigger]="false" #remainder="matMenu">
@@ -71,19 +56,13 @@
             <button mat-menu-item (click)="nextWeek(01)">
               Next week Mon,8:00AM
             </button>
-            <!-- <button mat-menu-item (click)="timer_panel = true">
-              <mat-icon>></mat-icon>Pick date & time
-            </button> -->
-          </mat-menu>
           
-           
-           
-           
-           
-           
-           
-           
-            <button mat-icon-button>
+            <!-- <button mat-menu-item (click)="pick date and time(01)">Pick date & time</button> -->
+            
+          </mat-menu>
+
+
+           <button mat-icon-button>
               <mat-icon matTooltip="collaborator">person_add</mat-icon>
             </button>
             <button mat-icon-button>
@@ -104,22 +83,27 @@
           </div>
 
         </form>
+     
       </mat-card>
     </div>
   </div>
    
 
-    <div style="margin-top: -510px; margin-left: 880px;">
-      <mat-grid-list cols="4" rowHeight="3:1" class="noteList">
+    <div style="margin-top: -490px; margin-left: 880px;">
+      <mat-grid-list cols="4" rowHeight="2:1" class="noteList">
          
         <mat-card *ngFor="let n of note" class="notescard">
             <button mat-icon-button style="padding-left:550px;">
                 <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
               </button>
-            <p style="margin-top: -35px;">{{n.title}}</p>
-            <p style="font-size: 20px;">{{n.description}}</p>
+              
             
-            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+             
+            <p style="margin-top: -25px;">{{n.title}}</p>          
+            <p style="font-size: 20px;">{{n.description}}</p>
+            <p style="font-size: 20px;">{{n.reminder}}</p>
+            
+            <div class="iconss" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
                 <button mat-icon-button>
                   <mat-icon matTooltip="Remind me">notification_important</mat-icon>
                 </button>

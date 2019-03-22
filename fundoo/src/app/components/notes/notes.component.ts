@@ -3,6 +3,7 @@ import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@a
 import { NoteService } from '../../services/noteservice/note.service';
 import decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import * as moment from "moment";
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -16,6 +17,10 @@ export class NotesComponent implements OnInit {
 
   description: "";
   tokenOne: "";
+  date:any;
+  currentdate:any;
+  currentDateAndTime:any;
+  timer:any;
   //createNotes:string;
   noteform: FormGroup;
   constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router) { }
@@ -32,6 +37,10 @@ export class NotesComponent implements OnInit {
 
   }
 
+  /**
+   * function to get notes
+   * return obseravble 
+   */
   getNotes() {
     const token = localStorage.getItem('token');
     // decode the token to get its payload
@@ -49,17 +58,20 @@ export class NotesComponent implements OnInit {
 
   flip() {
     debugger;
+    this.timer =false;
     this.flag = !this.flag;
+   }
 
 
-  }
-
-
-
+/**
+ * function to create notes
+ * @param value 
+ * @return obseravable data
+ */
   notescreate(value: any) {
     debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email);
+    let obj = this.notes.createNotes(value, email,this.currentDateAndTime);
 
     obj.subscribe((res: any) => {
       debugger
@@ -69,9 +81,18 @@ export class NotesComponent implements OnInit {
       }
     });
   }
+  
+
+
+
+today(){
+  var date = new Date();
+  this.date = date.toDateString();
+  this.currentdate = moment(this.date).format('DD/MM/YY');
+  this.currentDateAndTime = this.currentdate+" "+"8:00";
+  this.timer=true;
 }
-
-
+}
 
 
 
