@@ -1,6 +1,3 @@
-
-
-
 <div fxLayout="row wrap" style="width:100%; height: 90%;">
   <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 80%">
 
@@ -12,7 +9,7 @@
             <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
           </mat-form-field>
         </div>
-       
+
         <div style="margin-top:-80px;" fxLayout="row" fxLayoutAlign="end start">
           <button mat-icon-button>
             <mat-icon matTooltip="New List">check_box</mat-icon>
@@ -29,40 +26,113 @@
 
     <div *ngIf="flag===false">
       <mat-card class="notes">
-        
+
         <form class="example-form" [formGroup]="noteform">
-          <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput placeholder="Title"
+          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px" matInput placeholder="Title"
             formControlName="title" />
           <button mat-icon-button style="padding-top:5px;">
             <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
           </button>
           <input role="textarea" style="margin-top: 5px; margin-left: 10px;" matInput placeholder="Take a note"
             formControlName="description" />
-            
-             <div> <button mat-icon-button  *ngIf="timer" >
+
+          <div> <button mat-icon-button *ngIf="timer">
               <mat-icon class="icon">schedule</mat-icon>{{currentDateAndTime}}
             </button>
           </div>
-             
+
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
             <button mat-icon-button>
-              <mat-icon matTooltip="Remind me"   [matMenuTriggerFor]="remainder">notification_important</mat-icon>
+              <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
             </button>
-         
-          <mat-menu [overlapTrigger]="false" #remainder="matMenu">
-            <button mat-menu-item>Remainder:</button>
-            <button mat-menu-item (click)="today(01)">Later today 8:00AM</button>
-            <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00AM</button>
-            <button mat-menu-item (click)="nextWeek(01)">
-              Next week Mon,8:00AM
-            </button>
-          
-            <!-- <button mat-menu-item (click)="pick date and time(01)">Pick date & time</button> -->
-            
-          </mat-menu>
+
+            <mat-menu [overlapTrigger]="false" #remainder="matMenu">
+              <button mat-menu-item>Remainder:</button>
+              <button mat-menu-item (click)="today(01)">Later today 8:00AM</button>
+              <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00AM</button>
+              <button mat-menu-item (click)="nextWeek(01)">
+                Next week Mon,8:00AM
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="dates">
+                  <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+                <mat-icon>schedule</mat-icon>Pick date & time
+              </button>
+              <mat-menu #dates="matMenu">
+                <mat-nav-list>
+                  <mat-list role="List">
+                    <div class="pickdate">
+
+                      <mat-list-item id="pickAdjust">
+                     
+                          <mat-icon matDatepickerToggleIcon matTooltip="Go back">keyboard_backspace</mat-icon>
+                        <span>Pick date and Time </span>
+                      </mat-list-item>
+
+                    </div>
+
+                    <mat-list-item>
+                      <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </mat-list-item>
+
+                    <button mat-menu-item [matMenuTriggerFor]="time">Pick Time </button>
+                    <mat-menu #time="matMenu">
+                      <button mat-menu-item>
+                        <span>Morning<span> 8:00AM</span></span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Afternoon 1:00PM</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Evening 6:00PM</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Night 8:00PM</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Custom</span>
+                      </button>
+                    </mat-menu>
+                    <mat-list-item>
+                      <button mat-menu-item [matMenuTriggerFor]="repeat">Does not repeat</button>
+                      <mat-menu #repeat="matMenu">
+                        <button mat-menu-item>
+                          <span>Does not repeat</span>
+                        </button>
+
+                        <button mat-menu-item>
+                          <span>Daily</span>
+                        </button>
+                        <button mat-menu-item>
+                          <span>weekly</span>
+                        </button>
+                        <button mat-menu-item>
+                          <span>Monthly</span>
+                        </button>
+                        <button mat-menu-item>
+                          <span>Yearly</span>
+                        </button>
+                        <button mat-menu-item>
+                          <span>Custom</span>
+                        </button>
+                      </mat-menu>
+
+                    </mat-list-item>
+
+                  </mat-list>
+                </mat-nav-list>
+
+              </mat-menu>
+            </mat-menu>
 
 
-           <button mat-icon-button>
+
+            <button mat-icon-button>
               <mat-icon matTooltip="collaborator">person_add</mat-icon>
             </button>
             <button mat-icon-button>
@@ -83,47 +153,52 @@
           </div>
 
         </form>
-     
+
       </mat-card>
     </div>
-  </div>
-   
+</div>
 
-    <div style="margin-top: -490px; margin-left: 880px;">
-      <mat-grid-list cols="4" rowHeight="2:1" class="noteList">
-         
+<div class="note-mat" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+  <div style="margin-top: 20px; margin-left: 80px;">
+    <mat-grid-list cols="4" rowHeight="4:1" class="noteList">
+      <div>
         <mat-card *ngFor="let n of note" class="notescard">
-            <button mat-icon-button style="padding-left:550px;">
-                <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
-              </button>
-              
-            
-             
-            <p style="margin-top: -25px;">{{n.title}}</p>          
-            <p style="font-size: 20px;">{{n.description}}</p>
-            <p style="font-size: 20px;">{{n.reminder}}</p>
-            
-            <div class="iconss" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
-                <button mat-icon-button>
-                  <mat-icon matTooltip="Remind me">notification_important</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon matTooltip="collaborator">person_add</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon matTooltip="change color">color_lens</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon matTooltip="Add image">insert_photo</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon matTooltip="Archive">archive</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon matTooltip="more">more_vert</mat-icon>
-                </button>
-              </div>
-          
+
+          <!-- padding for  pin icon
+         -->
+          <button mat-icon-button style="padding-left:150px;">
+            <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
+          </button>
+
+
+          <!-- data in the mat-card -->
+          <p style="margin-top: -25px;">{{n.title}}</p>
+          <p style="font-size: 20px;">{{n.description}}</p>
+          <p style="font-size: 20px;">{{n.reminder}}</p>
+
+          <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
+            <button mat-icon-button>
+              <mat-icon matTooltip="Remind me">notification_important</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="collaborator">person_add</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="change color">color_lens</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="Archive">archive</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon matTooltip="more">more_vert</mat-icon>
+            </button>
+          </div>
+
         </mat-card>
-      </mat-grid-list>
-    </div>
+      </div>
+    </mat-grid-list>
+  </div>
+</div>

@@ -1,7 +1,12 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
+header("Access-Control-Request-Method: POST");
+header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization
+');
 defined('BASEPATH') or exit('No direct script access allowed');
+
+
 include "/var/www/html/codeigniter/application/services/NoteService.php";
 class Notes extends CI_Controller
 {

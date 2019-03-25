@@ -9,6 +9,7 @@
     font-size: 17px;
     border-radius: 9px;
     margin-left:45%;
+
   }
   
   .notes {
@@ -20,6 +21,8 @@
     font-size: 17px;
     border-radius: 9px;
     margin-left: 41%;
+
+    
   }
   
 .close{
@@ -27,56 +30,36 @@
 }
 
 .notescard{
-
   margin-top:40px;
-    display: inline-block;
-    //margin-left: -75px;
-    margin-left:-10%;
-    margin-right: 138px;
-    height: 135px;
-    width:  600px;
-    border-radius: 15px;
-    padding-left: 39px;
-    padding-top:15px;
-    color: #7E858A;
-    font-family: 'Product Sans',Arial,sans-serif;
-    font-size: 16px;
-
-
-  // position: relative;
-  //   width: 600px;
-  //   padding: 14px;
-  //   margin-top: -520px;
-  //   height: 25px;
-  //   font-size: 17px;
-  //   border-radius: 9px;
-  //   margin-left:45%;
+  display: inline-block;
+  margin-left:-10%;
+  margin-right: 138px;
+  height: 160px;
+  width:  180px;
+  border-radius: 15px;
+  padding-left: 39px;
+  padding-top:15px;
+  color: #7E858A;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 16px;
 }
   .noteList{
-  margin-left: -540px;
-  margin-top: 90px;
-  width: 580px;
-  height: 100%;
+  margin-left:300px;
+  margin-top: -20px;
+  width: 1020px;
+  height: 10%;
   display: inline-block;
   color:#7E858A;
   font-family: 'Product Sans',Arial,sans-serif;
   font-size: 15px;
   border-radius: 9px;
+}
 
-
-  // position: relative;
-  //   width: 643px;
-  //   padding: 14px;
-  //   margin-top: -520px;
-  //   height: 125px;
-  //   font-size: 17px;
-  //   border-radius: 9px;
-  //   margin-left: 41%;
-  }
   .iconss{
     margin-top:-5%;
-    margin-left:-2%;
+    margin-left:-20%;
   }
-  // .example-form{
-  //   margin-top:-20%;
-  // }
+ 
+.note-mat{
+  margin-top:-400px;
+}

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import {CustomMaterialModule} from './material.module';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import {MatDatepickerModule,} from '@angular/material/datepicker';
 import { FlexLayoutModule } from "@angular/flex-layout"
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
@@ -19,7 +19,7 @@ import{} from '@angular/forms';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SimpleComponent } from './components/simple/simple.component';
+
 import { NotesComponent } from './components/notes/notes.component';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { NotesComponent } from './components/notes/notes.component';
     ForgotComponent,
     ResetComponent,
     DashboardComponent,
-    SimpleComponent,
+  
     NotesComponent,
     
   ],
@@ -49,7 +49,9 @@ import { NotesComponent } from './components/notes/notes.component';
     FlexLayoutModule,ReactiveFormsModule,
     HttpClientModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    //MatNativeDateModule
   ],
   /**
    * includes the services created

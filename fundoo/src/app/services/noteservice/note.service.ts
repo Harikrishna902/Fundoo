@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders  } from "@angular/common/http";
 import { serviceUrl } from "../../serviceUrl/serviceurl.service";
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,10 +24,22 @@ export class NoteService {
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
     createnotes.append("reminder",time);
-    return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
+  //   return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
 
-  }
+  // }
 
+
+  let headers_object = new HttpHeaders().set("Authorization",
+			
+  localStorage.getItem("token")
+);
+
+ 
+  console.log(headers_object);
+  return this.http.post(this.serviceUrl.host+this.serviceUrl.createnotes,createnotes,{headers:headers_object});
+
+ }
+  
 /**
  * function to dispaly notes
  * @method displayNotes

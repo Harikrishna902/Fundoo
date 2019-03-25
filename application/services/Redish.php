@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
-include '/var/www/html/codeigniter/application/libraries/predis/autoload.php';
+include_once '/var/www/html/codeigniter/application/predis-1.1/autoload.php';
 class Redis
 {
     public function connection()

@@ -11,7 +11,7 @@
       F
     </span>
     <span class="orange">
-      
+
       u
     </span>
     <span class="black">
@@ -40,16 +40,74 @@
     <div class=" icon-right" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
 
 
-      <mat-icon>refresh</mat-icon>
-      <mat-icon matSuffix>view_agenda</mat-icon>
-      <mat-icon matSuffix>settings</mat-icon>
+      <!-- <mat-icon>refresh</mat-icon> -->
+      <!-- <mat-icon matSuffix>view_agenda</mat-icon> -->
+      <div fxFlex="25" class="settingbtn">
+        <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+
+
+      <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid" (click)="Change()" (click)="grid()"
+        (click)="listView()">
+
+
+        <img *ngIf="isClicked==false" src="../../../assets/outline-view_agenda-24px.svg" />
+        <img *ngIf="isClicked==true" src="../../../assets/outline-border_all-24px.svg" />
+      </button>
+
+      <!-- <mat-icon matSuffix>settings</mat-icon> -->
+      <div class="settings">
+        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Send feedback</button>
+          <button mat-menu-item>Help</button>
+          <button mat-menu-item>App downloads</button>
+          <button mat-menu-item>Keyboard Shaortcuts</button>
+        </mat-menu>
+
+      </div>
 
     </div>
     <span class="example-spacer"></span>
     <div clas=" icon-left" fxLayoutGap="20px" fxLayoutAlign="space-between center">
       <mat-icon>apps</mat-icon>
-      <mat-icon matSuffix>account_circle</mat-icon>
+      <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
     </div>
+    <div [matMenuTriggerFor]="menuOne" fxFlex="3">
+      <img class="pic" src="../../../assets/profile.jpg" />
+    </div>
+
+    <mat-menu #menuOne="matMenu">
+      <div class="profileMenu">
+        <div fxLayout="row" fxLayoutAlign="start start">
+
+          <div>
+            <img class="picture" src="../../../assets/profile.jpg" />
+          </div>
+
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
+          <p>Hari krishna</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <p>{{email}}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+        <button mat-flat-button (click)="addAccount()">Add account</button>
+        <button class="signout" mat-flat-button (click)="signout()">Sign out</button>
+
+      </div>
+    </mat-menu>
+
+
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -67,57 +125,20 @@
         <mat-divider></mat-divider>
         <br>
         <label fxLayout="row" style="font-size: 12px">LABLES</label>
-   
+
         <a mat-list-item routerLink="editlabels">
-           
-            <mat-icon> mode_edit</mat-icon><span class="abc"></span>EditLabels
-          </a> <br>
-          <mat-divider></mat-divider>
-          <a mat-list-item routerLink="Archive">
-              <mat-icon> archive</mat-icon><span class="abc">Archive</span>
-            </a> <br>
-            <a mat-list-item routerLink="Trash">
-                <mat-icon>delete</mat-icon><span class="abc">Trash</span>
-              </a> <br>
+
+          <mat-icon> mode_edit</mat-icon><span class="abc"></span>EditLabels
+        </a> <br>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="Archive">
+          <mat-icon> archive</mat-icon><span class="abc">Archive</span>
+        </a> <br>
+        <a mat-list-item routerLink="Trash">
+          <mat-icon>delete</mat-icon><span class="abc">Trash</span>
+        </a> <br>
 
       </mat-nav-list>
-
-
-
-      
-      <!-- <mat-nav-list>
-        <div style="background-colour:blue">
-          <a mat-list-item routerLink="notes">
-            <mat-icon>lightbulb_outline</mat-icon>Notes
-          </a>
-          <a mat-list-item routerLink="remainder">
-            <mat-icon> notifications_none</mat-icon>Remainders
-          </a>
-          <mat-divider> </mat-divider>
-          <div class="label">
-            Labels
-            <button class="edit" (click)="openDialog(user)" mat-icon-button>
-              EDIT
-            </button>
-          </div>
-          <!-- <a *ngFor="let label of labels">
-            <a routerLink="labelcomp" (click)="sendLabelName(label.name)" mat-list-item>
-              <mat-icon></mat-icon>{{ label.name }}
-            </a>
-          </a> -->
-          <!-- <a mat-list-item (click)="openDialog(user)">
-            <mat-icon> mode_edit</mat-icon>Create new label
-          </a>
-          <mat-divider style="padding-top: 8px"> </mat-divider>
-          <a mat-list-item routerLink="archive">
-            <mat-icon>archive</mat-icon>Archive
-          </a>
-          <a mat-list-item routerLink="trash">
-            <mat-icon>
-              delete</mat-icon>Trash
-          </a>
-        </div>
-      </mat-nav-list> -->
     </div>
   </mat-sidenav>
 

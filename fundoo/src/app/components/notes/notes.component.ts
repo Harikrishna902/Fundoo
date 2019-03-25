@@ -1,3 +1,14 @@
+/************************************************************************************************
+* Execution : 1. default node cmd> notes.ts 
+* 
+* Purpose : dashboard 
+* 
+* @file : notes.ts
+* @module : notes.ts - This is optional if expeclictly its an npm or local package
+* @author : harikrishna <nalluri.harikrishna1@gmail.com>
+* @since : 18-3-2019
+*
+*************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NoteService } from '../../services/noteservice/note.service';
@@ -21,6 +32,8 @@ export class NotesComponent implements OnInit {
   currentdate:any;
   currentDateAndTime:any;
   timer:any;
+
+  fulldate:any
   //createNotes:string;
   noteform: FormGroup;
   constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router) { }
@@ -91,6 +104,25 @@ today(){
   this.currentdate = moment(this.date).format('DD/MM/YY');
   this.currentDateAndTime = this.currentdate+" "+"8:00";
   this.timer=true;
+}
+
+tomorrow(){
+  var date = new Date();
+  date.setDate(date.getDate() + 1);
+  this.date = date.toDateString();
+  this.currentdate = moment(this.date).format('DD/MM/YY');
+  this.currentDateAndTime = this.currentdate+" "+"8:00";
+  this.timer=true;
+}
+nextWeek(){
+  var date = new Date();
+  //date.setDate(date.getDate() + 1);
+  this.fulldate = date.setDate(date.getDate() + ((1 + 7 - date.getDay()) % 7));
+  //this.date = date.toDateString();
+  this.currentdate = moment(this.date).format('DD/MM/YY');
+  this.currentDateAndTime = this.currentdate+" "+"8:00";
+  this.timer=true;
+
 }
 }
 
