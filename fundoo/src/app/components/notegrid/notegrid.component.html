@@ -1,0 +1,59 @@
+<div>
+  <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80" >
+
+      <!-- <div *ngFor="let items of cardsArray | searchBar : Search; let i = index"> -->
+          <div [ngClass]="{'grid':toggle,'list':!toggle}">
+              <mat-card class="minicard" [style.backgroundColor]="items.color">
+                  <div>
+                      <div fxLayout="row">
+                          <div (click)="getNoteId(n)" >{{n.title}}</div>
+                          <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
+                                  
+                              </button>
+                          </div>
+                      </div>
+
+                      <div>{{n.description}}</div>
+                      <!-- <div class="icons-div">
+                          <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end" (colorEmit)="Changescolor($event)" 
+                              (childObject)="update($event)">
+
+                          </app-icon-list>
+                      </div> -->
+                  </div>
+            
+
+              </mat-card>
+          </div>
+      <!-- </div> -->
+  </div>
+
+
+  
+  <div *ngIf="subscribeView" class="mininote" fxLayout="column wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80" >
+
+          <!-- <div *ngFor="let items of cardsArray | searchBar : Search; let i = index"> -->
+              <div [ngClass]="{'grid':toggle,'list':!toggle}">
+                  <mat-card class="maxcard" [style.backgroundColor]="items.color">
+                      <div>
+                          <div fxLayout="row">
+                              <div (click)="getNoteId(items)" >{{n.title}}</div>
+                              <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
+                                   
+                                  </button>
+                              </div>
+                          </div>
+  
+                          <div>{{n.description}}</div>
+                          <!-- <div class="icons-div">
+                              <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end" (colorEmit)="Changescolor($event)" 
+                                  (childObject)="update($event)">
+  
+                              </app-icon-list>
+                          </div> -->
+                      </div>
+                    
+                  </mat-card>
+              <!-- </div> -->
+          </div>
+      </div>

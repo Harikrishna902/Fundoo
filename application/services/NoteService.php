@@ -4,7 +4,7 @@ header("Access-Control-Allow-Headers: Authorization");
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization
 ');
 //include '/var/www/html/codeigniter/application/services/Redish.php';
-include_once '/var/www/html/codeigniter/application/services/Redish.php';
+
 defined('BASEPATH') or exit('No direct script access allowed');
 include 'JWT.php';
 use \Firebase\JWT\JWT;

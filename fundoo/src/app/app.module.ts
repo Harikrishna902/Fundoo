@@ -21,6 +21,8 @@ import { ResetComponent } from './components/reset/reset.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NotesComponent } from './components/notes/notes.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { NotegridComponent } from './components/notegrid/notegrid.component';
 
 @NgModule({
   /**
@@ -35,6 +37,10 @@ import { NotesComponent } from './components/notes/notes.component';
     DashboardComponent,
   
     NotesComponent,
+  
+    SearchPipe,
+  
+    NotegridComponent,
     
   ],
   /**

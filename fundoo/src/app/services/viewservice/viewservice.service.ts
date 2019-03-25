@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  BehaviorSubject } from 'rxjs';
+//import { Observable } from "rxjs/Observable";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ subscribeView=this.currentView.asObservable();
   constructor() { }
 
 onViewchange(){
+  //console.log("subsjghjghjg")
   this.subscribeView.subscribe(
     (response:boolean) =>{
     //  this.abc=responce;
