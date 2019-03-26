@@ -15,6 +15,7 @@ import { NoteService } from '../../services/noteservice/note.service';
 import decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import * as moment from "moment";
+import { ViewserviceService } from '../../services/viewservice/viewservice.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -34,9 +35,30 @@ export class NotesComponent implements OnInit {
   timer:any;
 
   fulldate:any
+
+
+  rowcard
+  wrap: string = "wrap";
+	direction: string = "row";
+	layout: string = this.direction + " " + this.wrap;
+
   //createNotes:string;
   noteform: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router) { }
+  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router,private viewChange: ViewserviceService) {
+    
+    this.viewChange.getView().subscribe((res=>{
+      this.view =res;
+      this.direction = this.view.data;
+      
+      console.log("Direction is :", this.direction);
+
+			this.layout = this.direction + " " + this.wrap;
+      console.log("Layout is ", this.layout);
+     
+    }))
+   
+
+   }
 
   ngOnInit() {
 
@@ -48,8 +70,16 @@ export class NotesComponent implements OnInit {
 
     this.getNotes();
 
-  }
+    this.viewChange.getView().subscribe((res=>{
+      this.view = res;
+      this.direction = this.view.data;
+      
+      this.rowcard = this.view.class;
+      this.layout = this.direction + " "+this.wrap;
+  }))
 
+  }
+  view;
   /**
    * function to get notes
    * return obseravble 

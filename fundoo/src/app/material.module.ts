@@ -1,10 +1,13 @@
 
 import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
+import {MatChipsModule} from '@angular/material/chips';
+
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,MatDatepickerModule,MatNativeDateModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatSidenavModule, MatDrawerContainer, MatListModule,
 } from '@angular/material';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   imports: [
   CommonModule, 
@@ -21,8 +24,9 @@ import {
   //MatDrawerContainer,
   MatListModule,
   MatDatepickerModule,
-  MatNativeDateModule
-
+  MatNativeDateModule,
+  MatChipsModule,
+  MatTooltipModule
   ],
   exports: [
   CommonModule,
@@ -39,7 +43,9 @@ import {
    MatSidenavModule,
    MatDrawerContainer,
    MatListModule,
-   MatNativeDateModule
+   MatNativeDateModule,
+   MatChipsModule,
+   MatTooltipModule
    ],
 })
 export class CustomMaterialModule { }

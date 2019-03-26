@@ -7,7 +7,7 @@
 .width{
   
   width:16%;
-  //border: none;
+  border: none;
 }
   
 .fundoo{
@@ -15,7 +15,7 @@
 }
  
 
-  .blue{
+.blue{
     color:blue
 }
 .orange{
@@ -30,18 +30,18 @@
   
 
 .ip {
- // border: solid 1px rgba(0, 0, 0, 0.1);
+ 
   border-radius: 2px;
   outline: none;
   padding: 11px 16px 11px 68px;
   margin-left:10%;
-  width: 772px;
+  width: 900px;
   
   border-radius: 10px;
   font-size: 16px;
   line-height: 20px;
-margin-right: 33px;
-margin-left: -44px;
+  margin-right: 33px;
+  margin-left: -44px;
 }
 
 
@@ -65,19 +65,11 @@ margin-left: -44px;
 
 .abc{
   margin-left: 30%;
-  background: #F5F5F5;
-  width: 65px;
-  //border-radius: 1650%;
-
-  //height: 50px;
-  //width: 176px;
- //padding-left: 32px;
- display: inline-block;
- vertical-align: top;
+  width: 85px;
+  //display: inline-block;
   width: 75px;
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
+  overflow: hidden;
+ 
 
 }
 
@@ -136,4 +128,15 @@ border-radius:50%;
   .profileMenu{
     min-width: 250px;
     max-width: 355px;
+}
+
+.is-active
+{
+background-color: #FFEDC4;
+//border-radius:5%;
+
+border-bottom-right-radius: 30%;
+border-top-right-radius: 30%;
+
+
 }

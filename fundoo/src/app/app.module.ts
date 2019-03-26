@@ -22,7 +22,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
-import { NotegridComponent } from './components/notegrid/notegrid.component';
+//import { NotegridComponent } from './components/notegrid/notegrid.component';
 
 @NgModule({
   /**
@@ -40,7 +40,7 @@ import { NotegridComponent } from './components/notegrid/notegrid.component';
   
     SearchPipe,
   
-    NotegridComponent,
+    //NotegridComponent,
     
   ],
   /**

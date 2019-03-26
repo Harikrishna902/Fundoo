@@ -25,31 +25,32 @@ export class DashboardComponent implements OnInit {
   hari:boolean=true;
   sahaja:boolean=false;
   constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService) { }
-
+  grid: boolean = false;
+  list: boolean = true;
   ngOnInit() {
     const token = localStorage.getItem('token');
     var decoded = decode(token);
     this.email = decoded.email;
   }
-//   change()
-//   {
-//     if(this.hari==true)
-//     {
-//     this.hari=false;
-//     this.sahaja=true;
-//   }
-//   else
-//   {
-//     this.sahaja=false;
-//     this.hari=true;
-//   }
-//   this.viewChange.onViewchange();
-// }
 
+  changeView() {
 
-  isclick() {
-    return false;
+    if (this.list == true) {
+      this.grid = true;
+      this.list = false;
+    }
+    else {
+      this.list = true;
+      this.grid = false;
+    }
+
+    this.viewChange.gridview();
   }
+
+
+  // isclick() {
+  //   return false;
+  // }
 
   addAccount() {
     this.route.navigate(['register']);
@@ -65,15 +66,15 @@ export class DashboardComponent implements OnInit {
 
 
 
-  Change() {
-    this.viewChange.onViewchange();
-  }
-
-  grid(){
-this.isClicked=!this.isClicked;
-
-  }
-  // listview(){
-  //   this.data.sendMessage(true);
+  // Change() {
+  //   this.viewChange.onViewchange();
   // }
+
+//   grid(){
+// this.isClicked=!this.isClicked;
+
+//   }
+//   listview(){
+//     this.data.sendMessage(true);
+//   }
 }

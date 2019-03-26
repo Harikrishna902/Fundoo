@@ -54,7 +54,7 @@
                 Next week Mon,8:00AM
               </button>
               <button mat-menu-item [matMenuTriggerFor]="dates">
-                  <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+              
                 <mat-icon>schedule</mat-icon>Pick date & time
               </button>
               <mat-menu #dates="matMenu">
@@ -63,8 +63,8 @@
                     <div class="pickdate">
 
                       <mat-list-item id="pickAdjust">
-                     
-                          <mat-icon matDatepickerToggleIcon matTooltip="Go back">keyboard_backspace</mat-icon>
+
+                        <mat-icon matDatepickerToggleIcon matTooltip="Go back">keyboard_backspace</mat-icon>
                         <span>Pick date and Time </span>
                       </mat-list-item>
 
@@ -158,43 +158,47 @@
     </div>
 </div>
 
-<div class="note-mat" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
-  <div style="margin-top: 20px; margin-left: 80px;">
-    <mat-grid-list cols="4" rowHeight="4:1" class="noteList">
-      <div>
-        <mat-card *ngFor="let n of note" class="notescard">
+<div class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
 
-          <!-- padding for  pin icon
-         -->
-          <button mat-icon-button style="padding-left:150px;">
-            <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
-          </button>
-        <p style="margin-top: -25px;">{{n.title}}</p>
-          <p style="font-size: 20px;">{{n.description}}</p>
-          <p style="font-size: 20px;">{{n.reminder}}</p>
-        <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
-            <button mat-icon-button>
-              <mat-icon matTooltip="Remind me">notification_important</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon matTooltip="collaborator">person_add</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon matTooltip="change color">color_lens</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon matTooltip="Add image">insert_photo</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon matTooltip="Archive">archive</mat-icon>
-            </button>
-            <button mat-icon-button>
-              <mat-icon matTooltip="more">more_vert</mat-icon>
-            </button>
-          </div>
+  <!-- <mat-grid-list cols="4" rowHeight="4:1"> -->
 
-        </mat-card>
+    <mat-card *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column' " 
+    >
+
+      <!-- padding for  pin icon-->
+    <button mat-icon-button style="padding-left:200px;">
+        <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
+      </button>
+    
+      <p style="margin-top: -25px;">{{n.title}}</p>
+      <p style="font-size: 20px;">{{n.description}}</p>
+      <p style="font-size: 20px;">{{n.reminder}}</p>
+
+
+      <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
+        <button mat-icon-button>
+          <mat-icon matTooltip="Remind me">notification_important</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matTooltip="collaborator">person_add</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matTooltip="change color">color_lens</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matTooltip="Archive">archive</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matTooltip="more">more_vert</mat-icon>
+        </button>
       </div>
-    </mat-grid-list>
-  </div>
+
+    </mat-card>
+  
+  <!-- </mat-grid-list> -->
+
 </div>
+
