@@ -41,4 +41,9 @@ class Notes extends CI_Controller
     $email = $_POST['email'];
     $this->serviceReference->dispalynotes($email);
     }
+
+    public function deleteNote(){
+        $id =$_POST['id'];
+        $this->serviceReference->deleteNotes($id);
+    }
 }

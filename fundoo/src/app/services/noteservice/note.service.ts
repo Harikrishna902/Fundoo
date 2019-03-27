@@ -52,4 +52,16 @@ export class NoteService {
 
     return this.http.post(this.serviceUrl.host + this.serviceUrl.displaynotes, emaildata);
   }
+
+  /**
+   * function to delete note
+   * @param data
+   * @method deleteNotes
+   * @returns obseravble data
+   */
+  deleteNotes(data){
+    let id=new FormData();
+    id.append("id",data);
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.delete,id);
+  }
 }

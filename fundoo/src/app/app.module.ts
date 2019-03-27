@@ -19,6 +19,7 @@ import{} from '@angular/forms';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {MatDialogModule} from "@angular/material";
 
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
@@ -39,7 +40,7 @@ import { SearchPipe } from './pipe/search.pipe';
     NotesComponent,
   
     SearchPipe,
-  
+    //CourseDialogComponent,
     //NotegridComponent,
     
   ],
@@ -57,6 +58,7 @@ import { SearchPipe } from './pipe/search.pipe';
     MatGridListModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatDialogModule,
     //MatNativeDateModule
   ],
   /**
@@ -66,6 +68,7 @@ import { SearchPipe } from './pipe/search.pipe';
   /**
    * main component for starting the excution
    */
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+ // entryComponents: [CourseDialogComponent]
 })
 export class AppModule { }

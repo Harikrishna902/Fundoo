@@ -22,8 +22,7 @@ import { searchService } from '../../services/searchservice/search.service';
 export class DashboardComponent implements OnInit {
   email: string;
   isClicked = false;
-  hari:boolean=true;
-  sahaja:boolean=false;
+
   constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService) { }
   grid: boolean = false;
   list: boolean = true;

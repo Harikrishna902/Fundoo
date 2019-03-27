@@ -74,4 +74,31 @@ class NoteService extends CI_Controller
         }
         print json_encode($arr);
     }
+
+    /**
+     * function to deletenotes
+     * @param id
+     */
+    public function delNote($id){
+     $query ="DELETE from notes where id='$id'";
+     $statement=$this->db->conn_id->prepare($query);
+     $res=$statement->is_execute();
+     if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
+    }
 }

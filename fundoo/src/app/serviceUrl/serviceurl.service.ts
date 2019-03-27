@@ -16,7 +16,8 @@ export class serviceUrl {
 	public fetchmail = "fetchemail";
 	public changeDateTime = "changeDateTime";
 	public createnotes="createnotes";
-    public displaynotes = "fetchnotes";
+	public displaynotes = "fetchnotes";
+	public delete="deletenotes";
   
 }
 

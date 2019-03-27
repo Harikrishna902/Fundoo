@@ -29,36 +29,43 @@ export class NotesComponent implements OnInit {
 
   description: "";
   tokenOne: "";
-  date:any;
-  currentdate:any;
-  currentDateAndTime:any;
-  timer:any;
+  date: any;
+  /**
+	 * var to hold present time
+	 */
+  currentdate: any;
+  currentDateAndTime: any;
 
-  fulldate:any
-
+  timer: any;
+  
+  fulldate: any
+  /**
+	 * variable which holds the color of note
+	 */
+  public color = "";
 
   rowcard
   wrap: string = "wrap";
-	direction: string = "row";
-	layout: string = this.direction + " " + this.wrap;
+  direction: string = "row";
+  layout: string = this.direction + " " + this.wrap;
 
   //createNotes:string;
   noteform: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router,private viewChange: ViewserviceService) {
-    
-    this.viewChange.getView().subscribe((res=>{
-      this.view =res;
+  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router, private viewChange: ViewserviceService) {
+
+    this.viewChange.getView().subscribe((res => {
+      this.view = res;
       this.direction = this.view.data;
-      
+
       console.log("Direction is :", this.direction);
 
-			this.layout = this.direction + " " + this.wrap;
+      this.layout = this.direction + " " + this.wrap;
       console.log("Layout is ", this.layout);
-     
-    }))
-   
 
-   }
+    }))
+
+
+  }
 
   ngOnInit() {
 
@@ -68,15 +75,22 @@ export class NotesComponent implements OnInit {
 
     });
 
+    /**
+     * function to display the notes in grid and list
+     *                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+     */
     this.getNotes();
-
-    this.viewChange.getView().subscribe((res=>{
+    this.viewChange.getView().subscribe((res => {
       this.view = res;
       this.direction = this.view.data;
-      
+
       this.rowcard = this.view.class;
-      this.layout = this.direction + " "+this.wrap;
-  }))
+      this.layout = this.direction + " " + this.wrap;
+    }))
+
+    setInterval(() => {
+      this.getNotes();
+    }, 1000);
 
   }
   view;
@@ -97,24 +111,50 @@ export class NotesComponent implements OnInit {
     });
   }
 
+   /**
+   * function to deletenotes
+   * return obseravble 
+   */
+  deleteNote(n)
+  {
+    
+    console.log(n.id);
+    let obj = this.notes.deleteNotes(n.id);
+
+      obj.subscribe((res: any) => 
+      {
+       debugger;
+        console.log(res.message);
+
+        if (res.message == "200") 
+        {
+          this.getNotes();
+        } 
+        else 
+        {
+          
+        }
+      });
+  }
+
 
 
   flip() {
     debugger;
-    this.timer =false;
+    this.timer = false;
     this.flag = !this.flag;
-   }
+  }
 
 
-/**
- * function to create notes
- * @param value 
- * @return obseravable data
- */
+  /**
+   * function to create notes
+   * @param value 
+   * @return obseravable data
+   */
   notescreate(value: any) {
     debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email,this.currentDateAndTime);
+    let obj = this.notes.createNotes(value, email, this.currentDateAndTime);
 
     obj.subscribe((res: any) => {
       debugger
@@ -124,37 +164,50 @@ export class NotesComponent implements OnInit {
       }
     });
   }
+
+
+
+
+  today() {
+    var date = new Date();
+    this.date = date.toDateString();
+    this.currentdate = moment(this.date).format('DD/MM/YY');
+    this.currentDateAndTime = this.currentdate + " " + "8:00";
+    this.timer = true;
+  }
+
+  tomorrow() {
+    var date = new Date();
+    date.setDate(date.getDate() + 1);
+    this.date = date.toDateString();
+    this.currentdate = moment(this.date).format('DD/MM/YY');
+    this.currentDateAndTime = this.currentdate + " " + "8:00";
+    this.timer = true;
+  }
   
+	nextWeek() {
+		debugger;
+		var day = new Date();
 
+		this.fulldate = day.setDate(day.getDate() + ((1 + 7 - day.getDay()) % 7));
+		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
+		this.currentDateAndTime = currentDate + " " + " 08:00 PM";
+    this.timer = true;
+  }
 
-
-today(){
-  var date = new Date();
-  this.date = date.toDateString();
-  this.currentdate = moment(this.date).format('DD/MM/YY');
-  this.currentDateAndTime = this.currentdate+" "+"8:00";
-  this.timer=true;
-}
-
-tomorrow(){
-  var date = new Date();
-  date.setDate(date.getDate() + 1);
-  this.date = date.toDateString();
-  this.currentdate = moment(this.date).format('DD/MM/YY');
-  this.currentDateAndTime = this.currentdate+" "+"8:00";
-  this.timer=true;
-}
-nextWeek(){
-  var date = new Date();
-  //date.setDate(date.getDate() + 1);
-  this.fulldate = date.setDate(date.getDate() + ((1 + 7 - date.getDay()) % 7));
-  //this.date = date.toDateString();
-  this.currentdate = moment(this.date).format('DD/MM/YY');
-  this.currentDateAndTime = this.currentdate+" "+"8:00";
-  this.timer=true;
+  /**
+	 * @method setColorToTitle()
+	 * @return void
+	 * @param changecolor
+	 * @description Function to set colour to title card
+	 */
+  setColorToTitle(changecolor) {
+    debugger;
+		this.color = changecolor;
+  }
 
 }
-}
+
 
 
 
