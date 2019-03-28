@@ -18,12 +18,13 @@ export class NoteService {
    * @param time
    * @returns obseravble data
    */
-  createNotes(note, email,time) {
+  createNotes(note, email,time,color) {
     let createnotes = new FormData();
     createnotes.append("email", email);
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
     createnotes.append("reminder",time);
+    createnotes.append("color",color);
   //   return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
 
   // }
@@ -64,4 +65,14 @@ export class NoteService {
     id.append("id",data);
     return this.http.post(this.serviceUrl.host + this.serviceUrl.delete,id);
   }
+
+  changeColor(id,colour)
+  {
+    debugger;
+    let color = new FormData();
+    color.append('id',id);
+    color.append('colour',colour)
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.changeColor,color);
+  }
+
 }

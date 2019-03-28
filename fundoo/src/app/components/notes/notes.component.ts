@@ -16,6 +16,9 @@ import decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import * as moment from "moment";
 import { ViewserviceService } from '../../services/viewservice/viewservice.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { EditnotesComponent} from '../editnotes/editnotes.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -26,7 +29,7 @@ export class NotesComponent implements OnInit {
   email: string;
   response: any;
   note;
-
+  dateTime:any;
   description: "";
   tokenOne: "";
   date: any;
@@ -35,7 +38,7 @@ export class NotesComponent implements OnInit {
 	 */
   currentdate: any;
   currentDateAndTime: any;
-
+  //color:any;
   timer: any;
   
   fulldate: any
@@ -43,7 +46,7 @@ export class NotesComponent implements OnInit {
 	 * variable which holds the color of note
 	 */
   public color = "";
-
+  colour="";
   rowcard
   wrap: string = "wrap";
   direction: string = "row";
@@ -51,7 +54,7 @@ export class NotesComponent implements OnInit {
 
   //createNotes:string;
   noteform: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router, private viewChange: ViewserviceService) {
+  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router, private viewChange: ViewserviceService,private dialog: MatDialog) {
 
     this.viewChange.getView().subscribe((res => {
       this.view = res;
@@ -72,7 +75,7 @@ export class NotesComponent implements OnInit {
     this.noteform = this.formBuilder.group({
       title: '',
       description: '',
-
+      
     });
 
     /**
@@ -89,9 +92,9 @@ export class NotesComponent implements OnInit {
     }))
 
     setInterval(() => {
-      this.getNotes();
+     
     }, 1000);
-
+    this.getNotes();
   }
   view;
   /**
@@ -154,7 +157,7 @@ export class NotesComponent implements OnInit {
   notescreate(value: any) {
     debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email, this.currentDateAndTime);
+    let obj = this.notes.createNotes(value, email, this.currentDateAndTime,this.colour);
 
     obj.subscribe((res: any) => {
       debugger
@@ -163,6 +166,17 @@ export class NotesComponent implements OnInit {
         this.tokenOne = res.token;
       }
     });
+    debugger;
+      this.flag = true; 
+
+      if(this.currentDateAndTime == undefined)
+      {
+        this.dateTime = false;
+      }
+      else
+      {
+        this.dateTime = true;
+      }
   }
 
 
@@ -184,7 +198,6 @@ export class NotesComponent implements OnInit {
     this.currentDateAndTime = this.currentdate + " " + "8:00";
     this.timer = true;
   }
-  
 	nextWeek() {
 		debugger;
 		var day = new Date();
@@ -206,6 +219,45 @@ export class NotesComponent implements OnInit {
 		this.color = changecolor;
   }
 
+  setColor(n,colour)
+  {
+    debugger;
+    let col = this.notes.changeColor(n.id,colour);
+    col.subscribe((res:any)=>{
+      console.log(res);
+      if (res.message == "200") 
+        {
+          this. getNotes();
+        } 
+        else 
+        {
+          
+        }
+    })
+  }
+
+  /**
+   * editNotes
+   */
+  openNotes(n) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="600px";
+    dialogConfig.height = "200px"
+    dialogConfig.panelClass = 'custom-dialog-container'
+
+    dialogConfig.data = {
+      title:n.title,
+      description:n.description,
+      reminder:n.reminder
+
+    };
+
+    this.dialog.open(EditnotesComponent, dialogConfig)
+    }
+    
 }
 
 

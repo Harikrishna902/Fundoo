@@ -23,6 +23,7 @@ import {MatDialogModule} from "@angular/material";
 
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
+import { EditnotesComponent } from './components/editnotes/editnotes.component';
 //import { NotegridComponent } from './components/notegrid/notegrid.component';
 
 @NgModule({
@@ -40,7 +41,9 @@ import { SearchPipe } from './pipe/search.pipe';
     NotesComponent,
   
     SearchPipe,
-    //CourseDialogComponent,
+  
+    EditnotesComponent,
+    
     //NotegridComponent,
     
   ],
@@ -69,6 +72,10 @@ import { SearchPipe } from './pipe/search.pipe';
    * main component for starting the excution
    */
   bootstrap: [AppComponent],
- // entryComponents: [CourseDialogComponent]
+  /**
+   * In order for the component to be usable as a dialog body, 
+   * we need to declare it as an entryComponent
+   */
+  entryComponents: [EditnotesComponent]
 })
 export class AppModule { }

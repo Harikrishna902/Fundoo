@@ -55,7 +55,7 @@ class Product extends REST_Controller{
         $this->post('salary'),
         $this->post('desg'));
         $d = $this->ProductModel->insert($prod);
-    
+            
     }
     /**
      * function to update the details in database using put restapi

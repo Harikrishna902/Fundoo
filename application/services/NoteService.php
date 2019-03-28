@@ -22,8 +22,8 @@ class NoteService extends CI_Controller
      * @param email,title,desc
      *@return void
      */
-    public function addNotes($email, $title, $description, $reminder)
-    {
+    public function addNotes($email, $title, $description, $reminder,$color)
+    { 
         $reference = new JWT();
         $flag = 0;
         if (empty($title) || empty($description)) {
@@ -39,7 +39,7 @@ class NoteService extends CI_Controller
                 $connection = $redis->connection();
                 $response = $connection->get('token');
 
-                $query = "INSERT into notes (title,description,email,reminder) values ('$title','$description','$email','$reminder')";
+                $query = "INSERT into notes (title,description,email,reminder,color) values ('$title','$description','$email','$reminder',$color)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
                 if ($res) {
@@ -85,20 +85,53 @@ class NoteService extends CI_Controller
      $res=$statement->is_execute();
      if ($res) 
             {
-                $result = array(
+                $data = array(
                     "message" => "200",
                 );
-                print json_encode($result);
+                print json_encode($data);
                 return "200";
             } 
             else 
             {
-                $result = array(
+                $data = array(
                     "message" => "204",
                 );
-                print json_encode($result);
+                print json_encode($data);
                 return "204";
 
             }
     }
+
+
+       
+    /**
+     * function to change color
+     * @param id,colour
+     * @return void
+     */
+    public function changecolour($id,$colour){
+        $query="UPDATE  notes SET color = '$colour' WHERE id ='$id'";
+        $statement=$this->db->conn_id->prepare($query);
+        $res=$statement->is_execut();
+        if($res)
+        {
+            $data=array(
+                "message"=>"200",
+
+            );
+            print json_encode($data);
+            return "200";
+        }
+        else{
+            $data = array(
+                "message" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
+    }
+
+
+
 }
