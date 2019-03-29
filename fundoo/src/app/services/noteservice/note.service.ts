@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders  } from "@angular/common/http";
 import { serviceUrl } from "../../serviceUrl/serviceurl.service";
 import { ActivatedRoute } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,15 +17,15 @@ export class NoteService {
    * @param note 
    * @param email 
    * @param time
-   * @returns obseravble data
+   * @returns obseravble data 
    */
-  createNotes(note, email,time,color) {
+  createNotes(note, email,time) {
     let createnotes = new FormData();
     createnotes.append("email", email);
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
     createnotes.append("reminder",time);
-    createnotes.append("color",color);
+    //createnotes.append("color",color);
   //   return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
 
   // }
@@ -66,13 +67,38 @@ export class NoteService {
     return this.http.post(this.serviceUrl.host + this.serviceUrl.delete,id);
   }
 
+
+  /**
+   * function to changecolour
+   * @param id 
+   * @param colour 
+   * @returns obseravble data
+   */
   changeColor(id,colour)
   {
     debugger;
     let color = new FormData();
-    color.append('id',id);
-    color.append('colour',colour)
-    return this.http.post(this.serviceUrl.host+this.serviceUrl.changeColor,color);
+    colour.append('id',id);
+    colour.append('colour',colour)
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.changeColor,colour);
+  }
+
+
+  
+  /**
+   * function to update notes
+   * @param title 
+   * @param description 
+   * @param id 
+   * @retuns obseravble data
+   */
+  updateNotes(title,description,id){
+    debugger;
+    let update =new FormData();
+    update.append('title',title);
+    update.append('description',description);
+    update.append('id',id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
   }
 
 }

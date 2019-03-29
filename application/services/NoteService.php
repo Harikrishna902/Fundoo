@@ -109,8 +109,8 @@ class NoteService extends CI_Controller
      * @param id,colour
      * @return void
      */
-    public function changecolour($id,$colour){
-        $query="UPDATE  notes SET color = '$colour' WHERE id ='$id'";
+    public function changeColour($id,$colour){
+        $query="UPDATE  notes SET colour = '$colour' WHERE id ='$id'";
         $statement=$this->db->conn_id->prepare($query);
         $res=$statement->is_execut();
         if($res)
@@ -131,6 +131,40 @@ class NoteService extends CI_Controller
 
         }
     }
+
+    /**
+     * @method to update notes
+     * @param title,description,id
+     * @return void
+     */
+    public function updateNotes($title,$description,$id){
+        $flag = 0;
+        if(empty($title)||empty($description)){
+            $flag = 1;
+        }
+        if($flag==0){
+            $query = $query = "UPDATE notes SET title = '$title', description ='$description' where id = '$id'";
+            $statement = $this->db->conn_id->prepare($query);
+            $res = $statement->execute();
+            if ($res) {
+                $data = array(
+                    "status" => "200",
+                );
+                print json_encode($data);
+    
+            } else {
+                $data = array(
+                    "status" => "204",
+                );
+                print json_encode($data);
+                return "204";
+    
+            }
+    
+        }
+       
+    }
+
 
 
 

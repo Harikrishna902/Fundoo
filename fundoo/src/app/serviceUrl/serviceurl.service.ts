@@ -18,7 +18,8 @@ export class serviceUrl {
 	public createnotes="createnotes";
 	public displaynotes = "fetchnotes";
 	public delete="deletenotes";
-	public changeColor="changecolor";
+	public changeColor="changeColor";
+	public updateNotes="updateNotes";
   
 }
 

@@ -70,3 +70,4 @@ $route['reset'] = 'registerController/resetpassword';
 $route['dashboard']='notes/dashboard';
 $route['createnotes'] = 'Notes/createNotes';
 $route['fetchnotes'] = 'Notes/getNotes';
+$route['changeColor'] = 'Notes/changeColor';

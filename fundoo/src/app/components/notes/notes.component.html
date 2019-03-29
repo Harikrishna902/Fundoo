@@ -24,7 +24,7 @@
       </mat-card>
     </div>
 
-    <div *ngIf="flag===false">
+    <div *ngIf="flag===false" [ngStyle]="{ 'background-color': color }">
      
       <mat-card class="notes">
          
@@ -205,9 +205,9 @@
 
 <div class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
 
-  
+ 
     <mat-card *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column' "
-      (click)=openNotes(n)>
+    [ngStyle]="{ 'background-color': n.color }" (click)=openNotes(n)>
       <div>
       <!-- padding for  pin icon-->
       <button mat-icon-button style="padding-left:200px;">
@@ -224,27 +224,15 @@
             {{n.reminder}}
             <mat-icon>cancel</mat-icon>
           </mat-chip>
-        </mat-chip-list>
+        </mat-chip-list>                                
       </p>
   </div>
-
+<div>
   <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
     <button mat-icon-button>
       <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
     </button>
-    <!-- <div> <button mat-icon-button *ngIf="timer">
-
-        <mat-chip>
-
-          <mat-icon>schedule</mat-icon>
-          {{currentDateAndTime}}
-          <mat-icon>cancel</mat-icon>
-        </mat-chip>
-
-
-
-      </button>
-    </div> -->
+   
 
     <mat-menu [overlapTrigger]="false" #remainder="matMenu">
       <button mat-menu-item>Remainder:</button>
@@ -382,7 +370,7 @@
       <button mat-menu-item>Copy to Google Docs</button>
     </mat-menu>
   </div>
-
+</div>
   </mat-card>
 
 

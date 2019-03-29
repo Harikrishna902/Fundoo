@@ -2,6 +2,9 @@ import { Component, OnInit,Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as moment from "moment";
+import { NoteService } from '../../services/noteservice/note.service';
+
+
 @Component({
   selector: 'app-editnotes',
   templateUrl: './editnotes.component.html',
@@ -9,10 +12,11 @@ import * as moment from "moment";
 })
 export class EditnotesComponent implements OnInit {
   form: FormGroup;
- // description:string;
+ 
   title:any;
   description:any;
   date: any;
+  id;
   /**
 	 * var to hold present time
 	 */
@@ -22,14 +26,16 @@ export class EditnotesComponent implements OnInit {
   timer: any;
   
   fulldate: any
-  constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder,private notes: NoteService,
     private dialogRef: MatDialogRef<EditnotesComponent>,
    /**
     * A parameter decorator on a dependency parameter of a class 
     * constructor that specifies a custom provider of the dependency.
     */
-    @Inject(MAT_DIALOG_DATA) data) {
-      this.description = data.description;
+    @Inject(MAT_DIALOG_DATA) public data:any) {
+      this.description = this.data.description;
+      this.title= this.data.title;
+      this.id=this.data.id;
      }
     
   ngOnInit() {
@@ -41,10 +47,25 @@ export class EditnotesComponent implements OnInit {
   }
 
 
-  close(value:any) {
-    debugger
+//   close(value:any) {
+//     debugger
+//     this.dialogRef.close();
+// }
+
+status
+notebackground
+close(value:any) {
+  console.log(value);
+  this.notebackground = value.color;
     this.dialogRef.close();
-}
+    let update = this.notes.updateNotes(this.title,this.description,this.id);
+    update.subscribe((res:any)=>{
+        if( res.status=="200"){
+            this.status = "update";
+        }
+
+    })
+  }  
 
 today() {
   var date = new Date();

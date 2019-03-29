@@ -6,7 +6,6 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Or
 ');
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
 include "/var/www/html/codeigniter/application/services/NoteService.php";
 class Notes extends CI_Controller
 {
@@ -25,53 +24,65 @@ class Notes extends CI_Controller
      *@method to create notes
      *@return void
      */
-    public function createNotes(){
+    public function createNotes()
+    {
         $email = $_POST['email'];
         $title = $_POST['title'];
-        $notes = $_POST["notes"];
+        
         $description = $_POST['description'];
-        $reminder =$_POST['reminder'];
-        $color = $_POST['color'];
-        if($title=="null" || $title =="undefined")
-        {
-            $title="";
-        }
-        if($notes=="null" || $notes =="undefined")
-        {
-            $notes="";
-        }
-        $this->serviceReference->addNotes($email,$title,$notes,$description,$reminder);
+        $reminder = $_POST['reminder'];
+       // $color = $_POST['color'];
+        // if ($title == "null" || $title == "undefined") {
+        //     $title = "";
+        // }
+        // if ($notes == "null" || $notes == "undefined") {
+        //     $notes = "";
+        // }
+        $this->serviceReference->addNotes( $title,$email,$description, $reminder);
     }
 
     /**
      *@method to getNotes
      *@return void
      */
-    public function getNotes(){
-    $email = $_POST['email'];
-    $this->serviceReference->dispalynotes($email);
+    public function getNotes()
+    {
+        $email = $_POST['email'];
+        $this->serviceReference->dispalynotes($email);
     }
 
-
-   /**
-    * @method to delete notes
-    * @return void
-    */
-    public function deleteNote(){
-        $id =$_POST['id'];
+    /**
+     * @method to delete notes
+     * @return void
+     */
+    public function deleteNote()
+    {
+        $id = $_POST['id'];
         $this->serviceReference->deleteNotes($id);
     }
-    
 
-     /**
+    /**
+     * @method to update notes
+     * @return void
+     */
+    public function updateNotes()
+    {
+        $id = $_POST['id'];
+        $title =$_POST['title'];
+        $description=$_POST['description'];
+        $this->serviceReference->updateNotes($id,$title,$description);
+
+    }
+
+    /**
      * @method to change color
      * @return void
      */
-    public function changecolor(){
-        $id=$_POST['id'];
-        $colour = $_POST['colour'];
-        $this->serviceReference->changecolor($id,$colour);
+    public function changeColor()
+    {
+        $id = $_POST['id'];
+        $color = $_POST['colour'];
+        $this->serviceReference->changeColor($id, $colour);
     }
-   
 
 }

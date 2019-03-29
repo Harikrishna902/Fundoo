@@ -157,7 +157,7 @@ export class NotesComponent implements OnInit {
   notescreate(value: any) {
     debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email, this.currentDateAndTime,this.colour);
+    let obj = this.notes.createNotes(value, email, this.currentDateAndTime);
 
     obj.subscribe((res: any) => {
       debugger
@@ -166,17 +166,17 @@ export class NotesComponent implements OnInit {
         this.tokenOne = res.token;
       }
     });
-    debugger;
-      this.flag = true; 
+    // debugger;
+    //   this.flag = true; 
 
-      if(this.currentDateAndTime == undefined)
-      {
-        this.dateTime = false;
-      }
-      else
-      {
-        this.dateTime = true;
-      }
+    //   if(this.currentDateAndTime == undefined)
+    //   {
+    //     this.dateTime = false;
+    //   }
+    //   else
+    //   {
+    //     this.dateTime = true;
+    //   }
   }
 
 
@@ -249,15 +249,19 @@ export class NotesComponent implements OnInit {
     dialogConfig.panelClass = 'custom-dialog-container'
 
     dialogConfig.data = {
-      title:n.title,
-      description:n.description,
-      reminder:n.reminder
-
+      // title:n.title,
+      // description:n.description,
+      // reminder:n.reminder
+     
     };
+   data:n;
 
     this.dialog.open(EditnotesComponent, dialogConfig)
     }
-    
+
+
+
+
 }
 
 
