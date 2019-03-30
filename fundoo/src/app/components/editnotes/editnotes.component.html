@@ -19,11 +19,11 @@
                 <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
               </button> -->
            <div>
-          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px" matInput placeholder="Title"
+          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px" matInput placeholder="Title" value="{{title}}"
             formControlName="title"/>
       
          
-          <input role="textarea" style="margin-top: 5px; margin-left: 10px;" matInput placeholder="Take a note"
+          <input role="textarea" style="margin-top: 5px; margin-left: 10px;" matInput placeholder="Take a note" value="{{description}}"
             formControlName="description"/>
           
 
@@ -191,7 +191,4 @@
      
       </mat-dialog-content>
 
-        <!-- <mat-dialog-actions>
-            <button class="mat-raised-button"(click)="close()">Close</button>
-            <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
-        </mat-dialog-actions> -->
+  

@@ -70,6 +70,8 @@ export class NotesComponent implements OnInit {
 
   }
 
+  
+
   ngOnInit() {
 
     this.noteform = this.formBuilder.group({
@@ -222,7 +224,15 @@ export class NotesComponent implements OnInit {
   setColor(n,colour)
   {
     debugger;
+   
+
+    this.note.forEach(element => {
+        if(element.id==n.id){
+            element.colour = colour;
+        }
+    });
     let col = this.notes.changeColor(n.id,colour);
+
     col.subscribe((res:any)=>{
       console.log(res);
       if (res.message == "200") 
@@ -245,16 +255,16 @@ export class NotesComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width="600px";
-    dialogConfig.height = "200px"
+    dialogConfig.height = "220px"
     dialogConfig.panelClass = 'custom-dialog-container'
 
     dialogConfig.data = {
       // title:n.title,
       // description:n.description,
       // reminder:n.reminder
-     
+      notesdata:n
     };
-   data:n;
+  
 
     this.dialog.open(EditnotesComponent, dialogConfig)
     }

@@ -82,7 +82,7 @@ class Notes extends CI_Controller
     {
         $id = $_POST['id'];
         $color = $_POST['colour'];
-        $this->serviceReference->changeColor($id, $colour);
+        $this->serviceReference->changeColor($id, $color);
     }
 
 }

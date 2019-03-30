@@ -109,10 +109,10 @@ class NoteService extends CI_Controller
      * @param id,colour
      * @return void
      */
-    public function changeColour($id,$colour){
+    public function changeColor($id,$colour){
         $query="UPDATE  notes SET colour = '$colour' WHERE id ='$id'";
         $statement=$this->db->conn_id->prepare($query);
-        $res=$statement->is_execut();
+        $res=$statement->execute();
         if($res)
         {
             $data=array(

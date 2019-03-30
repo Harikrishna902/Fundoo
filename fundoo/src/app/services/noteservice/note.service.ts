@@ -78,9 +78,9 @@ export class NoteService {
   {
     debugger;
     let color = new FormData();
-    colour.append('id',id);
-    colour.append('colour',colour)
-    return this.http.post(this.serviceUrl.host+this.serviceUrl.changeColor,colour);
+    color.append('id',id);
+    color.append('colour',colour)
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.changeColor,color);
   }
 
 
@@ -92,13 +92,22 @@ export class NoteService {
    * @param id 
    * @retuns obseravble data
    */
-  updateNotes(title,description,id){
-    debugger;
-    let update =new FormData();
-    update.append('title',title);
-    update.append('description',description);
-    update.append('id',id);
+  // updateNotes(title,description,id){
+  //   debugger;
+  //   let update =new FormData();
+  //   update.append('title',title);
+  //   update.append('description',description);
+  //   update.append('id',id);
+  //   return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
+  
+
+  updateNotes(data,id){
+    debugger
+    let update = new FormData();
+    update.append("title",data.title);
+    update.append("description",data.description);
+    update.append("id",id);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
   }
-
 }
+

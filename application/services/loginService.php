@@ -4,8 +4,8 @@ header("Access-Control-Allow-Headers: Authorization");
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization
 ');
 defined('BASEPATH') or exit('No direct script access allowed');
-include '/var/www/html/codeigniter/application/rabbitMq/sender.php';
-include '/var/www/html/codeigniter/application/static/LinkConstants.php';
+
+include_once '/var/www/html/codeigniter/application/static/LinkConstants.php';
 include 'JWT.php';
 
 /*********************************************************************

@@ -1,8 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
-include '/var/www/html/codeigniter/application/rabbitMq/sender.php';
-include '/var/www/html/codeigniter/application/static/LinkConstants.php';
+include_once '/var/www/html/codeigniter/application/rabbitMq/sender.php';
+include_once '/var/www/html/codeigniter/application/static/LinkConstants.php';
 
 /*********************************************************************
  * @discription  Controller API

@@ -12,7 +12,7 @@ import { NoteService } from '../../services/noteservice/note.service';
 })
 export class EditnotesComponent implements OnInit {
   form: FormGroup;
- 
+ colour:any;
   title:any;
   description:any;
   date: any;
@@ -33,9 +33,10 @@ export class EditnotesComponent implements OnInit {
     * constructor that specifies a custom provider of the dependency.
     */
     @Inject(MAT_DIALOG_DATA) public data:any) {
-      this.description = this.data.description;
-      this.title= this.data.title;
-      this.id=this.data.id;
+      this.description = this.data.notesdata.description;
+      this.title= this.data.notesdata.title;
+      this.id=this.data.notesdata.id;
+      this.colour=this.data.notesdata.colour;
      }
     
   ngOnInit() {
@@ -58,7 +59,7 @@ close(value:any) {
   console.log(value);
   this.notebackground = value.color;
     this.dialogRef.close();
-    let update = this.notes.updateNotes(this.title,this.description,this.id);
+    let update = this.notes.updateNotes(value,this.id);
     update.subscribe((res:any)=>{
         if( res.status=="200"){
             this.status = "update";
