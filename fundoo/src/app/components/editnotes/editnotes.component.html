@@ -1,25 +1,10 @@
-
-
-
-
-<!-- <mat-dialog-content [formGroup]="form"> -->
-  
-   
-  
-        <!-- <input matInput
-                placeholder="EditNotes"
-               formControlName="description">
-    </mat-form-field> -->
-
-
-
-    <mat-dialog-content [formGroup]="form">
+ <mat-dialog-content  class ="class" [formGroup]="form" [ngStyle]="{'background-color': data.notesdata.colour}">
      
             <!-- <button mat-icon-button style="padding-left:480px;">
                 <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
               </button> -->
            <div>
-          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px" matInput placeholder="Title" value="{{title}}"
+          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px"  matInput placeholder="Title" value="{{title}}"
             formControlName="title"/>
       
          

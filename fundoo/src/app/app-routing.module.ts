@@ -6,6 +6,7 @@ import{ForgotComponent} from './components/forgot/forgot.component';
 import{ResetComponent} from './components/reset/reset.component';
 import{DashboardComponent} from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
 //import { AuthGuard } from "./auth.guard";
 /**
  * const which defines variables
@@ -21,8 +22,12 @@ children: [
 {
     path: "notes",
     component: NotesComponent,
+},
+{
+    path:"reminder",
+    component: ReminderComponent
     
-  },
+  }
 
 
 

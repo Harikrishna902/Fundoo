@@ -16,9 +16,10 @@ import decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import * as moment from "moment";
 import { ViewserviceService } from '../../services/viewservice/viewservice.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig,MatSnackBar } from '@angular/material';
 import { EditnotesComponent} from '../editnotes/editnotes.component';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -54,7 +55,8 @@ export class NotesComponent implements OnInit {
 
   //createNotes:string;
   noteform: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService, private route: Router, private viewChange: ViewserviceService,private dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, private notes: NoteService,
+    private route: Router, private viewChange: ViewserviceService,private dialog: MatDialog) {
 
     this.viewChange.getView().subscribe((res => {
       this.view = res;
@@ -122,7 +124,7 @@ export class NotesComponent implements OnInit {
    */
   deleteNote(n)
   {
-    
+    debugger;
     console.log(n.id);
     let obj = this.notes.deleteNotes(n.id);
 
@@ -255,7 +257,8 @@ export class NotesComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width="600px";
-    dialogConfig.height = "220px"
+    dialogConfig.height = "auto";
+    
     dialogConfig.panelClass = 'custom-dialog-container'
 
     dialogConfig.data = {
@@ -268,6 +271,11 @@ export class NotesComponent implements OnInit {
 
     this.dialog.open(EditnotesComponent, dialogConfig)
     }
+    // openSnackbar(message:string, action: string)
+    // {
+    //   this.snackBar.open(message,action,{
+    //     duration: 2000,
+    //   })
 
 
 

@@ -55,7 +55,7 @@ class Notes extends CI_Controller
      * @method to delete notes
      * @return void
      */
-    public function deleteNote()
+    public function deleteNotes()
     {
         $id = $_POST['id'];
         $this->serviceReference->deleteNotes($id);

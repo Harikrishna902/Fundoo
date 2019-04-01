@@ -1,0 +1,29 @@
+
+<div class="flexcard" fxLayout="{{direction}} wrap" fxLayoutGap="50px" fxLayoutAlign="start center">
+
+  <mat-card btnhover *ngFor="let n of notes" [ngClass]="direction == 'row' ? 'row': 'column' "
+    [ngStyle]="{'background-color': n.color}">
+    <div class="cardtext">
+      <p style="margin-top: -25px;">{{n.title}} </p>
+
+      <p style="font-size: 20px;">{{n.description}}</p>
+      <p style="font-size: 20px;">
+        <mat-chip-list>
+          <mat-chip>
+
+            <mat-icon>schedule</mat-icon>
+            {{n.reminder}}
+            <mat-icon>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </p>
+    </div>
+    
+
+  </mat-card>
+
+</div>
+<!-- <h2>
+  irjginrgn
+</h2> -->
+

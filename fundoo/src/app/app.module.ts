@@ -24,6 +24,7 @@ import {MatDialogModule} from "@angular/material";
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
 //import { NotegridComponent } from './components/notegrid/notegrid.component';
 
 @NgModule({
@@ -43,6 +44,8 @@ import { EditnotesComponent } from './components/editnotes/editnotes.component';
     SearchPipe,
   
     EditnotesComponent,
+  
+    ReminderComponent,
     
     //NotegridComponent,
     

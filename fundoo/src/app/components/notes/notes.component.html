@@ -24,20 +24,20 @@
       </mat-card>
     </div>
 
-    <div *ngIf="flag===false">
+    <div *ngIf="flag===false" [ngStyle]="{ 'background-color': color }" >
 
       <mat-card class="notes">
 
         <form class="example-form" [formGroup]="noteform">
           <div>
             <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px"
-              [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Title"
+              [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Title"  value="{{title}}"
               formControlName="title" />
             <button mat-icon-button style="padding-top:5px;">
               <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
             </button>
             <input role="textarea" style="margin-top: 5px; margin-left: 10px;"
-              [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note"
+              [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note" value="{{description}}"
               formControlName="description" />
           </div>
           <div> <button mat-icon-button *ngIf="timer">
@@ -173,7 +173,7 @@
                 style="background-color:#a7ffea "></button>
               <button matTooltip="Green" (click)="setColorToTitle('#ccff90 ')" mat-mini-fab class="colorlens"
                 style="background-color:#ccff90 "></button>
-              <br />
+              <br/>
               <button matTooltip="Gray" (click)="setColorToTitle('#e8eaed')" mat-mini-fab class="colorlens"
                 style="background-color:#e8eaed "></button>
               <button matTooltip="Brown" (click)="setColorToTitle('#e6c9a8 ')" mat-mini-fab class="colorlens"
@@ -191,7 +191,7 @@
               <mat-icon matTooltip="Archive">archive</mat-icon>
             </button>
             <button mat-icon-button>
-              <mat-icon matTooltip="more" [matMenuTriggerFor]="More">more_vert</mat-icon>
+              <mat-icon matTooltip="more" (click)="noteform.value.id" [matMenuTriggerFor]="More">more_vert</mat-icon>
             </button>
             <mat-menu #More="matMenu">
               <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
@@ -214,14 +214,15 @@
 
 
   <mat-card *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
-    [ngStyle]="{'background-color': n.colour}" (click)=openNotes(n)>
-    <div>
-      <!-- padding for  pin icon-->
+  [ngStyle]="{'background-color': n.colour}" >
+    <div (click)=openNotes(n)>
+     
       <button mat-icon-button style="padding-left:200px;">
         <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
       </button>
+       
+      <p style="margin-top: -25px;">{{n.title}} </p>
 
-      <p style="margin-top: -25px;">{{n.title}}</p>
       <p style="font-size: 20px;">{{n.description}}</p>
       <p style="font-size: 20px;">
         <mat-chip-list>
@@ -366,7 +367,7 @@
           <mat-icon matTooltip="Archive">archive</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon matTooltip="more" [matMenuTriggerFor]="More">more_vert</mat-icon>
+          <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
         </button>
         <mat-menu #More="matMenu">
           <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
@@ -381,4 +382,6 @@
   </mat-card>
 
 
-</div>
+</div> 
+
+

@@ -20,7 +20,7 @@ export class serviceUrl {
 	public delete="deletenotes";
 	public changeColor="changeColor";
 	public updateNotes="updateNotes";
-  
+	public getreminder = "getreminder";
 }
 
 

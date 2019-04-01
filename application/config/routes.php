@@ -72,3 +72,4 @@ $route['createnotes'] = 'Notes/createNotes';
 $route['fetchnotes'] = 'Notes/getNotes';
 $route['changeColor'] = 'Notes/changeColor';
 $route['updateNotes']='Notes/updateNotes';
+$route['deleteNotes']='Notes/deleteNotes';
