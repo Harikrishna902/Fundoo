@@ -22,7 +22,7 @@ class NoteService extends CI_Controller
      * @param email,title,desc
      *@return void
      */
-    public function addNotes($email, $title, $description, $reminder,$color)
+    public function addNotes($title, $email, $description, $reminder)
     { 
         $reference = new JWT();
         $flag = 0;
@@ -39,7 +39,7 @@ class NoteService extends CI_Controller
                 $connection = $redis->connection();
                 $response = $connection->get('token');
 
-                $query = "INSERT into notes (title,description,email,reminder,color) values ('$title','$description','$email','$reminder',$color)";
+                $query = "INSERT into notes (title,description,email,reminder) values ('$title','$description','$email','$reminder')";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
                 if ($res) {
@@ -79,10 +79,10 @@ class NoteService extends CI_Controller
      * function to deletenotes
      * @param id
      */
-    public function delNote($id){
+    public function deleteNotes($id){
      $query ="DELETE from notes where id='$id'";
      $statement=$this->db->conn_id->prepare($query);
-     $res=$statement->is_execute();
+     $res=$statement->execute();
      if ($res) 
             {
                 $data = array(
@@ -137,13 +137,13 @@ class NoteService extends CI_Controller
      * @param title,description,id
      * @return void
      */
-    public function updateNotes($title,$description,$id){
+    public function updateNotes($id,$title,$description){
         $flag = 0;
         if(empty($title)||empty($description)){
             $flag = 1;
         }
         if($flag==0){
-            $query = $query = "UPDATE notes SET title = '$title', description ='$description' where id = '$id'";
+            $query="UPDATE notes SET title = '$title', description ='$description' where id = '$id'";
             $statement = $this->db->conn_id->prepare($query);
             $res = $statement->execute();
             if ($res) {
@@ -163,6 +163,33 @@ class NoteService extends CI_Controller
     
         }
        
+    }
+
+
+
+    public function archive($id)
+    {
+    
+        $query = "UPDATE notes SET archive = '1' where id = '$id'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+        if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
     }
 
 

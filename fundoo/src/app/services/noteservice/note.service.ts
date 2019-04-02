@@ -62,9 +62,10 @@ export class NoteService {
    * @returns obseravble data
    */
   deleteNotes(data){
+    debugger;
     let id=new FormData();
     id.append("id",data);
-    return this.http.post(this.serviceUrl.host + this.serviceUrl.delete,id);
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.deleteNotes,id);
   }
 
 
@@ -108,6 +109,14 @@ export class NoteService {
     update.append("description",data.description);
     update.append("id",id);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
+  }
+
+  archiveNote(id)
+  {
+    debugger;
+    let arch = new FormData();
+    arch.append("id",id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.archive,arch);
   }
 }
 

@@ -7,6 +7,10 @@ import{ResetComponent} from './components/reset/reset.component';
 import{DashboardComponent} from './components/dashboard/dashboard.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { ReminderComponent } from './components/reminder/reminder.component';
+import { LabelComponent } from './components/label/label.component';
+//import { EditnotesComponent } from './components/editnotes/editnotes.component';
+import { EditlabelsComponent } from './components/editlabels/editlabels.component';
+import { ArchiveComponent } from './components/archive/archive.component';
 //import { AuthGuard } from "./auth.guard";
 /**
  * const which defines variables
@@ -25,9 +29,25 @@ children: [
 },
 {
     path:"reminder",
-    component: ReminderComponent
+    component: ReminderComponent,
     
-  }
+  },
+  {
+    path:"label",
+    component: LabelComponent
+    
+  },
+  {
+    path:"editlabels",
+    component:EditlabelsComponent
+    
+  },
+  {
+    path:"archive",
+    component:ArchiveComponent
+    
+  },
+
 
 
 

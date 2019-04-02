@@ -85,4 +85,9 @@ class Notes extends CI_Controller
         $this->serviceReference->changeColor($id, $color);
     }
 
+    public function archive()
+        {
+            $id = $_POST['id'];
+            $this->serviceReference->archive($id);
+        }
 }

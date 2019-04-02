@@ -127,7 +127,6 @@ export class NotesComponent implements OnInit {
     debugger;
     console.log(n.id);
     let obj = this.notes.deleteNotes(n.id);
-
       obj.subscribe((res: any) => 
       {
        debugger;
@@ -151,6 +150,12 @@ export class NotesComponent implements OnInit {
     this.timer = false;
     this.flag = !this.flag;
   }
+  setColorToTitle(changecolor) {
+    debugger;
+    this.color = changecolor;
+   debugger
+
+  }
 
 
   /**
@@ -170,17 +175,7 @@ export class NotesComponent implements OnInit {
         this.tokenOne = res.token;
       }
     });
-    // debugger;
-    //   this.flag = true; 
-
-    //   if(this.currentDateAndTime == undefined)
-    //   {
-    //     this.dateTime = false;
-    //   }
-    //   else
-    //   {
-    //     this.dateTime = true;
-    //   }
+  
   }
 
 
@@ -218,10 +213,6 @@ export class NotesComponent implements OnInit {
 	 * @param changecolor
 	 * @description Function to set colour to title card
 	 */
-  setColorToTitle(changecolor) {
-    debugger;
-		this.color = changecolor;
-  }
 
   setColor(n,colour)
   {
@@ -271,12 +262,29 @@ export class NotesComponent implements OnInit {
 
     this.dialog.open(EditnotesComponent, dialogConfig)
     }
-    // openSnackbar(message:string, action: string)
-    // {
-    //   this.snackBar.open(message,action,{
-    //     duration: 2000,
-    //   })
+ 
 
+    notesarchive(id) {
+      debugger
+      if (id == "undefined"){
+        return;
+      }
+  
+      let arch = this.notes.archiveNote(id);
+      arch.subscribe((res:any)=>{
+       
+        if (res.message == "200") 
+          {
+            this.getNotes();
+          } 
+          else 
+          {
+            
+          }
+      })
+  
+  
+    }
 
 
 

@@ -130,14 +130,14 @@
         
         <mat-divider></mat-divider>
        
-        <label fxLayout="row" style="font-size: 12px">LABLES</label>
+        <label fxLayout="row" style="font-size: 12px">LABLES </label>
 
-        <a mat-list-item routerLink="editlabels" >
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="editlabels" (click)="openLabel()">
 
            <mat-icon> mode_edit</mat-icon><span class="abc"></span>EditLabels
         </a> <br>
         <mat-divider></mat-divider>
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="archive">
             <mat-icon>archive</mat-icon><span class="abc">Archive</span>
           </a> <br>
         
@@ -146,20 +146,7 @@
           </a> <br> 
 
 
-          <!-- <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']" (click)="note()" [routerLinkActive]="['is-active']" > <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
-          <br>
-          <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']" [routerLinkActive]="['is-active']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
-          <br>
-          <mat-divider></mat-divider>
-          <mat-list-item><label style="font-size: 13px">LABELS</label></mat-list-item>
-          <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
-          <br>
-          <mat-divider ></mat-divider>
-          <mat-divider ></mat-divider>
-          <br>
-          <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
-          <br>
-          <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a> -->
+          
       </mat-nav-list>
 
     </div>

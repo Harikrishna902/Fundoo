@@ -17,10 +17,15 @@ export class serviceUrl {
 	public changeDateTime = "changeDateTime";
 	public createnotes="createnotes";
 	public displaynotes = "fetchnotes";
-	public delete="deletenotes";
+	public deleteNotes="deleteNotes";
 	public changeColor="changeColor";
 	public updateNotes="updateNotes";
 	public getreminder = "getreminder";
+	public setlabel ="setlabel";
+	public getlabel = "getlabel";
+	public getArch = "getarchive";
+	public unarchived = "unarchive";
+	public archive = "archive";
 }
 
 

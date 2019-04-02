@@ -13,7 +13,7 @@ export class ReminderComponent implements OnInit {
   constructor(private reminders : ReminderService) { }
   notes: Notes[] = [];
   ngOnInit() {
-    this.reminder;
+    this.reminder();
   }
 
   public maticons: string[] = [
@@ -28,9 +28,11 @@ export class ReminderComponent implements OnInit {
 
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const id = tokenPayload.id;
+    const id = tokenPayload.email;
+    debugger
     let reminderobj = this.reminders.getreminder(id);
     reminderobj.subscribe((res:any)=>{
+      debugger
       this.notes = res;
     })
   }

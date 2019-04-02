@@ -4,7 +4,7 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Or
 ');
 defined('BASEPATH') or exit('No direct script access allowed');
 include 'JWT.php';
-use \Firebase\JWT\JWT;
+//use \Firebase\JWT\JWT;
 
 class ReminderService extends CI_Controller
 {
@@ -14,9 +14,9 @@ class ReminderService extends CI_Controller
 
     }
 
-    
+
     public function reminderNotesFetch($id){
-        $query = "SELECT * from notes Where email='$email' AND reminder <> '' ";
+        $query = "SELECT * from notes Where email='$id' AND reminder <> '' ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);

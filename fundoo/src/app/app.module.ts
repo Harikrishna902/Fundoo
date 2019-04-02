@@ -25,8 +25,13 @@ import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { ReminderComponent } from './components/reminder/reminder.component';
-//import { NotegridComponent } from './components/notegrid/notegrid.component';
 
+import { LabelComponent } from './components/label/label.component';
+import { EditlabelsComponent } from './components/editlabels/editlabels.component';
+//import { ArchieveComponent } from './archieve/archieve.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+
+//import {MatDialogRef} from '@angular/material';
 @NgModule({
   /**
    * array of components created
@@ -46,8 +51,17 @@ import { ReminderComponent } from './components/reminder/reminder.component';
     EditnotesComponent,
   
     ReminderComponent,
+  
+
+  
+    LabelComponent,
+  
+    EditlabelsComponent,
+  
     
-    //NotegridComponent,
+  
+    ArchiveComponent,
+  
     
   ],
   /**
@@ -65,7 +79,7 @@ import { ReminderComponent } from './components/reminder/reminder.component';
     MatMenuModule,
     MatDatepickerModule,
     MatDialogModule,
-    //MatNativeDateModule
+  
   ],
   /**
    * includes the services created
@@ -79,6 +93,6 @@ import { ReminderComponent } from './components/reminder/reminder.component';
    * In order for the component to be usable as a dialog body, 
    * we need to declare it as an entryComponent
    */
-  entryComponents: [EditnotesComponent]
+  entryComponents: [EditnotesComponent,EditlabelsComponent]
 })
 export class AppModule { }

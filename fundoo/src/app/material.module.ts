@@ -2,11 +2,13 @@
 import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {MatChipsModule} from '@angular/material/chips';
+
 //import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material'
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,MatDatepickerModule,MatNativeDateModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatSidenavModule, MatDrawerContainer, MatListModule,
 } from '@angular/material';
+//import {MatDialogRef} from 'angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatDialogModule,
-  
+  //MatDialogRef,
   MatListModule,
   MatDatepickerModule,
   MatNativeDateModule,
@@ -49,6 +51,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
    MatChipsModule,
    MatTooltipModule,
    MatDialogModule,
+   //MatDialogRef,
   //  MatAutocompleteSelectedEvent,
   //  MatAutocomplete,
    ],
