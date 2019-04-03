@@ -30,6 +30,9 @@ class NoteService extends CI_Controller
             $flag = 1;
 
         }
+        if($reminder =="undefined"){
+            $reminder ="";
+        }
         if ($flag == 0) {
             $headers = apache_request_headers();
             $token = $headers['Authorization'];
@@ -39,7 +42,7 @@ class NoteService extends CI_Controller
                 $connection = $redis->connection();
                 $response = $connection->get('token');
 
-                $query = "INSERT into notes (title,description,email,reminder) values ('$title','$description','$email','$reminder')";
+                $query = "INSERT into notes (title,description,email,reminder,archive) values ('$title','$description','$email','$reminder',0)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
                 if ($res) {
@@ -64,7 +67,7 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($email)
     {
-        $query = "SELECT * from notes Where email ='$email' ORDER BY id DESC ";
+        $query = "SELECT * from notes Where email ='$email' And archive=0 ORDER BY id DESC ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);

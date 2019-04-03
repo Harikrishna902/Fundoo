@@ -16,13 +16,7 @@ export class ReminderComponent implements OnInit {
     this.reminder();
   }
 
-  public maticons: string[] = [
-    'notification_important',
-    'color_lens',
-    'archive',
-    'person_add',
-    'more_vert',
-  ];
+
   
   reminder(){
 

@@ -238,16 +238,11 @@
                   <mat-icon>schedule</mat-icon>
                   {{n.reminder}}
                   <mat-icon>cancel</mat-icon>
-                 
+                </mat-chip>
+              </mat-chip-list> 
+            </p>    
 
-            <!-- <mat-icon>schedule</mat-icon> -->
-            <!-- {{n.reminder}} -->
-           
-          </mat-chip>
-        </mat-chip-list> 
-    
-      </p>
-    </div>
+         </div>
     <div>
       <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
         <button mat-icon-button>
@@ -376,7 +371,7 @@
           <mat-icon matTooltip="Add image">insert_photo</mat-icon>
         </button>
 
-        <button mat-icon-button>
+        <button mat-icon-button> 
           <mat-icon  (click)="notesarchive(n.id)" matTooltip="Archive" >archive</mat-icon>
         </button>
         <button mat-icon-button>

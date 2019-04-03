@@ -116,7 +116,7 @@ export class EditnotesComponent implements OnInit {
         {
           //this. getNotes();
         } 
-        else 
+        else
         {
           
         }

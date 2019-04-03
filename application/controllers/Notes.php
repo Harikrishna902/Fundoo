@@ -31,7 +31,7 @@ class Notes extends CI_Controller
         
         $description = $_POST['description'];
         $reminder = $_POST['reminder'];
-       // $color = $_POST['color'];
+         // $color = $_POST['color'];
         // if ($title == "null" || $title == "undefined") {
         //     $title = "";
         // }

@@ -19,7 +19,7 @@ export class NoteService {
    * @param time
    * @returns obseravble data 
    */
-  createNotes(note, email,time) {
+  createNotes(note, email,time,) {
     let createnotes = new FormData();
     createnotes.append("email", email);
     createnotes.append("title", note.title);
@@ -86,7 +86,7 @@ export class NoteService {
 
 
   
-  /**
+  /*
    * function to update notes
    * @param title 
    * @param description 

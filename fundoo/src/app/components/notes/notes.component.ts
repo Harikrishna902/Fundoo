@@ -166,7 +166,7 @@ export class NotesComponent implements OnInit {
   notescreate(value: any) {
     debugger
     const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email, this.currentDateAndTime);
+    let obj = this.notes.createNotes(value, email,this.currentDateAndTime);
 
     obj.subscribe((res: any) => {
       debugger
@@ -249,27 +249,21 @@ export class NotesComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width="600px";
     dialogConfig.height = "auto";
-    
+    /**
+     *  panel class:adds a list of custom CSS classes to the Dialog panel
+     */
     dialogConfig.panelClass = 'custom-dialog-container'
 
     dialogConfig.data = {
-      // title:n.title,
-      // description:n.description,
-      // reminder:n.reminder
+    
       notesdata:n
     };
-  
-
     this.dialog.open(EditnotesComponent, dialogConfig)
     }
  
 
     notesarchive(id) {
       debugger
-      if (id == "undefined"){
-        return;
-      }
-  
       let arch = this.notes.archiveNote(id);
       arch.subscribe((res:any)=>{
        

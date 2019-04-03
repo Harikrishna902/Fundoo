@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Or
 ');
 defined('BASEPATH') or exit('No direct script access allowed');
 include '/var/www/html/codeigniter/application/services/archiveService.php';
-class archive extends CI_Controller
+class Archive extends CI_Controller
 {
     private $serviceReference = "";
     /**

@@ -18,6 +18,7 @@ export class serviceUrl {
 	public createnotes="createnotes";
 	public displaynotes = "fetchnotes";
 	public deleteNotes="deleteNotes";
+	
 	public changeColor="changeColor";
 	public updateNotes="updateNotes";
 	public getreminder = "getreminder";
@@ -25,7 +26,7 @@ export class serviceUrl {
 	public getlabel = "getlabel";
 	public getArch = "getarchive";
 	public unarchived = "unarchive";
-	public archive = "archive";
+	public archive = "archived";
 }
 
 

@@ -12,12 +12,14 @@ export class ArchiveComponent implements OnInit {
   constructor(private arch : ArchiveService) { }
   notes: Notes[] = [];
   ngOnInit() {
+    this.getArchive();
   }
 
   getArchive(){
+    debugger
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const uid = tokenPayload.id;
+    const uid = tokenPayload.email;
 
     let obj = this.arch.getArchive(uid);
     obj.subscribe((res:any)=>{
