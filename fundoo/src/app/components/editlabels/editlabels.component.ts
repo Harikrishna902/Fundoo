@@ -50,7 +50,7 @@ export class EditlabelsComponent implements OnInit {
 
     obj.subscribe((res: any) => {
       debugger
-      this.labels = res;
+      this.label= res;
     })
   }
 }

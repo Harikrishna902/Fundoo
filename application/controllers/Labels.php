@@ -19,7 +19,9 @@ class labels extends CI_Controller
         $this->serviceReference = new labelService ();
     }
 
-    
+    /**
+     * @method to add the labels
+     */
     public function addLabel(){
         $email= $_POST['email'];
         $label = $_POST['label'];
@@ -27,7 +29,9 @@ class labels extends CI_Controller
         $this->serviceReference->labelAdd($email,$label);
     }
 
-
+  /**
+   * @method to fetch/display the labels
+   */
     public function getLabel()
     {
         $email = $_POST['email'];

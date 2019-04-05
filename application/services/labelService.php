@@ -20,7 +20,7 @@ class labelService extends CI_Controller
      * @return void 
      */
     public function labelAdd($email,$label){
-        $query = "INSERT into labels (label,email,created_date) values ('$label','$email',now())";
+        $query = "INSERT into labels (label,email,create_date) values ('$label','$email',now())";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
             if ($res) {
@@ -45,7 +45,7 @@ class labelService extends CI_Controller
      * @param email
      */
     public function labelFetch($email){
-        $query = "SELECT * from labels Where email ='$email'  ";
+        $query = "SELECT * from labels Where email ='$email'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);

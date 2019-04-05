@@ -107,7 +107,9 @@ export class NoteService {
     let update = new FormData();
     update.append("title",data.title);
     update.append("description",data.description);
+    update.append("reminder",data.reminder);
     update.append("id",id);
+    
     return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
   }
 

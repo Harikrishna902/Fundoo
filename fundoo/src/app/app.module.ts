@@ -19,7 +19,7 @@ import{} from '@angular/forms';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {MatDialogModule} from "@angular/material";
+import {MatDialogModule,MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
@@ -43,23 +43,12 @@ import { ArchiveComponent } from './components/archive/archive.component';
     ForgotComponent,
     ResetComponent,
     DashboardComponent,
-  
     NotesComponent,
-  
     SearchPipe,
-  
     EditnotesComponent,
-  
     ReminderComponent,
-  
-
-  
     LabelComponent,
-  
     EditlabelsComponent,
-  
-    
-  
     ArchiveComponent,
   
     
@@ -84,7 +73,8 @@ import { ArchiveComponent } from './components/archive/archive.component';
   /**
    * includes the services created
    */
-  providers: [],
+  providers: [{ provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },],
   /**
    * main component for starting the excution
    */

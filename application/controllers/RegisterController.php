@@ -38,7 +38,8 @@ class RegisterController extends CI_Controller
         $email = $_POST["email"];
         $password = $_POST["password"];
         //$confirm = $_POST["confirm password"];
-        $this->serviceReference->registration($FirstName, $LastName, $email, $password);
+      $sdf=  $this->serviceReference->registration($FirstName, $LastName, $email, $password);
+      return $sdf;
     }
     /**
      * @method login() login in to fundo logic

@@ -70,7 +70,8 @@ class Notes extends CI_Controller
         $id = $_POST['id'];
         $title =$_POST['title'];
         $description=$_POST['description'];
-        $this->serviceReference->updateNotes($id,$title,$description);
+        $reminder=$_POST['reminder'];
+        $this->serviceReference->updateNotes($id,$title,$description,$reminder);
 
     }
 

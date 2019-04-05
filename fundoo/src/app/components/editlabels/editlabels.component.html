@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content class="class" >
   <form [formGroup]="labelform">
     <mat-label>Edit Labels</mat-label>
     <div>
@@ -15,21 +15,23 @@
     </div>
   </form>
 </mat-dialog-content>
+<mat-divider></mat-divider>
+<div class="done">
+  <a mat-flat-button (click)="close(labelform.value)">Done</a>
+</div>
 
 <mat-dialog-actions>
   <mat-nav-list>
 
     <label role="listitem" *ngFor="let item of labels">
-     <button mat-icon-button class="btnclose">
-       <mat-icon class="remicon">label</mat-icon>
+     <button mat-icon-button>
+       <mat-icon >label</mat-icon>
      </button>
     <span class="notes">{{n.label}}</span>
      <button mat-icon-button class="btnclose">
-       <mat-icon class="remicon">delete_outline</mat-icon>
+       <mat-icon >delete_outline</mat-icon>
      </button>
    </label >
-
-
-
- </mat-nav-list>
+</mat-nav-list>
 </mat-dialog-actions>
+

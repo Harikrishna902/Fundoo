@@ -140,13 +140,13 @@ class NoteService extends CI_Controller
      * @param title,description,id
      * @return void
      */
-    public function updateNotes($id,$title,$description){
+    public function updateNotes($id,$title,$description,$reminder){
         $flag = 0;
-        if(empty($title)||empty($description)){
+        if(empty($title)||empty($description ||empty($reminder))){
             $flag = 1;
         }
         if($flag==0){
-            $query="UPDATE notes SET title = '$title', description ='$description' where id = '$id'";
+            $query="UPDATE notes SET title = '$title', description ='$description',reminder='$reminder' where id = '$id'";
             $statement = $this->db->conn_id->prepare($query);
             $res = $statement->execute();
             if ($res) {

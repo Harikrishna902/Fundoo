@@ -23,7 +23,7 @@ export class EditnotesComponent implements OnInit {
 	 */
   currentdate: any;
   currentDateAndTime: any;
-
+  reminder: any;
   timer: any;
 
   fulldate: any
@@ -38,6 +38,7 @@ export class EditnotesComponent implements OnInit {
     this.title = this.data.notesdata.title;
     this.id = this.data.notesdata.id;
     this.colour = this.data.notesdata.colour;
+    this.reminder=this.data.notesdata.reminder;
   }
 
   ngOnInit() {
@@ -49,10 +50,7 @@ export class EditnotesComponent implements OnInit {
   }
 
 
-  //   close(value:any) {
-  //     debugger
-  //     this.dialogRef.close();
-  // }
+
 
   status
   notebackground
@@ -98,28 +96,5 @@ export class EditnotesComponent implements OnInit {
 
 
 
-  setColor(n,colour)
-  {
-    debugger;
-   
-
-    this.note.forEach(element => {
-        if(element.id==n.id){
-            element.colour = colour;
-        }
-    });
-    let col = this.notes.changeColor(n.id,colour);
-
-    col.subscribe((res:any)=>{
-      console.log(res);
-      if (res.message == "200") 
-        {
-          //this. getNotes();
-        } 
-        else
-        {
-          
-        }
-    })
-  }
+  
 }

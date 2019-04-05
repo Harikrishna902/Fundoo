@@ -62,8 +62,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['register'] ='registerController/registration';
+$route['register'] ='RegisterController/registration';
 $route['login']='registerController/login';
+
+
 $route['forgot']='registerController/forgot';
 $route['fetchemail'] = 'registerController/fetchemail';
 $route['reset'] = 'registerController/resetpassword'; 
@@ -74,11 +76,11 @@ $route['changeColor'] = 'Notes/changeColor';
 $route['updateNotes']='Notes/updateNotes';
 $route['deleteNotes']='Notes/deleteNotes';
 $route['reminder']='reminder/dashboard';
-$route['editlablels']='editlables/dashboard';
-$route['setlabel'] ='editlables/addLabel';
-$route['getlabel'] = 'editlables/getLabel';
+//$route['editlablels']='editlables/dashboard';
+$route['setlabel'] ='Labels/addLabel';
+$route['getlabel'] = 'Labels/getLabel';
 $route['archived']='Notes/archive';
 // $route['archive']='archive/fetchArchive';
 $route['getarchive'] = 'Archive/fetchArchive';
-$route['unarchive'] = 'archive/unarchive';
+$route['unarchive'] = 'Archive/unarchive';
 $route['getreminder'] = 'Reminder/ReminderNotes';

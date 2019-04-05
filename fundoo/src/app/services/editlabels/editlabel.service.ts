@@ -20,7 +20,7 @@ export class  EditlabelService{
   setLabel(email,labelname){
     let label = new FormData();
     label.append("email",email);
-    label.append("label",labelname.label);
+    label.append("label",labelname.labelname);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.setlabel,label);
   }
 }

@@ -53,9 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  // isclick() {
-  //   return false;
-  // }
+
 
   addAccount() {
     this.route.navigate(['register']);
@@ -74,6 +72,7 @@ export class DashboardComponent implements OnInit {
     const config = new MatDialogConfig();
     config.width="400px";
     config.height="auto";
+    //config.overflow="hidden";
     config.data ={data:this.email};
     const label = this.dialog.open(EditlabelsComponent,config);
   }

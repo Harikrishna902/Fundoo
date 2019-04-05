@@ -131,8 +131,11 @@
         <mat-divider></mat-divider>
        
         <label fxLayout="row" style="font-size: 12px">LABLES </label>
+        <a mat-list-item role="listitem" *ngFor="let n of labels" >
+          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.label}}</span>
+      </a>
 
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="editlabels" (click)="openLabel()">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes" (click)="openLabel()">
 
            <mat-icon> mode_edit</mat-icon><span class="abc"></span>EditLabels
         </a> <br>
