@@ -132,7 +132,7 @@
        
         <label fxLayout="row" style="font-size: 12px">LABLES </label>
         <a mat-list-item role="listitem" *ngFor="let n of labels" >
-          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.label}}</span>
+          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.labels}}</span>
       </a>
 
         <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes" (click)="openLabel()">

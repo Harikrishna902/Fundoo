@@ -51,4 +51,18 @@ export class LoginserviceService {
     return this.http.post(this.serviceUrl.host+this.serviceUrl.reset, resetOne);
   }
 
+/**
+ * 
+ * @param email @method socialLogin
+ * @param name 
+ * @returns obseravble data
+ */
+  socialLogin(email,name){
+    let social = new FormData();
+    social.append("email",email);
+    social.append("name",name);
+
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.sociallogin,social);
+}
+
 }

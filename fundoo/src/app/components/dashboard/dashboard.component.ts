@@ -17,6 +17,7 @@ import { searchService } from '../../services/searchservice/search.service';
 import { MatDialog, MatDialogConfig,MatDialogRef, } from '@angular/material';
 import {EditlabelService } from '../../services/editlabels/editlabel.service';
 import { EditlabelsComponent } from '../editlabels/editlabels.component';
+import{ Label}from '../models/labels';
 
 ;
 
@@ -32,10 +33,16 @@ export class DashboardComponent implements OnInit {
   constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,private label:EditlabelService) { }
   grid: boolean = false;
   list: boolean = true;
+  labels : Label[];
   ngOnInit() {
     const token = localStorage.getItem('token');
     var decoded = decode(token);
     this.email = decoded.email;
+
+    let labelobj= this.label.getLabel(this.email);
+    labelobj.subscribe((res:any)=>{
+      this.labels= res;
+    })
   }
 
   changeView() {

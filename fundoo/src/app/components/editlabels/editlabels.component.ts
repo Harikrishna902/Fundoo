@@ -52,5 +52,5 @@ export class EditlabelsComponent implements OnInit {
       debugger
       this.label= res;
     })
-  }
+  } 
 }

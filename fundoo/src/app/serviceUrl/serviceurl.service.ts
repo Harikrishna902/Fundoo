@@ -27,6 +27,7 @@ export class serviceUrl {
 	public getArch = "getarchive";
 	public unarchived = "unarchive";
 	public archive = "archived";
+	public sociallogin ="socialLogin";
 }
 
 

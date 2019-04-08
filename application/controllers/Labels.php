@@ -38,4 +38,4 @@ class labels extends CI_Controller
         $this->serviceReference->labelFetch($email);
     }
 
-}
+} 

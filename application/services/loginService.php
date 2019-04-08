@@ -121,4 +121,64 @@ class loginService extends CI_controller
         return $data;
     }
 
+      /**
+     * @method emailpresent()
+     * @param email
+     */
+
+    public function emailpresent($email)
+    {
+        $query = "SELECT * from registrations WHERE email = '$email'";
+        $statement = $this->db->conn_id->prepare($query);
+
+        $statement->execute();
+
+        $count = $statement->rowCount();
+
+        if ($count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function socialSigin($email,$name){
+        $emailExists = loginService::emailpresent($email);
+        $redis = new Redis();
+        $conn = $redis->connection();
+        $key =$conn->get('scretkey');
+        if($emailExists){
+            $token = JWT::encode($email,$key);
+            $data  = array(
+                "token"   => $token,
+                "message" => "200",
+            );
+            print json_encode($data);
+        }else{
+            //$uid = uniqid();
+            $query = "INSERT into registrations (FirstName,email) values ('$FirstName','$email')";
+            $statement = $this->db->conn_id->prepare($query);
+            $res = $statement ->execute();
+            if($res)
+            {
+                $token = JWT::encode($email,$key);
+                $data  = array(
+                    "token"   => $token,
+                    "message" => "200",
+                );
+                print json_encode($data);
+            }
+            else{
+                $data  = array(
+
+                    "message" => "204",
+                );
+                print json_encode($data);
+            
+            }
+        }
+    }
+
+
 }

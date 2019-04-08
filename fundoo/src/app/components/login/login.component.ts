@@ -15,7 +15,13 @@ import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@a
 import { LoginserviceService } from '../../services/loginservice/loginservice.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
-import { tokenKey } from '@angular/core/src/view';
+import { CookieService } from 'ngx-cookie-service';
+//import { tokenKey } from '@angular/core/src/view';
+import {
+	AuthService,
+	FacebookLoginProvider,
+	GoogleLoginProvider
+} from "angular-6-social-login";
 //import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
@@ -37,7 +43,8 @@ export class LoginComponent implements OnInit {
   // confirm = new FormControl('', [Validators.required]);
   // service = new FormControl('', [Validators.required]);
 
-  constructor(private formBuilder: FormBuilder, private S_login: LoginserviceService, private route: Router) { }
+  constructor(private formBuilder: FormBuilder, private S_login: LoginserviceService, 
+    private socialAuthService: AuthService,private route: Router,private cookieserv:CookieService ) { }
   
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
@@ -82,6 +89,62 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+  /**
+	 * @method socialSignIn()
+	 * @return void
+	 * @param socialPlatform
+	 * @description Function to error validation
+	 */
+
+	public socialSignIn(socialPlatform: string) {
+		debugger;
+		let socialPlatformProvider;
+		if (socialPlatform == "facebook") {
+			socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+		} else if (socialPlatform == "google") {
+			socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+		}
+
+		this.socialAuthService.signIn(socialPlatformProvider).then(userData => {
+			debugger;
+			this.sendToRestApiMethod(
+        userData.name	,
+				userData.email,
+				userData.image,
+				userData.token
+			);
+		});
+  }
+
+
+  /**
+	 * @method sendToRestApiMethod()
+	 * @return void
+	 * @param token
+	 * @param email
+	 * @param image
+	 * @param name
+	 * @description Function to error validation
+	 */
+  message
+  sendToRestApiMethod(name,email,image,token){
+    debugger;
+      let socialres = this.S_login.socialLogin(email,name);
+      socialres.subscribe((res:any)=>{
+        debugger
+        console.log(res);
+        if(res.message=="200"){ 
+          this.cookieserv.set("email",email);
+          this.cookieserv.set("image",image);
+          // localStorage.setItem("token",token);
+          
+          this.route.navigate(["/dashboard"]);
+        }
+      })
+  }
+  
+
 }
 
 

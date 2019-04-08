@@ -70,17 +70,22 @@ $route['forgot']='registerController/forgot';
 $route['fetchemail'] = 'registerController/fetchemail';
 $route['reset'] = 'registerController/resetpassword'; 
 $route['dashboard']='notes/dashboard';
+
 $route['createnotes'] = 'Notes/createNotes';
 $route['fetchnotes'] = 'Notes/getNotes';
 $route['changeColor'] = 'Notes/changeColor';
 $route['updateNotes']='Notes/updateNotes';
 $route['deleteNotes']='Notes/deleteNotes';
 $route['reminder']='reminder/dashboard';
+
 //$route['editlablels']='editlables/dashboard';
 $route['setlabel'] ='Labels/addLabel';
-$route['getlabel'] = 'Labels/getLabel';
+$route['getlabel'] ='Labels/getLabel';
 $route['archived']='Notes/archive';
-// $route['archive']='archive/fetchArchive';
+
 $route['getarchive'] = 'Archive/fetchArchive';
 $route['unarchive'] = 'Archive/unarchive';
+
 $route['getreminder'] = 'Reminder/ReminderNotes';
+
+$route['socialLogin'] = 'RegisterController/socialLogin';

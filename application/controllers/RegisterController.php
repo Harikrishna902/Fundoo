@@ -79,6 +79,16 @@ class RegisterController extends CI_Controller
             $password = $_POST['password'];
             $token = $_POST['token'];
             $res = $this->loginservice->resetpass($password,$token);
-        }    
+        }   
+        
+        public function socialLogin(){
+            $email = $_POST['email'];
+            $name = $_POST['name'];
+    
+            $this->loginservice->socialSigin($email,$name);
+        }
+        
+
+
 
 }

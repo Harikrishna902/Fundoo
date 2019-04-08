@@ -65,7 +65,11 @@
       <!-- form ends -->
     </form>
     <div align="center">{{errormsg}}</div>
+    <h5>or sign in with</h5>
+    <button mat-button color="primary" (click)="socialSignIn('facebook')">Sign in with Facebook</button>
+    <button  mat-button color="primary" (click)="socialSignIn('google')">Sign in with Google</button> 
     <!-- mat card ends -->
   </mat-card>
-  <!--maain devision ends -->
+  <!--main devision ends -->
+ 
 </div>
