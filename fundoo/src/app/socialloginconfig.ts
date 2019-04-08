@@ -3,7 +3,7 @@ import {
 	FacebookLoginProvider,
 	GoogleLoginProvider
 } from "angular-6-social-login";
-import { constants } from "./constants/constants";
+import { constants } from "./constant/constants";
 export function getAuthServiceConfigs() {
 	let config = new AuthServiceConfig([
 		// {

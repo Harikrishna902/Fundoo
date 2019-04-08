@@ -26,12 +26,12 @@ import { SearchPipe } from './pipe/search.pipe';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { ReminderComponent } from './components/reminder/reminder.component';
 import { SocialLoginModule,AuthServiceConfig,GoogleLoginProvider,FacebookLoginProvider,} from "angular-6-social-login";
-import {getAuthServiceConfigs} from './socialloginConfig';
+import {getAuthServiceConfigs} from './socialloginconfig';
 import { LabelComponent } from './components/label/label.component';
 import { EditlabelsComponent } from './components/editlabels/editlabels.component';
 
 import { ArchiveComponent } from './components/archive/archive.component';
-import { AuthService as auth } from './services/auth/auth.service';
+import { AuthService as auth } from './services/auth/auth.servicee';
 import { CookieService } from 'ngx-cookie-service';
 
 //import {MatDialogRef} from '@angular/material';
