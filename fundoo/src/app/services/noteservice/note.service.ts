@@ -35,9 +35,7 @@ export class NoteService {
 			
   localStorage.getItem("token")
 );
-
- 
-  console.log(headers_object);
+console.log(headers_object);
   return this.http.post(this.serviceUrl.host+this.serviceUrl.createnotes,createnotes,{headers:headers_object});
 
  }
@@ -86,22 +84,13 @@ export class NoteService {
 
 
   
-  /*
+  /** 
    * function to update notes
-   * @param title 
-   * @param description 
-   * @param id 
-   * @retuns obseravble data
+   *@param title 
+   *@param description 
+   *@param id 
+   *@retuns obseravble data
    */
-  // updateNotes(title,description,id){
-  //   debugger;
-  //   let update =new FormData();
-  //   update.append('title',title);
-  //   update.append('description',description);
-  //   update.append('id',id);
-  //   return this.http.post(this.serviceUrl.host+this.serviceUrl.updateNotes,update);
-  
-
   updateNotes(data,id){
     debugger
     let update = new FormData();

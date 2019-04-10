@@ -97,10 +97,14 @@
 
 
         <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
-          <p>Hari krishna</p>
+           <p>Hari krishna</p>
+           <!-- <p>{{FirstName}}</p> -->
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">
-          <p>{{email}}</p>
+          
+          <p>
+          {{email}}</p>
+
         </div>
 
         <mat-divider></mat-divider>
@@ -144,7 +148,7 @@
             <mat-icon>archive</mat-icon><span class="abc">Archive</span>
           </a> <br>
         
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="trash">
             <mat-icon>delete</mat-icon><span class="abc">Trash</span>
           </a> <br> 
 

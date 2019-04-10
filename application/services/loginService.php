@@ -93,10 +93,10 @@ class loginService extends CI_controller
         return $data;
     }
 
-/**
- * function to reset password
- * @param password,token
- */
+    /**
+     * function to reset password
+     * @param password,token
+     */
     public function resetpass($password, $token)
     {
         $query = "UPDATE registrations set password = '$password' where reset_password='$token' ";
@@ -121,11 +121,10 @@ class loginService extends CI_controller
         return $data;
     }
 
-      /**
+    /**
      * @method emailpresent()
      * @param email
      */
-
     public function emailpresent($email)
     {
         $query = "SELECT * from registrations WHERE email = '$email'";
@@ -142,43 +141,48 @@ class loginService extends CI_controller
         }
     }
 
-
-    public function socialSigin($email,$name){
+    /**
+     * @method social login
+     * @param email
+     * @param name
+     * @return void
+     */
+    public function socialSigin($email, $name)
+    {
         $emailExists = loginService::emailpresent($email);
         $redis = new Redis();
         $conn = $redis->connection();
-        $key =$conn->get('scretkey');
-        if($emailExists){
-            $token = JWT::encode($email,$key);
-            $data  = array(
-                "token"   => $token,
+        $key = $conn->get('scretkey');
+        if ($emailExists) {
+            $tokenarr = array
+            ("email"=>$email);
+            $token = JWT::encode($tokenarr , $key);
+            $data = array(
+                "token" => $token,
                 "message" => "200",
             );
             print json_encode($data);
-        }else{
+        } else {
             //$uid = uniqid();
             $query = "INSERT into registrations (FirstName,email) values ('$FirstName','$email')";
             $statement = $this->db->conn_id->prepare($query);
-            $res = $statement ->execute();
-            if($res)
-            {
-                $token = JWT::encode($email,$key);
-                $data  = array(
-                    "token"   => $token,
+            $res = $statement->execute();
+            if ($res) {
+                $token = JWT::encode($email, $key);
+                $data = array(
+                    "token" => $token,
                     "message" => "200",
                 );
                 print json_encode($data);
-            }
-            else{
-                $data  = array(
+            } else {
+                $data = array(
 
                     "message" => "204",
                 );
                 print json_encode($data);
-            
+
             }
         }
     }
-
 
 }

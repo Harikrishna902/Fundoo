@@ -63,11 +63,11 @@ export class LoginComponent implements OnInit {
     }
     debugger;
     let obj = this.S_login.UserLoginData(this.LoginForm.value);
+
     /**
      * error handling and returns observable
      * sends response  
      */
-    
     debugger;
     obj.subscribe((res: any) => {
       debugger
@@ -96,8 +96,7 @@ export class LoginComponent implements OnInit {
 	 * @param socialPlatform
 	 * @description Function to error validation
 	 */
-
-	public socialSignIn(socialPlatform: string) {
+   public socialSignIn(socialPlatform: string) {
 		debugger;
 		let socialPlatformProvider;
 		if (socialPlatform == "facebook") {
@@ -135,9 +134,13 @@ export class LoginComponent implements OnInit {
         debugger
         console.log(res);
         if(res.message=="200"){ 
+          /**
+           * cookieservice which is used to store in server like localstorage which is 
+           * used to  store data  in our system
+           */ 
           this.cookieserv.set("email",email);
           this.cookieserv.set("image",image);
-          // localStorage.setItem("token",token);
+          localStorage.setItem("token",res.token);
           
           this.route.navigate(["/dashboard"]);
         }

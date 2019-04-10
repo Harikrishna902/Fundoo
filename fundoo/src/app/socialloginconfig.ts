@@ -6,10 +6,10 @@ import {
 import { constants } from "./constant/constants";
 export function getAuthServiceConfigs() {
 	let config = new AuthServiceConfig([
-		// {
-		// 	id: FacebookLoginProvider.PROVIDER_ID,
-		// 	provider: new FacebookLoginProvider(constants.facebookClientId)
-		// },
+		{
+			id: FacebookLoginProvider.PROVIDER_ID,
+			provider: new FacebookLoginProvider(constants.facebookClientId)
+		},
 
 		{
 			id: GoogleLoginProvider.PROVIDER_ID,

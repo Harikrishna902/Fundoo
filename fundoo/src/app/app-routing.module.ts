@@ -11,6 +11,7 @@ import { LabelComponent } from './components/label/label.component';
 //import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { EditlabelsComponent } from './components/editlabels/editlabels.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import {TrashComponent}from './components/trash/trash.component';
 //import { AuthGuard } from "./auth.guard";
 /**
  * const which defines variables
@@ -45,6 +46,11 @@ children: [
   {
     path:"archive",
     component:ArchiveComponent
+    
+  },
+  {
+    path:"trash",
+    component: TrashComponent
     
   },
 

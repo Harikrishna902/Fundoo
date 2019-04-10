@@ -34,7 +34,7 @@ class register extends TestCase
         ]);
 
         $stream = $request->getBody();
-        $contents = json_decode($stream);
+        $contents = json_decode($stream); 
         $res = $contents->message;
 
         $this->assertEquals("200", $res);

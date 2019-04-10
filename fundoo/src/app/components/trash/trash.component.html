@@ -1,0 +1,28 @@
+
+
+
+
+<div class="flexcard" fxLayoutGap="50px" fxLayoutAlign="start center">
+
+  <mat-card  class="cardtext">
+   
+
+ <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
+      
+      <button mat-icon-button>
+        <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
+      </button>
+      <mat-menu #More="matMenu">
+        <button mat-menu-item (click)="deleteNote(n)">Delete forever</button>
+        <button mat-menu-item>Restore</button>
+        
+      </mat-menu>
+    </div>
+
+
+    
+  
+
+  </mat-card>
+
+</div>

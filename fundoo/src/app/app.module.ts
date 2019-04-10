@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+//import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { CustomMaterialModule } from './material.module';
@@ -33,6 +33,7 @@ import { EditlabelsComponent } from './components/editlabels/editlabels.componen
 import { ArchiveComponent } from './components/archive/archive.component';
 import { AuthService as auth } from './services/auth/auth.servicee';
 import { CookieService } from 'ngx-cookie-service';
+import { TrashComponent } from './components/trash/trash.component';
 
 //import {MatDialogRef} from '@angular/material';
 @NgModule({
@@ -53,6 +54,7 @@ import { CookieService } from 'ngx-cookie-service';
     LabelComponent,
     EditlabelsComponent,
     ArchiveComponent,
+    TrashComponent,
     
 
   ],

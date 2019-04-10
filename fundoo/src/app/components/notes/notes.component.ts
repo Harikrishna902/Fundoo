@@ -106,6 +106,7 @@ export class NotesComponent implements OnInit {
    * return obseravble 
    */
   getNotes() {
+    debugger
     const token = localStorage.getItem('token');
     // decode the token to get its payload
     const tokenPayload = decode(token);
@@ -165,6 +166,7 @@ export class NotesComponent implements OnInit {
    */
   notescreate(value: any) {
     debugger
+   
     const email = localStorage.getItem('email');
     let obj = this.notes.createNotes(value, email,this.currentDateAndTime);
 
