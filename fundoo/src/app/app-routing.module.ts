@@ -12,6 +12,7 @@ import { LabelComponent } from './components/label/label.component';
 import { EditlabelsComponent } from './components/editlabels/editlabels.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import {TrashComponent}from './components/trash/trash.component';
+import { SearchComponent } from './components/search/search.component';
 //import { AuthGuard } from "./auth.guard";
 /**
  * const which defines variables
@@ -53,7 +54,12 @@ children: [
     component: TrashComponent
     
   },
+  
+  {
 
+  path:"search",
+  component: SearchComponent
+  },
 
 
 

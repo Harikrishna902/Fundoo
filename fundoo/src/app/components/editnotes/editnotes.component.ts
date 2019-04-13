@@ -94,7 +94,12 @@ export class EditnotesComponent implements OnInit {
     this.timer = true;
   }
 
-
+  closeDate()
+  {
+    this.timer = false;
+    this.currentDateAndTime = undefined;
+    
+  }
 
   
 }

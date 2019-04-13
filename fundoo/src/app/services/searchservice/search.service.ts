@@ -5,22 +5,28 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class searchService {
-  private messageSource = new Subject();
-  private msgSource = new BehaviorSubject(false);
-  currentMsg = this.msgSource.asObservable();
-  currentMessage = this.messageSource.asObservable();
-  viewList = this.messageSource.asObservable();
+  private searchWord:string;
+
+
   constructor() { }
-  changeMessage(message: string) {
-      this.messageSource.next(message)
-    }
-    sendMessage(message: boolean) {
-      this.messageSource.next(message)
-    }
+  subject=new Subject();
+  getSearch()
+  {
+
+    this.setSearchWord(this.searchWord);
+    return this.subject.asObservable();
+  }
+
+  setSearchWord(searchTerm:string)
+  {
+   // debugger;
+    this.searchWord=searchTerm;
+    
+    this.subject.next({data:searchTerm})
+    
 }
 
-
-
+}
 
 
 

@@ -5,5 +5,6 @@ export interface Notes{
     notes: string;
     remainder: string;
     color: string;
+    trash:number;
     user_id:string;
 }

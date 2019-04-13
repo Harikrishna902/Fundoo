@@ -2,6 +2,8 @@
 import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {MatChipsModule} from '@angular/material/chips';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 //import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material'
 import {
@@ -30,6 +32,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   MatNativeDateModule,
   MatChipsModule,
   MatTooltipModule,
+  DragDropModule,
+
  
   ],
   exports: [
@@ -51,6 +55,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
    MatChipsModule,
    MatTooltipModule,
    MatDialogModule,
+   DragDropModule,
+
 ],
 
 providers:[{ provide: MatDialogRef, useValue: {} },

@@ -122,3 +122,9 @@ background-color: #FFEDC4;
 
   }
 
+
+  ::ng-deep.noteImage {
+    width: 100% !important;
+    height: 100% !important;
+  }
+

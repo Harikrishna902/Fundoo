@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
   providedIn: 'root'
 })
 export class NoteService {
+  // forEach(arg0: (element: any) => void) {
+  //   throw new Error("Method not implemented.");
+  // }
 
   constructor(private http: HttpClient, private serviceUrl: serviceUrl, private route: ActivatedRoute) { }
 
@@ -59,11 +62,11 @@ console.log(headers_object);
    * @method deleteNotes
    * @returns obseravble data
    */
-  deleteNotes(data){
+  deleteNotes(id){
     debugger;
-    let id=new FormData();
-    id.append("id",data);
-    return this.http.post(this.serviceUrl.host + this.serviceUrl.deleteNotes,id);
+    let idd=new FormData();
+    idd.append("id",id);
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.deleteNotes,idd);
   }
 
 
@@ -109,5 +112,64 @@ console.log(headers_object);
     arch.append("id",id);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.archive,arch);
   }
+
+
+
+  notedtrash(id){
+    let del = new FormData();
+    del.append("id",id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.notetrash,del);
+  }
+
+  /**
+   * @method trash to store in trash
+   * @param id 
+   * @returns observable data
+   */
+  trashnote(id){
+    let trash = new FormData();
+    trash.append("id",id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.fetchtrash,trash);
+  }
+
+/**
+ * @method to delete note forever
+ * @param id 
+ * @returns obseravble data
+ */
+  notedelete(id){
+    let del = new FormData();
+    del.append("id",id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.notedelete,del);
+  }
+
+/**
+ * @method to restore the note
+ * @param id 
+ * @returns observable data
+ */
+  restoreNote(id){
+    let restore =new FormData();
+    restore.append("id",id);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.restorenote,restore);
+  }
+
+  /**
+   * @method to save image
+   * @param base64 
+   * @param email 
+   * @param noteid 
+   * @returns obseravble data
+   */
+  imagesaver(base64,email,noteid){
+    let image = new FormData();
+    image.append("base64",base64);
+    image.append("email",email);
+    image.append("noteid",noteid);
+
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.noteimage,image);
+
+  }
+
 }
 

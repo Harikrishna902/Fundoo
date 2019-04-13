@@ -19,6 +19,7 @@ import {EditlabelService } from '../../services/editlabels/editlabel.service';
 import { EditlabelsComponent } from '../editlabels/editlabels.component';
 import{ Label}from '../models/labels';
 
+
 ;
 
 @Component({
@@ -29,7 +30,7 @@ import{ Label}from '../models/labels';
 export class DashboardComponent implements OnInit {
   email: string;
   isClicked = false;
-
+  searchTerm: string;
   constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,private label:EditlabelService) { }
   grid: boolean = false;
   list: boolean = true;
@@ -84,6 +85,21 @@ export class DashboardComponent implements OnInit {
     const label = this.dialog.open(EditlabelsComponent,config);
   }
 
+
+  closeSearch()
+  {
+    debugger;
+    this.route.navigate(['dashboard/notes']);
+    this.searchTerm = '';
+  }
+
+
+  searchData()
+  {
+   // debugger;
+    if(this.searchTerm!=undefined)
+    this.data.setSearchWord(this.searchTerm);
+  }
 
 
 }

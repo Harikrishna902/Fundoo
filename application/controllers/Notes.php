@@ -28,17 +28,17 @@ class Notes extends CI_Controller
     {
         $email = $_POST['email'];
         $title = $_POST['title'];
-        
+
         $description = $_POST['description'];
         $reminder = $_POST['reminder'];
-         // $color = $_POST['color'];
+        // $color = $_POST['color'];
         // if ($title == "null" || $title == "undefined") {
         //     $title = "";
         // }
         // if ($notes == "null" || $notes == "undefined") {
         //     $notes = "";
         // }
-        $this->serviceReference->addNotes( $title,$email,$description, $reminder);
+        $this->serviceReference->addNotes($title, $email, $description, $reminder);
     }
 
     /**
@@ -68,10 +68,10 @@ class Notes extends CI_Controller
     public function updateNotes()
     {
         $id = $_POST['id'];
-        $title =$_POST['title'];
-        $description=$_POST['description'];
-        $reminder=$_POST['reminder'];
-        $this->serviceReference->updateNotes($id,$title,$description,$reminder);
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $reminder = $_POST['reminder'];
+        $this->serviceReference->updateNotes($id, $title, $description, $reminder);
 
     }
 
@@ -86,9 +86,47 @@ class Notes extends CI_Controller
         $this->serviceReference->changeColor($id, $color);
     }
 
+    /**
+     * @method to archive
+     */
     public function archive()
-        {
-            $id = $_POST['id'];
-            $this->serviceReference->archive($id);
-        }
+    {
+        $id = $_POST['id'];
+        $this->serviceReference->archive($id);
+    }
+
+    /**
+     * @method to storenotes in trash
+     * @return void
+     */
+    public function noteTrash()
+    {
+        $id = $_POST['id'];
+        $this->serviceReference->trashNote($id);
+    }
+
+    public function notefetch()
+    {
+        $id = $_POST['id'];
+        $this->serviceReference->fetchnote($id);
+    }
+
+    /**
+     * @method to restore the notes
+     *@return void
+     */
+    public function restoreDeletedNote()
+    {
+        $id = $_POST['id'];
+        $this->serviceReference->restoreDeletedNote($id);
+    }
+
+    public function image()
+    {
+        $base64 = $_POST['base64'];
+        $email = $_POST['email'];
+        $id = $_POST['noteid'];
+        $this->serviceReference->imageNote($id);
+    }
+
 }

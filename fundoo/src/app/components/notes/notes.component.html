@@ -48,7 +48,7 @@
                 <p [ngClass]="n.currentDateAndTime == 'undefined' ? 'dateVisOff': 'dateVisOn'" >
                 <mat-icon>schedule</mat-icon>
                </p> {{currentDateAndTime}}
-                <mat-icon>cancel</mat-icon>
+                <mat-icon (click) = "closeDate()">cancel</mat-icon>
               </mat-chip>
 
 
@@ -203,7 +203,7 @@
             </mat-menu>
           </div>
           <div class="close" fxLayout="row" fxLayoutAlign="end  end">
-            <button mat-button color="primary" (click)="notescreate(noteform.value)" >close</button>
+            <button mat-button color="primary" (click)="notescreate(noteform.value)">close</button>
           </div>
 
         </form>
@@ -212,28 +212,31 @@
     </div>
   </div>
 </div>
+<!-- notes create ends -->
 
-<div class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
-
-
-  <mat-card *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
+ <!--notes show in grid and list view -->
+<div cdkDropList (cdkDropListDropped)="drop($event)" class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
+<mat-card  cdkDrag *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
   [ngStyle]="{'background-color': n.colour}" >
     <div (click)=openNotes(n)>
      
       <button mat-icon-button style="padding-left:200px;">
         <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
       </button>
-       
+      <div *ngIf="Mainimage != ''">
+        <img src="{{ Mainimage }}"  alt="" class="noteImage" />
+      </div>
       <p style="margin-top: -25px;">{{n.title}} </p>
 
       <p style="font-size: 20px;">{{n.description}}</p>
+      <!-- <img src="{{ element.image}}"> -->
       <p style="font-size: 20px;"[ngClass]="n.reminder == 'undefined' ? 'dateVisOff': 'dateVisOn'" >
         <mat-chip-list>
           <mat-chip>
                
                   <mat-icon>schedule</mat-icon>
                   {{n.reminder}}
-                  <mat-icon>cancel</mat-icon>
+                  <mat-icon (click) = "closeDate()">cancel</mat-icon>
                 </mat-chip>
               </mat-chip-list> 
             </p>    
@@ -364,7 +367,7 @@
             style="background-color:#d7aefb "></button>
         </mat-menu>
         <button mat-icon-button>
-          <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+          <mat-icon matTooltip="Add image"  (click)="file.click()">insert_photo</mat-icon>
         </button>
 
         <button mat-icon-button> 
@@ -373,9 +376,10 @@
         <button mat-icon-button>
           <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
         </button>
+        <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
         <mat-menu #More="matMenu">
-          <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
-          <button mat-menu-item>Add label</button>
+          <button (click)="deleteNote(n.id,'1')" mat-menu-item>Delete note</button>
+          <button mat-menu-item (click)="addLabel(n.id)">Add label</button>
           <button mat-menu-item>Add drawing</button>
           <button mat-menu-item>Make a copy</button>
           <button mat-menu-item>Show checkboxes</button>

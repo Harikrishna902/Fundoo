@@ -29,13 +29,15 @@
     <!-- </div> -->
 
 
-    <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="sendSearchData()"
-      class="searchicon">
+    <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="searchData()">
       <mat-icon class="example-icon">search</mat-icon>
     </button>
-    <input class="ip" matInput placeholder="search">
-
-
+    <!-- <input class="ip" matInput placeholder="search"> -->
+    <input [routerLink] = "['search']" class="ip" type="text" (keyup)="searchData()" [(ngModel)]="searchTerm" placeholder="Search"/>
+   
+    <button class="cancel-icon" mat-icon-button (click) = "closeSearch()">
+      <mat-icon><img src = "../../../assets/close.svg"/></mat-icon>
+      </button>
 
     <div class=" icon-right" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
 

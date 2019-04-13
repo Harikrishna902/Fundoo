@@ -1,20 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { mynotes } from '../components/models/note';
+
 @Pipe({
-  name: 'searchBar'
+  name: 'searchdata'
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    if(!value)return null;
-    if(!args)return value;
-
-    args = args.toLowerCase();
-
-    return value.filter(function(item){
-        return JSON.stringify(item).toLowerCase().includes(args);
-    });
-}
+  transform(note: any[], searchTerm: string):mynotes[] {
+    if(!note || !searchTerm){
+    return [];
   }
 
+  return note.filter(notes =>
+    notes.title.indexOf(searchTerm) !==-1 || notes.noteContent.indexOf(searchTerm) !== -1 );
+  }
+  }
 

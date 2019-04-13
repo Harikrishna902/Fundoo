@@ -23,15 +23,15 @@ class NoteService extends CI_Controller
      *@return void
      */
     public function addNotes($title, $email, $description, $reminder)
-    { 
+    {
         $reference = new JWT();
         $flag = 0;
         if (empty($title) || empty($description)) {
             $flag = 1;
 
         }
-        if($reminder =="undefined"){
-            $reminder ="";
+        if ($reminder == "undefined") {
+            $reminder = "";
         }
         if ($flag == 0) {
             $headers = apache_request_headers();
@@ -67,7 +67,7 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($email)
     {
-        $query = "SELECT * from notes Where email ='$email' And archive=0 ORDER BY id DESC ";
+        $query = "SELECT * from notes Where email ='$email' And archive=0 AND trash=0 ORDER BY id DESC ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -82,50 +82,45 @@ class NoteService extends CI_Controller
      * function to deletenotes
      * @param id
      */
-    public function deleteNotes($id){
-     $query ="DELETE from notes where id='$id'";
-     $statement=$this->db->conn_id->prepare($query);
-     $res=$statement->execute();
-     if ($res) 
-            {
-                $data = array(
-                    "message" => "200",
-                );
-                print json_encode($data);
-                return "200";
-            } 
-            else 
-            {
-                $data = array(
-                    "message" => "204",
-                );
-                print json_encode($data);
-                return "204";
+    public function deleteNotes($id)
+    {
+        $query = "DELETE from notes where id='$id'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+        if ($res) {
+            $data = array(
+                "message" => "200",
+            );
+            print json_encode($data);
+            return "200";
+        } else {
+            $data = array(
+                "message" => "204",
+            );
+            print json_encode($data);
+            return "204";
 
-            }
+        }
     }
 
-
-       
     /**
      * function to change color
      * @param id,colour
      * @return void
      */
-    public function changeColor($id,$colour){
-        $query="UPDATE  notes SET colour = '$colour' WHERE id ='$id'";
-        $statement=$this->db->conn_id->prepare($query);
-        $res=$statement->execute();
-        if($res)
-        {
-            $data=array(
-                "message"=>"200",
+    public function changeColor($id, $colour)
+    {
+        $query = "UPDATE  notes SET colour = '$colour' WHERE id ='$id'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+        if ($res) {
+            $data = array(
+                "message" => "200",
 
             );
             print json_encode($data);
             return "200";
-        }
-        else{
+        } else {
             $data = array(
                 "message" => "204",
             );
@@ -140,13 +135,14 @@ class NoteService extends CI_Controller
      * @param title,description,id
      * @return void
      */
-    public function updateNotes($id,$title,$description,$reminder){
+    public function updateNotes($id, $title, $description, $reminder)
+    {
         $flag = 0;
-        if(empty($title)||empty($description ||empty($reminder))){
+        if (empty($title) || empty($description || empty($reminder))) {
             $flag = 1;
         }
-        if($flag==0){
-            $query="UPDATE notes SET title = '$title', description ='$description',reminder='$reminder' where id = '$id'";
+        if ($flag == 0) {
+            $query = "UPDATE notes SET title = '$title', description ='$description',reminder='$reminder' where id = '$id'";
             $statement = $this->db->conn_id->prepare($query);
             $res = $statement->execute();
             if ($res) {
@@ -154,48 +150,147 @@ class NoteService extends CI_Controller
                     "status" => "200",
                 );
                 print json_encode($data);
-    
+
             } else {
                 $data = array(
                     "status" => "204",
                 );
                 print json_encode($data);
                 return "204";
-    
+
             }
-    
+
         }
-       
+
     }
 
-
-
+     /**
+     * @method for archive notes
+     * @param id
+     * @return void
+     */
     public function archive($id)
     {
-    
+
         $query = "UPDATE notes SET archive = '1' where id = '$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
-        if ($res) 
-            {
-                $result = array(
-                    "message" => "200",
-                );
-                print json_encode($result);
-                return "200";
-            } 
-            else 
-            {
-                $result = array(
-                    "message" => "204",
-                );
-                print json_encode($result);
-                return "204";
+        if ($res) {
+            $result = array(
+                "message" => "200",
+            );
+            print json_encode($result);
+            return "200";
+        } else {
+            $result = array(
+                "message" => "204",
+            );
+            print json_encode($result);
+            return "204";
 
-            }
+        }
+    }
+
+    /**
+     * @method for trash notes
+     * @param id
+     * @return void
+     */
+    public function trashNote($id)
+    {
+        $query = "UPDATE notes set trash='1'  WHERE id = '$id'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
+    }
+
+    /**
+     * @method restore notes
+     * @param id
+     * @return void
+     */
+    public function restoreDeletedNote($id)
+    {
+        $query = "UPDATE notes set trash='0'  WHERE id = '$id'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
     }
 
 
+
+    public function fetchnote($email){
+        $query = "SELECT * from notes where trash =1 And email='$email'";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+
+
+        if ($res) {
+            $trashArr = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $data = array(
+
+                "status" => "200",
+            );
+            print json_encode($trashArr);
+
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
+    }
+
+
+    public function imageNote($base64,$email,$noteid){
+        $query = "UPDATE notes SET image = '$base64'  where email = '$email' AND id='$noteid";
+        $statement = $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
+    }
 
 
 }

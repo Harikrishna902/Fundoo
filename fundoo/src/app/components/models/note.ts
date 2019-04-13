@@ -18,4 +18,10 @@ export interface Register {
   export interface reset{
     password:string;
   }
+
+  export interface mynotes
+{
+    title:string;
+    description:string;
+}
   

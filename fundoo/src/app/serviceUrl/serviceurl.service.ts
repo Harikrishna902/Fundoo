@@ -28,6 +28,12 @@ export class serviceUrl {
 	public unarchived = "unarchive";
 	public archive = "archived";
 	public sociallogin ="socialLogin";
+	public fetchtrash = "getnote";
+	public notedelete ="deletenote";
+	public restorenote="restoreDeletedNote";
+	public notetrash="noteTrash";
+	public noteimage="noteimage";
+
 }
 
 

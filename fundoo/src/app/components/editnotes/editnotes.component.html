@@ -18,7 +18,7 @@
         <mat-chip>
           <mat-icon>schedule</mat-icon>
           {{currentDateAndTime}}
-          <mat-icon>cancel</mat-icon>
+          <mat-icon (click) = "closeDate()" >cancel</mat-icon>
         </mat-chip>
       </button>
     </div>

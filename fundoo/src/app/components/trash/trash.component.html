@@ -1,28 +1,77 @@
+<div class="flexcard" fxLayout="{{direction}}wrap" fxLayoutGap="50px" fxLayoutAlign="start center">
 
+  <mat-card  *ngFor="let n of notes" [ngStyle]="{'background-color': n.colour}">
+    <div class="cardtext">
+      <p style="margin-top:0px;">{{n.title}} </p>
 
-
-
-<div class="flexcard" fxLayoutGap="50px" fxLayoutAlign="start center">
-
-  <mat-card  class="cardtext">
-   
+      <p style="font-size: 20px;">{{n.description}}</p>
+      <p style="font-size: 20px;"[ngClass]="n.reminder == 'undefined' ? 'dateVisOff': 'dateVisOn'" >
+        <mat-chip-list>
+          <mat-chip>
+               
+                  <mat-icon>schedule</mat-icon>
+                  {{n.reminder}}
+                  <mat-icon>cancel</mat-icon>
+               </mat-chip>
+        </mat-chip-list> 
+    
+      </p> 
+  </div>
 
  <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
       
       <button mat-icon-button>
-        <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
+        <mat-icon matTooltip="more" [matMenuTriggerFor]="More">more_vert</mat-icon >
       </button>
       <mat-menu #More="matMenu">
-        <button mat-menu-item (click)="deleteNote(n)">Delete forever</button>
-        <button mat-menu-item>Restore</button>
+        <button mat-menu-item (click)="deletNote(id)" >Delete forever</button>
+        <button mat-menu-item (click)="restoreNote(n.id,'0')">Restore</button>
         
       </mat-menu>
     </div>
+  </mat-card>
+
+</div> 
 
 
+
+<!-- <div class="flexcard"  fxLayoutGap="50px" fxLayoutAlign="start center">
+
+  <mat-card btnhover *ngFor="let n of notes" [ngClass]="direction == 'row' ? 'row': 'column' "
+    [ngStyle]="{'background-color': n.colour}">
+    <div class="cardtext">
+      <p style="margin-top:0px;">{{n.title}} </p>
+
+      <p style="font-size: 20px;">{{n.description}}</p>
+      <p style="font-size: 20px;"[ngClass]="n.reminder == 'undefined' ? 'dateVisOff': 'dateVisOn'" >
+        <mat-chip-list>
+          <mat-chip>
+               
+                  <mat-icon>schedule</mat-icon>
+                  {{n.reminder}}
+                  <mat-icon>cancel</mat-icon>
+               </mat-chip>
+        </mat-chip-list> 
     
-  
+      </p>
+  </div>
+    <span class="spanbtn">
+      <button mat-icon-button  [matMenuTriggerFor]="more" (click)="id=items.id" >
+        <mat-icon class="icon">more_vert</mat-icon>
+      </button>
+    </span>
+
+<mat-menu #more="matMenu">
+
+
+  <button mat-menu-item (click)="deleteNote(n)">Delete foreever</button>
+  <button mat-menu-item (click)="noteRestore(n,'0')">Restore</button>
+
+
+</mat-menu>
 
   </mat-card>
 
-</div>
+</div> -->
+<!-- <h2>hello srujana thinnava</h2> -->
+

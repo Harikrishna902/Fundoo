@@ -6,4 +6,6 @@ export interface Notes{
     remainder: string;
     color: string;
     user_id:string;
+    trash:string;
+    image:string;
 }

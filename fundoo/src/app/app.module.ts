@@ -34,6 +34,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { AuthService as auth } from './services/auth/auth.servicee';
 import { CookieService } from 'ngx-cookie-service';
 import { TrashComponent } from './components/trash/trash.component';
+import { SearchComponent } from './components/search/search.component';
 
 //import {MatDialogRef} from '@angular/material';
 @NgModule({
@@ -55,6 +56,7 @@ import { TrashComponent } from './components/trash/trash.component';
     EditlabelsComponent,
     ArchiveComponent,
     TrashComponent,
+    SearchComponent,
     
 
   ],
