@@ -101,5 +101,27 @@ export class EditnotesComponent implements OnInit {
     
   }
 
+
+  // setColor(n, colour) {
+  //   debugger;
+  //  this.note.forEach(element => {
+  //     if (element.id == n.id) {
+  //       element.color = colour;
+  //     }
+  //   });
+  //   let col = this.notes.changeColor(n.id, colour);
+
+  //   col.subscribe((res: any) => {
+  //     console.log(res);
+  //     if (res.message == "200") {
+  //       this.getNotes();
+  //     }
+  //     else {
+
+  //     }
+  //   })
+  }
+
+
   
-}
+

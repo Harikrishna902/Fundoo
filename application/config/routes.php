@@ -95,4 +95,4 @@ $route['restoreDeletedNote']='Notes/restoreDeletedNote';
 $route ['deleteNotes']='Notes/deleteNotes';
 $route ['getnote'] ='Notes/notefetch';
 
-$route ['image']='Notes/image';
+$route ['noteimage']='Notes/noteimage';

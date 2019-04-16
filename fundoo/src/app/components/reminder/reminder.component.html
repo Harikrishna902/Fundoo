@@ -1,10 +1,10 @@
 
-<div class="flexcard" fxLayout="{{direction}} wrap" fxLayoutGap="50px" fxLayoutAlign="start center">
+<div class="flexcard" fxLayout="{{direction}} wrap" fxLayoutGap="50px" fxLayoutAlign="start center" >
 
-  <mat-card class="mat" *ngFor="let n of notes" [ngClass]="direction == 'row' ? 'row': 'column' "
+  <mat-card class="mat"  *ngFor="let n of notes" [ngClass]="direction == 'row' ? 'row': 'column' "
     [ngStyle]="{'background-color': n.colour}">
     
-    <div class="cardtext">
+    <div class="cardtext" >
         <p style="margin-top:0px;">{{n.title}} </p>
 
         <p style="font-size: 20px;">{{n.description}}</p>
@@ -157,7 +157,7 @@
           <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
         </button>
         <mat-menu #More="matMenu">
-          <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
+          <button (click)="deleteNote(n.id,'1')" mat-menu-item>Delete note</button>
           <button mat-menu-item>Add label</button>
           <button mat-menu-item>Add drawing</button>
           <button mat-menu-item>Make a copy</button>

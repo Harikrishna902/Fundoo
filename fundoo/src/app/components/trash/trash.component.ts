@@ -31,7 +31,7 @@ export class TrashComponent implements OnInit {
   }
 
 
-/**
+   /**
    * @method resatoreNote()
    * @return void
    * @param id
@@ -43,7 +43,7 @@ restoreNote(id,value){
   
       obj.subscribe((res:any)=>{
         if(res.status=="200"){
-          debugger
+          debugger 
           this.notes.forEach(note => {
             if(note.id==id){
               note.trash=value;

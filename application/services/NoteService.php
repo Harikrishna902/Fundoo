@@ -42,7 +42,7 @@ class NoteService extends CI_Controller
                 $connection = $redis->connection();
                 $response = $connection->get('token');
 
-                $query = "INSERT into notes (title,description,email,reminder,archive) values ('$title','$description','$email','$reminder',0)";
+                $query = "INSERT into notes (title,description,email,reminder,archive,trash) values ('$title','$description','$email','$reminder',0,0)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
                 if ($res) {
@@ -74,6 +74,8 @@ class NoteService extends CI_Controller
         foreach ($arr as $notes) {
             $title = $notes['title'];
             $description = $notes['description'];
+            // $colour=$notes['colour'];
+            // $date=$notes['date'];
         }
         print json_encode($arr);
     }
@@ -246,7 +248,11 @@ class NoteService extends CI_Controller
     }
 
 
-
+   /**
+    * @method to fetch notes from trash
+    * @param email
+    *@return void
+    */
     public function fetchnote($email){
         $query = "SELECT * from notes where trash =1 And email='$email'";
         $statement = $this->db->conn_id->prepare($query);
@@ -271,9 +277,13 @@ class NoteService extends CI_Controller
         }
     }
 
-
+    /**
+     * @method imagenote
+     * @param base64,email,noteid
+     * @return void
+     */
     public function imageNote($base64,$email,$noteid){
-        $query = "UPDATE notes SET image = '$base64'  where email = '$email' AND id='$noteid";
+        $query = "UPDATE notes SET image = '$base64'  where email = '$email' AND id='$noteid'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {

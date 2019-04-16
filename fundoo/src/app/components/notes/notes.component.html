@@ -18,8 +18,12 @@
             <mat-icon matTooltip="Drawing is not available">brush</mat-icon>
           </button>
           <button mat-icon-button>
-            <mat-icon matTooltip="New note with image">insert_photo</mat-icon>
+            <mat-icon matTooltip="New note with image" (click)="file.click()">insert_photo</mat-icon>
           </button>
+          <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
+          <div *ngIf="Mainimage != ''">
+            <img src="{{ Mainimage }}"  alt="" class="noteImage" />
+          </div>
         </div>
       </mat-card>
     </div>
@@ -41,7 +45,7 @@
               [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note" value="{{description}}"
               formControlName="description" />
           </div>
-          <div> <button mat-icon-button *ngIf="timer">
+          <div> <button mat-icon-button  *ngIf="notes_timer && n.reminder!=null && n.reminder!='' ">
 
               <mat-chip>
 
@@ -187,8 +191,9 @@
             </mat-menu>
 
             <button mat-icon-button>
-              <mat-icon matTooltip="Add image">insert_photo</mat-icon>
+              <mat-icon matTooltip="Add image" (click)="file.click()">insert_photo</mat-icon>
             </button>
+            <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
             <button mat-icon-button>
               <mat-icon matTooltip="Archive">archive</mat-icon>
             </button>
@@ -217,14 +222,14 @@
  <!--notes show in grid and list view -->
 <div cdkDropList (cdkDropListDropped)="drop($event)" class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
 <mat-card  cdkDrag *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
-  [ngStyle]="{'background-color': n.colour}" >
+  [ngStyle]="{'background-color': n.colour}">
     <div (click)=openNotes(n)>
      
       <button mat-icon-button style="padding-left:200px;">
         <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
       </button>
-      <div *ngIf="Mainimage != ''">
-        <img src="{{ Mainimage }}"  alt="" class="noteImage" />
+      <div >
+        <img src="{{n.image}}"  alt="" class="noteImage" />
       </div>
       <p style="margin-top: -25px;">{{n.title}} </p>
 
@@ -245,7 +250,7 @@
     <div>
       <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
         <button mat-icon-button>
-          <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
+          <mat-icon matTooltip="Remind me"  [matMenuTriggerFor]="remainder">notification_important</mat-icon>
         </button>
 
 
@@ -367,16 +372,16 @@
             style="background-color:#d7aefb "></button>
         </mat-menu>
         <button mat-icon-button>
-          <mat-icon matTooltip="Add image"  (click)="file.click()">insert_photo</mat-icon>
+          <mat-icon matTooltip="Add image" (click)="file.click()">insert_photo</mat-icon>
         </button>
-
+        <input style="display: none;" type="file" #file (change)="onSelectImage($event,n.id)">
         <button mat-icon-button> 
           <mat-icon  (click)="notesarchive(n.id)" matTooltip="Archive" >archive</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon matTooltip="more" (click)="noteform.value.id=n.id" [matMenuTriggerFor]="More" >more_vert</mat-icon >
         </button>
-        <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
+       
         <mat-menu #More="matMenu">
           <button (click)="deleteNote(n.id,'1')" mat-menu-item>Delete note</button>
           <button mat-menu-item (click)="addLabel(n.id)">Add label</button>

@@ -20,7 +20,7 @@ import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { Notes } from '../models/reminder';
+import { Note } from '../models/reminder';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -30,7 +30,7 @@ export class NotesComponent implements OnInit {
   flag = true;
   email: string;
   response: any;
-  note :Notes[];
+  note :Note[];
   dateTime: any;
   description: "";
   tokenOne: "";
@@ -53,7 +53,9 @@ export class NotesComponent implements OnInit {
   rowcard
   wrap: string = "wrap";
   direction: string = "row";
-  layout: string = this.direction + " " + this.wrap;
+  layout: string = this.direction + " " + this.
+  
+wrap;
 
   //createNotes:string;
   noteform: FormGroup;
@@ -97,17 +99,17 @@ export class NotesComponent implements OnInit {
       this.layout = this.direction + " " + this.wrap;
     }))
 
-    setInterval(() => {
+  //   setInterval(() => {
 
-    }, 1000);
-    this.getNotes();
-  }
+  //   }, 1000);
+  //   this.getNotes();
+   }
   view;
   /**
    * function to get notes
    * return obseravble 
    */
-  getNotes() {
+   getNotes() {
     debugger
     const token = localStorage.getItem('token');
     // decode the token to get its payload
@@ -118,6 +120,8 @@ export class NotesComponent implements OnInit {
     noteobj.subscribe((data: any) => {
       debugger
       this.note = data;
+
+
     });
   }
 
@@ -274,7 +278,7 @@ export class NotesComponent implements OnInit {
   * return obseravble 
   */
  deleteNote(n, value) {
-  debugger;
+  debugger;                                                                                
   console.log(n.id);
   let obj = this.notes.notedtrash(n);
   obj.subscribe((res: any) => {
@@ -290,6 +294,7 @@ export class NotesComponent implements OnInit {
             element.trash = value;
             this.getNotes();
           }
+
       });
 
     }
@@ -329,7 +334,7 @@ export class NotesComponent implements OnInit {
 
 
 
-/**
+  /**
 	 * var to hold image base64url
 	 */
   public base64textString;
@@ -348,12 +353,13 @@ export class NotesComponent implements OnInit {
   }
 
   _handleReaderLoaded(readerEvt) {
+    debugger;
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const noteid = tokenPayload.email;
+    const email = tokenPayload.email;
     debugger
     var binaryString = readerEvt.target.result;
-    console.log(binaryString);
+    console.log(binaryString,"gfhgh");  
     this.base64textString = btoa(binaryString);
     this.note.forEach(element => {
       if (element.id == this.imageNoteId) {
@@ -364,10 +370,11 @@ export class NotesComponent implements OnInit {
     if (this.imageNoteId == "01") {
       this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
     } else {
+      this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
       let obss = this.notes.imagesaver(
-      	this.base64textString,
-      	this.email,
-        noteid
+      	this.Mainimage,
+      	email,
+        this.imageNoteId
       );
       obss.subscribe((res: any) => {});
     }

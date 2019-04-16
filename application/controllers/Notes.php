@@ -121,12 +121,12 @@ class Notes extends CI_Controller
         $this->serviceReference->restoreDeletedNote($id);
     }
 
-    public function image()
-    {
-        $base64 = $_POST['base64'];
+    public function noteimage()
+    { 
+        $base64 = $_POST['base64']; 
         $email = $_POST['email'];
         $id = $_POST['noteid'];
-        $this->serviceReference->imageNote($id);
+        $this->serviceReference->imageNote($base64,$email,$id);
     }
 
 }

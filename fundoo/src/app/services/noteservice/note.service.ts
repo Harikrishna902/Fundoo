@@ -50,10 +50,11 @@ console.log(headers_object);
  * @returns obseravble data
  */
   displayNotes(data) {
+    debugger;
     let emaildata = new FormData();
     emaildata.append("email", data);
-
-    return this.http.post(this.serviceUrl.host + this.serviceUrl.displaynotes, emaildata);
+   // emaildata.append("id",id);
+    return this.http.post(this.serviceUrl.host + this.serviceUrl.fetchnotes, emaildata);
   }
 
   /**
@@ -162,6 +163,7 @@ console.log(headers_object);
    * @returns obseravble data
    */
   imagesaver(base64,email,noteid){
+    debugger
     let image = new FormData();
     image.append("base64",base64);
     image.append("email",email);
