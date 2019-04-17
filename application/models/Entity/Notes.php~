@@ -1,0 +1,75 @@
+<?php
+namespace Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * Notes Model
+ *
+ * @Entity
+ * @Table(name="Notes")
+ */
+class Notes{
+	/**
+	 * @Id
+	 * @Column(type="integer", nullable=false)
+	 * @GeneratedValue(strategy="AUTO")
+	 */
+    protected $id;
+
+    /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $title;
+  
+    /**
+	 * @Column(type="string", nullable=false)
+	 */
+     protected $description;
+
+
+    /**
+	 * @Column(type="blob", nullable=false)
+	 */
+     protected $image;
+
+
+    /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $colour;
+
+
+    /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $reminder;
+
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $archive;
+
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $trash;
+
+
+	/**
+     * @ManyToOne(targetEntity="Users", inversedBy="userid")
+     */
+    protected $uid;
+    
+
+    /**
+     * @ManyToMany(targetEntity="Labels",inversedBy="Labels")
+     */
+    protected $labels;
+    
+  
+	public function __construct()
+    {
+        $this->labels = new ArrayCollection();
+    }
+}

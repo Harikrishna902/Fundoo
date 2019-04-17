@@ -1,0 +1,61 @@
+<?php
+namespace Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * Labels Model
+ * @Entity
+ * @Table(name="Users")
+ */
+class Users{
+    
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
+     */
+    protected $id;
+
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $FirstName;
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $Lastname;
+
+
+    /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $email;
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $password;
+
+     /**
+	 * @Column(type="string", nullable=false)
+	 */
+    protected $reset_password;
+
+    /**
+     * 
+     * @OneToMany(targetEntity="Notes",mappedBy="uid" )
+     */
+    protected $user_id;
+
+    /**
+     * 
+     * @OneToMany(targetEntity="Labels",mappedBy="luid" )
+     */
+    protected $label_list;
+
+
+
+
+
+
+}

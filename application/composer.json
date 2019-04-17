@@ -1,5 +1,10 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "doctrine/orm": "^2.6"
+        
     }
+    
+
+    
 }

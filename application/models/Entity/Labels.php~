@@ -1,0 +1,30 @@
+<?php
+namespace Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+/**
+ * Labels Model
+ *
+ * @Entity
+ * @Table(name="Labels")
+ */
+class Labels{
+    /**
+	 *  @Id @Column(type="integer") @GeneratedValue
+	 * 
+	 */
+    protected $id;
+    /**
+	 *  @Column(type="string")
+	 *  */
+    protected $labelname;
+  
+    /**
+     * @ManyToOne(targetEntity="Users", inversedBy="userid")
+     */
+    protected $luid;
+    
+    /**
+     * @ManyToMany(targetEntity="Notes",mappedBy="labels")
+     */
+    protected $labeluid;
+}
