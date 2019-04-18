@@ -42,58 +42,58 @@ class Notes extends CI_Controller
     }
 
 
-    public function insertNotes(){
+    // public function insertNotes(){
         
-        $id = $_POST['id'];
-        $title = $_POST['title'];
-        $desc = $_POST['description'];
-        $rem = $_POST['reminder'];
-        $color = $_POST['colour'];
-        $labelid = $_POST['labelid'];
-        $em = $this->doctrine->em;
-        $notes = new Entity\Notes;
+    //     $id = $_POST['id'];
+    //     $title = $_POST['title'];
+    //     $desc = $_POST['description'];
+    //     $rem = $_POST['reminder'];
+    //     $color = $_POST['colour'];
+    //     $labelid = $_POST['labelid'];
+    //     $em = $this->doctrine->em;
+    //     $notes = new Entity\Notes;
     
-        $article = $em->find('Entity\Users', $id);
+    //     $article = $em->find('Entity\Users', $id);
         
-        $notes->setTitle($title);
-        $notes->setDescription($description);
-        $notes->setColor($colour);
-        $notes->setArchive($archive);
-        $notes->setTrash(0);
-        $notes->setImage(0);
-        $notes->setArchive(0);
-        $notes->setReminder($rem);
-        $notes->setUid($article);
+    //     $notes->setTitle($title);
+    //     $notes->setDescription($description);
+    //     $notes->setColor($colour);
+    //     $notes->setArchive($archive);
+    //     $notes->setTrash(0);
+    //     $notes->setImage(0);
+    //     $notes->setArchive(0);
+    //     $notes->setReminder($rem);
+    //     $notes->setUid($article);
         
-        if($labelid !="undefined" && $labelid !="null"){
-            $labels = new Entity\Labels;
-            $labeldata = $em->find('Entity\Labels',$labelid);
-            $notes->addLabel($labeldata);
-        }
+    //     if($labelid !="undefined" && $labelid !="null"){
+    //         $labels = new Entity\Labels;
+    //         $labeldata = $em->find('Entity\Labels',$labelid);
+    //         $notes->addLabel($labeldata);
+    //     }
      
-        $article2 = $em->find('Entity\Users', $id);
+    //     $article2 = $em->find('Entity\Users', $id);
 
-        $notes->setUid($article);
-       $em->persist($notes);
-       $em->flush();
-       $res = $notes;
-        if(is_null($res)){
-            $data = array(
-                "status" => "204",
-            );
-            print json_encode($data);
+    //     $notes->setUid($article);
+    //    $em->persist($notes);
+    //    $em->flush();
+    //    $res = $notes;
+    //     if(is_null($res)){
+    //         $data = array(
+    //             "status" => "204",
+    //         );
+    //         print json_encode($data);
            
-        }else{
-            $data = array(  
-                "status" => "200",
-            );
-            print json_encode($data);
-        }
+    //     }else{
+    //         $data = array(  
+    //             "status" => "200",
+    //         );
+    //         print json_encode($data);
+    //     }
 
       
 
 
-    }
+    // }
 
     /**
      *@method to getNotes

@@ -21,9 +21,9 @@
             <mat-icon matTooltip="New note with image" (click)="file.click()">insert_photo</mat-icon>
           </button>
           <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
-          <div *ngIf="Mainimage != ''">
+          <!-- <div *ngIf="Mainimage != ''">
             <img src="{{ Mainimage }}"  alt="" class="noteImage" />
-          </div>
+          </div> -->
         </div>
       </mat-card>
     </div>
@@ -223,15 +223,16 @@
 <div cdkDropList (cdkDropListDropped)="drop($event)" class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
 <mat-card  cdkDrag *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
   [ngStyle]="{'background-color': n.colour}">
-    <div (click)=openNotes(n)>
-     
-      <button mat-icon-button style="padding-left:200px;">
+    <div  (click)=openNotes(n)>
+     <div [ngClass]="direction == 'row' ? 'rowpin': 'columnpin'">
+      <button mat-icon-button >
         <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
       </button>
+    </div>
       <div >
-        <img src="{{n.image}}"  alt="" class="noteImage" />
+        <img src="{{n.image}}"  alt="" class="noteImage"/>
       </div>
-      <p style="margin-top: -25px;">{{n.title}} </p>
+      <p >{{n.title}} </p>
 
       <p style="font-size: 20px;">{{n.description}}</p>
       <!-- <img src="{{ element.image}}"> -->
@@ -374,7 +375,7 @@
         <button mat-icon-button>
           <mat-icon matTooltip="Add image" (click)="file.click()">insert_photo</mat-icon>
         </button>
-        <input style="display: none;" type="file" #file (change)="onSelectImage($event,n.id)">
+        <input [ngClass]="direction == 'row' ? 'rowtitle': 'columntitle'"  style="display: none;" type="file" #file (change)="onSelectImage($event,n.id)">
         <button mat-icon-button> 
           <mat-icon  (click)="notesarchive(n.id)" matTooltip="Archive" >archive</mat-icon>
         </button>
@@ -384,7 +385,16 @@
        
         <mat-menu #More="matMenu">
           <button (click)="deleteNote(n.id,'1')" mat-menu-item>Delete note</button>
-          <button mat-menu-item (click)="addLabel(n.id)">Add label</button>
+          <button mat-menu-item (click)="addLabel(n.id)" [matMenuTriggerFor]="labelMenu">Add label</button>
+          <mat-menu [overlapTrigger]="false" #labelMenu="matMenu">
+            <div class="label">
+          
+              <button mat-menu-item *ngFor="let l of labels" (click)="noteform.value.labelname = l.labelname"
+                (click)="labelname=l.labelname" (click)="noteform.value.lid=l.id">
+                {{ l.labelname }}
+              </button>
+            </div>
+          </mat-menu>
           <button mat-menu-item>Add drawing</button>
           <button mat-menu-item>Make a copy</button>
           <button mat-menu-item>Show checkboxes</button>

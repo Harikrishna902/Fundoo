@@ -68,6 +68,7 @@ class NoteService extends CI_Controller
     public function dispalynotes($email)
     {
         $query = "SELECT * from notes Where email ='$email' And archive=0 AND trash=0 ORDER BY id DESC ";
+        
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -1,6 +1,6 @@
-<div class="flexcard" fxLayout="{{direction}}wrap" fxLayoutGap="50px" fxLayoutAlign="start center">
+<div class="flexcard" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="start center">
 
-  <mat-card  *ngFor="let n of notes" [ngStyle]="{'background-color': n.colour}">
+  <mat-card class="trash" *ngFor="let n of notes" [ngStyle]="{'background-color': n.colour}">
     <div class="cardtext">
       <p style="margin-top:0px;">{{n.title}} </p>
 
@@ -20,7 +20,7 @@
 
  <div class="iconss" fxLayout="row wrap" fxLayoutGap="-5px" fxLayoutAlign="start end">
       
-      <button mat-icon-button>
+      <button mat-icon-button class="icon">
         <mat-icon matTooltip="more" [matMenuTriggerFor]="More">more_vert</mat-icon >
       </button>
       <mat-menu #More="matMenu">

@@ -45,7 +45,7 @@ res
       (response)=>{
 this.res=response
 this.word=this.res.data;
-console.log('____yyyyyyy_________',this.word)
+console.log('____yyyyyyy_________',this.res.data)
       }
     );
 

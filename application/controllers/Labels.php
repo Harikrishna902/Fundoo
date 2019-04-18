@@ -22,46 +22,46 @@ class labels extends CI_Controller
     /**
      * @method to add the labels
      */
-    // public function addLabel(){
-    //     $email= $_POST['email'];
-    //     $label = $_POST['label'];
-
-    //     $this->serviceReference->labelAdd($email,$label);
-    // }
-
     public function addLabel(){
-        $uid = $_POST['uid'];
+        $email= $_POST['email'];
         $label = $_POST['label'];
-        $em = $this->doctrine->em;
-        $labels = new Entity\Labels;
+
+        $this->serviceReference->labelAdd($email,$label);
+    }
+
+    // public function addLabel(){
+    //     $uid = $_POST['uid'];
+    //     $label = $_POST['label'];
+    //     $em = $this->doctrine->em;
+    //     $labels = new Entity\Labels;
 
         
-        $article2 = $em->find('Entity\Users', $uid);
-        $labels->setLuid($article);
+    //     $article2 = $em->find('Entity\Users', $uid);
+    //     $labels->setLuid($article);
 
-        $labels->setLabelname($label);
+    //     $labels->setLabelname($label);
 
-        $em->persist($labels);
+    //     $em->persist($labels);
 
-        $em->flush();
-    }
+    //     $em->flush();
+    // }
 
   /**
    * @method to fetch/display the labels
    */
   
-    // public function getLabel()
-    // {
-    //     $email = $_POST['email'];
-    //     $this->serviceReference->labelFetch($email);
-    // }
-
-
-    public function getLabel(){
-        $em = $this->doctrine->em;
-        $query = $em->createQuery('SELECT u.id,u.labelname FROM Entity\Labels u ');
-        $results = $query->getResult();
-        print json_encode($results);
+    public function getLabel()
+    {
+        $email = $_POST['email'];
+        $this->serviceReference->labelFetch($email);
     }
+
+
+    // public function getLabel(){
+    //     $em = $this->doctrine->em;
+    //     $query = $em->createQuery('SELECT u.id,u.labelname FROM Entity\Labels u ');
+    //     $results = $query->getResult();
+    //     print json_encode($results);
+    // }
 
 } 

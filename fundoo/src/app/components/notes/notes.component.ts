@@ -118,7 +118,7 @@ wrap;
     debugger
     let noteobj = this.notes.displayNotes(emailid);
     noteobj.subscribe((data: any) => {
-      debugger
+      debugger   
       this.note = data;
 
 
