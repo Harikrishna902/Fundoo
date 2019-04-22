@@ -79,8 +79,9 @@ restoreNote(id,value){
               note.color=''
               note.email=''
               note.notes=''
-              note.remainder=''
+              note.reminder=''
               note.title=''
+              note.image=''
               
               
               this.trashnotes();

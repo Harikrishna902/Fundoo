@@ -41,17 +41,25 @@
             <button mat-icon-button style="padding-top:5px;">
               <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
             </button>
+
+
+               <div *ngIf="Mainimage != ''">
+            <img src="{{ Mainimage }}"  alt="" class="noteImage" />
+          </div> 
+
             <input role="textarea" style="margin-top: 5px; margin-left: 10px;"
               [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note" value="{{description}}"
               formControlName="description" />
           </div>
-          <div> <button mat-icon-button  *ngIf="notes_timer && n.reminder!=null && n.reminder!='' ">
+          <div> <button mat-icon-button *ngIf="notes_timer && n.reminder!=null && n.reminder!='' " >
 
               <mat-chip>
 
-                <p [ngClass]="n.currentDateAndTime == 'undefined' ? 'dateVisOff': 'dateVisOn'" >
+                <p>
                 <mat-icon>schedule</mat-icon>
-               </p> {{currentDateAndTime}}
+               </p> 
+               {{currentDateAndTime}}
+               <!-- {{reminder}} -->
                 <mat-icon (click) = "closeDate()">cancel</mat-icon>
               </mat-chip>
 

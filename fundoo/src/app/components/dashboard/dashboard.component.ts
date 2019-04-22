@@ -18,7 +18,7 @@ import { MatDialog, MatDialogConfig,MatDialogRef, } from '@angular/material';
 import {EditlabelService } from '../../services/editlabels/editlabel.service';
 import { EditlabelsComponent } from '../editlabels/editlabels.component';
 import{ Label}from '../models/labels';
-
+import { RegisterService } from '../../services/registerservice/register.service';
 
 ;
 
@@ -31,19 +31,30 @@ export class DashboardComponent implements OnInit {
   email: string;
   isClicked = false;
   searchTerm: string;
-  constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,private label:EditlabelService) { }
+  constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,private label:EditlabelService, private S_register: RegisterService) { }
   grid: boolean = false;
   list: boolean = true;
   labels : Label[];
+  notes : string[];
+  FirstName:string;
+  image: string;
+  
+
   ngOnInit() {
     const token = localStorage.getItem('token');
-    var decoded = decode(token);
-    this.email = decoded.email;
-
+    var tokenpayload = decode(token);
+    this.email = tokenpayload .email;
+   // this.email = tokenpayload .id;
+    this.FirstName = tokenpayload .FirstName;
+    this.image = tokenpayload .image;
+  
     let labelobj= this.label.getLabel(this.email);
     labelobj.subscribe((res:any)=>{
       this.labels= res;
     })
+    // this.displayLabels();
+    // this.displayNotes();
+    this.getImage();
   }
 
   changeView() {
@@ -101,5 +112,62 @@ export class DashboardComponent implements OnInit {
     this.data.setSearchWord(this.searchTerm);
   }
 
+/**
+ * function for profilepic
+ */
+  public base64textString;
+  Mainimage;
+  imageNoteId;
+  imagess;
+  onSelectImage(event,noteId){
+    debugger;
+		this.imageNoteId = noteId;
+		var files = event.target.files;
+		var file = files[0];
+		if (files && file) {
+			var reader = new FileReader();
+			reader.onload = this._handleReaderLoaded.bind(this);
+			reader.readAsBinaryString(file);
+		}
+  }
 
+  _handleReaderLoaded(readerEvt) {
+    debugger
+		var binaryString = readerEvt.target.result;
+		console.log(binaryString);
+		this.base64textString = btoa(binaryString);
+		this.notes.forEach(element => {
+      this.imagess = element;
+			if (this.imagess.id == this.imageNoteId) {
+				this.imagess.image = "data:image/jpeg;base64," + this.base64textString;
+			}
+		});
+
+		if (this.imageNoteId == "01") {
+      this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
+      this.image = this.Mainimage;
+      debugger;
+      console.log(this.image);
+      let obss = this.S_register.addProfilePic(this.image,this.email);
+      
+      obss.subscribe((res: any) => {});
+      
+		} else {
+      
+	 }
+	}
+
+
+  getImage()
+  {
+    debugger;
+    let getimg = this.S_register.getImage(this.email);
+
+    getimg.subscribe((res: any) => {
+      debugger
+      console.log(res.image);
+      this.image = res.image;
+    })
+     
+  }
 }

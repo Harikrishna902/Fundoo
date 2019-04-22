@@ -33,7 +33,8 @@ export class serviceUrl {
 	public restorenote="restoreDeletedNote";
 	public notetrash="noteTrash";
 	public noteimage="noteimage";
-
+	public addUImage="addUImage";
+	public getImage="getImage";
 }
 
 

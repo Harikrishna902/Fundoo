@@ -96,3 +96,7 @@ $route ['deleteNotes']='Notes/deleteNotes';
 $route ['getnote'] ='Notes/notefetch';
 
 $route ['noteimage']='Notes/noteimage';
+
+$route['addUImage'] = 'RegisterController/addUImage';
+$route['getImage'] = 'RegisterController/getImage';
+//$route['addUImageNote'] = 'Note/addUImageNote';

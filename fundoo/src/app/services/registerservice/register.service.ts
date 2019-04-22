@@ -26,6 +26,31 @@ constructor(private http: HttpClient,private serviceUrl:serviceUrl) {}
     createuser.append("password",register.password);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.register,createuser);
   }
+
+/**
+ * @method addProfilePic
+ * @param image 
+ * @param email 
+ */
+  addProfilePic(image,email)
+  {
+    let addUserImage = new FormData();
+    addUserImage.append("image",image);
+    addUserImage.append("email",email);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.addUImage,addUserImage);
+  }
+
+  /**
+   * @method getImage
+   * @param email 
+   */
+  getImage(email)
+  {
+    debugger;
+    let getImg = new FormData();
+    getImg.append('email',email);
+    return this.http.post(this.serviceUrl.host+this.serviceUrl.getImage,getImg);
+  }
 }
 
   

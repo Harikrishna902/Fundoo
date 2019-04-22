@@ -32,7 +32,7 @@
     <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="searchData()">
       <mat-icon class="example-icon">search</mat-icon>
     </button>
-    <!-- <input class="ip" matInput placeholder="search"> -->
+   
     <input [routerLink] = "['search']" class="ip" type="text" (keyup)="searchData()" [(ngModel)]="searchTerm" placeholder="Search"/>
    
     <button class="cancel-icon" mat-icon-button (click) = "closeSearch()">
@@ -81,31 +81,41 @@
     <span class="example-spacer"></span>
     <div  fxLayoutGap="40px" fxLayoutAlign="space-between center">
       <mat-icon class="icon-left">apps</mat-icon>
-      <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+    
     </div>
-    <div [matMenuTriggerFor]="menuOne" fxFlex="3">
-      <img class="pic" src="../../../assets/profile.jpg" />
+    <div>
+        <button mat-icon-button [matMenuTriggerFor]="menuOne">
+            <!-- <img class="pic" src="../../../assets/profile.jpg" /> -->
+            <img class="pic" src = "{{image}}" />
+            <!-- <mat-icon ><img style = "border-radius: 50px;width: 41px;margin-top: -9px;" src = "{{image}}"/></mat-icon>
+            <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" /> -->
+          </button>
+      
+    
     </div>
 
     <mat-menu #menuOne="matMenu">
       <div class="profileMenu">
         <div fxLayout="row" fxLayoutAlign="start start">
 
-          <div>
-            <img class="picture" src="../../../assets/profile.jpg"/>
-          </div>
+          <!-- <div> -->
+            <button mat-icon-button>
+              <!-- <img class="picture" src="../../../assets/profile.jpg" /> -->
+              <mat-icon (click)="file.click()" ><img style = "border-radius: 50px;margin-top: 15px;margin-left: 10px;width: 75px;" src = "{{image}}" /></mat-icon>
+            <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
+          </button>
+          <!-- </div> -->
 
         </div>
 
 
         <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
-           <p>Hari krishna</p>
-           <!-- <p>{{FirstName}}</p> -->
+           <p>harrykrishnan</p>
+           <p>{{FirstName}}</p>
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">
           
-          <p>
-          {{email}}</p>
+          <p>{{email}}</p>
 
         </div>
 

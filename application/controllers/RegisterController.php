@@ -170,6 +170,9 @@ class RegisterController extends CI_Controller
             $res = $this->loginservice->resetpass($password,$token);
         }   
         
+        /**
+         * function to login socially
+         */
         public function socialLogin(){
             $email = $_POST['email'];
             $name = $_POST['name'];
@@ -178,6 +181,25 @@ class RegisterController extends CI_Controller
         }
         
 
+        /**
+         * function to addprofile pic 
+         */
+        public function addUImage()
+        {
+            $image = $_POST['image'];
+            $email = $_POST['email'];
+            $this->serviceReference->addUImage($image,$email);
+        }
+
+
+        /**
+         * function to getimage
+         */
+        public function getImage()
+        {
+            $email = $_POST['email'];
+            return $this->serviceReference->getImage($email);
+        }
 
 
 }
