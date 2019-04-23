@@ -83,13 +83,12 @@
       <mat-icon class="icon-left">apps</mat-icon>
     
     </div>
-    <div>
-        <button mat-icon-button [matMenuTriggerFor]="menuOne">
+    <div [matMenuTriggerFor]="menuOne">
             <!-- <img class="pic" src="../../../assets/profile.jpg" /> -->
-            <img class="pic" src = "{{image}}" />
-            <!-- <mat-icon ><img style = "border-radius: 50px;width: 41px;margin-top: -9px;" src = "{{image}}"/></mat-icon>
-            <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" /> -->
-          </button>
+            <!-- <img class="pic" src = "{{image}}" /> -->
+            <mat-icon ><img class="pic" src = "{{image}}"/></mat-icon>
+            
+          <!-- </button> -->
       
     
     </div>
@@ -98,19 +97,18 @@
       <div class="profileMenu">
         <div fxLayout="row" fxLayoutAlign="start start">
 
-          <!-- <div> -->
-            <button mat-icon-button>
-              <!-- <img class="picture" src="../../../assets/profile.jpg" /> -->
-              <mat-icon (click)="file.click()" ><img style = "border-radius: 50px;margin-top: 15px;margin-left: 10px;width: 75px;" src = "{{image}}" /></mat-icon>
+        
+            <!-- <button mat-icon-button> -->
+             
+              <mat-icon (click)="file.click()" ><img class="picture" src ="{{image}}" /></mat-icon>
             <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
-          </button>
-          <!-- </div> -->
-
+          <!-- </button> -->
+      
         </div>
 
 
         <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
-           <p>harrykrishnan</p>
+           <!-- <p>harrykrishnan</p> -->
            <p>{{FirstName}}</p>
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">
@@ -147,8 +145,8 @@
         <mat-divider></mat-divider>
        
         <label fxLayout="row" style="font-size: 12px">LABLES </label>
-        <a mat-list-item role="listitem" *ngFor="let n of labels" >
-          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.labels}}</span>
+        <a mat-list-item role="listitem" *ngFor="let n of labels" (click)="setLabel(n.id)" >
+          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.label}}</span>
       </a>
 
         <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes" (click)="openLabel()">

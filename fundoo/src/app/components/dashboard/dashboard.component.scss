@@ -74,12 +74,12 @@
 }
 
 .pic {
-  max-width: 25%;
-  max-width: 100%;
+  max-width: 180%;
+  //max-width: 100%;
 height:auto;
 display:block;
 /* make it a circle */
-border-radius:40%;
+border-radius:100%;
 /* Centering on image`s center*/
 background-position-y: center;
 background-position-x: center;
@@ -91,10 +91,10 @@ background-size: cover;
 
 
 .picture{
-max-width: 30%;
+max-width:150%;
 height:auto;
 display:block;
-border-radius:50%;
+border-radius:100%;
 }
 
 .settings{

@@ -63,5 +63,9 @@ class labels extends CI_Controller
     //     $results = $query->getResult();
     //     print json_encode($results);
     // }
-
+    public function deleteLabel()
+    {
+        $id = $_POST['id'];
+        $this->serviceReference->labeldelete($id);
+    }
 } 

@@ -24,6 +24,7 @@ export class serviceUrl {
 	public getreminder = "getreminder";
 	public setlabel ="setlabel";
 	public getlabel = "getlabel";
+	public deletelabel="deletelabel";
 	public getArch = "getarchive";
 	public unarchived = "unarchive";
 	public archive = "archived";

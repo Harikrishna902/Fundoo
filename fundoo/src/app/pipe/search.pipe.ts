@@ -8,8 +8,8 @@ import { mynotes } from '../components/models/note';
 export class SearchPipe implements PipeTransform {
 
   transform(note: any[], searchTerm: string):mynotes[] {
-    // console.log("__7____",searchTerm); 
-    // console.log("_________",note);
+    console.log("__7____",searchTerm); 
+    console.log("_________",note);
     if(!note || !searchTerm){
     
     return [];

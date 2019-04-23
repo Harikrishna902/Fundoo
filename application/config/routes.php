@@ -81,6 +81,7 @@ $route['reminder']='reminder/dashboard';
 //$route['editlablels']='editlables/dashboard';
 $route['setlabel'] ='Labels/addLabel';
 $route['getlabel'] ='Labels/getLabel';
+$route['deleteLabel']='Labels/deleteLabel';
 $route['archived']='Notes/archive';
 
 $route['getarchive'] = 'Archive/fetchArchive';

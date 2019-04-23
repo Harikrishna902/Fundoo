@@ -16,8 +16,7 @@ constructor(private http: HttpClient,private serviceUrl:serviceUrl) {}
  * @param register
  * @description Function to send register data to server
  */
-
-  CreateUser(register:Register){
+    CreateUser(register:Register){
     let createuser = new FormData();
     debugger;
     createuser.append("FirstName",register.FirstName);

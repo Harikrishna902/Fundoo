@@ -31,7 +31,8 @@ export class DashboardComponent implements OnInit {
   email: string;
   isClicked = false;
   searchTerm: string;
-  constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,private label:EditlabelService, private S_register: RegisterService) { }
+  constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,
+    private label:EditlabelService, private S_register: RegisterService) { }
   grid: boolean = false;
   list: boolean = true;
   labels : Label[];
@@ -50,7 +51,10 @@ export class DashboardComponent implements OnInit {
   
     let labelobj= this.label.getLabel(this.email);
     labelobj.subscribe((res:any)=>{
+      debugger
+      
       this.labels= res;
+      console.log("asdasd",this.labels);
     })
     // this.displayLabels();
     // this.displayNotes();
@@ -136,14 +140,7 @@ export class DashboardComponent implements OnInit {
 		var binaryString = readerEvt.target.result;
 		console.log(binaryString);
 		this.base64textString = btoa(binaryString);
-		this.notes.forEach(element => {
-      this.imagess = element;
-			if (this.imagess.id == this.imageNoteId) {
-				this.imagess.image = "data:image/jpeg;base64," + this.base64textString;
-			}
-		});
-
-		if (this.imageNoteId == "01") {
+	  if (this.imageNoteId == "01") {
       this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
       this.image = this.Mainimage;
       debugger;
@@ -151,7 +148,12 @@ export class DashboardComponent implements OnInit {
       let obss = this.S_register.addProfilePic(this.image,this.email);
       
       obss.subscribe((res: any) => {});
-      
+      this.notes.forEach(element => {
+        this.imagess = element;
+        if (this.imagess.id == this.imageNoteId) {
+          this.imagess.image = "data:image/jpeg;base64," + this.base64textString;
+        }
+      });
 		} else {
       
 	 }
@@ -170,4 +172,15 @@ export class DashboardComponent implements OnInit {
     })
      
   }
+
+
+ /**
+   * set label
+   * @param labelname 
+   */
+  setLabel(labelname){
+    debugger
+    this.label.labelnameSet(labelname);
+  }
+
 }

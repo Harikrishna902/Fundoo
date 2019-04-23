@@ -19,7 +19,7 @@ import { ViewserviceService } from '../../services/viewservice/viewservice.servi
 import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-
+import {EditlabelService } from '../../services/editlabels/editlabel.service';
 import { Note } from '../models/reminder';
 @Component({
   selector: 'app-notes',
@@ -59,7 +59,7 @@ wrap;
 
   //createNotes:string;
   noteform: FormGroup;
-  constructor(private formBuilder: FormBuilder, private notes: NoteService,
+  constructor(private formBuilder: FormBuilder, private notes: NoteService, private label:EditlabelService,
     private route: Router, private viewChange: ViewserviceService, private dialog: MatDialog) {
 
     this.viewChange.getView().subscribe((res => {
@@ -99,10 +99,10 @@ wrap;
       this.layout = this.direction + " " + this.wrap;
     }))
 
-  //   setInterval(() => {
-
-  //   }, 1000);
-  //   this.getNotes();
+    // setInterval(() => {
+    //   this.getNotes();
+    // }, 1000);
+    
    }
   view;
   /**
@@ -110,12 +110,12 @@ wrap;
    * return obseravble 
    */
    getNotes() {
-    debugger
+    //debugger
     const token = localStorage.getItem('token');
     // decode the token to get its payload
     const tokenPayload = decode(token);
     const emailid = tokenPayload.email;
-    debugger
+   // debugger
     let noteobj = this.notes.displayNotes(emailid);
     noteobj.subscribe((data: any) => {
       debugger   
@@ -130,7 +130,7 @@ wrap;
   */
   closeDate()
   {
-    debugger
+    //debugger
     this.timer = false;
     this.currentDateAndTime = undefined;
     
@@ -148,6 +148,9 @@ wrap;
     //this.timer = false;
     this.flag = !this.flag;
   }
+
+
+
   setColorToTitle(changecolor) {
     debugger;
     this.color = changecolor;
@@ -379,6 +382,16 @@ wrap;
       obss.subscribe((res: any) => {});
     }
   }
+
+  /**
+   * set label
+   * @param labelname 
+   */
+  setLabel(labelname){
+    debugger
+    this.label.labelnameSet(labelname);
+  }
+
 
 }
 

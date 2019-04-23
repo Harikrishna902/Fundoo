@@ -51,4 +51,29 @@ class labelService extends CI_Controller
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
         print json_encode($arr);
     }
+
+
+    /**
+     * @method to delete the label
+     * @param email
+     */
+    public function labeldelete($id){
+        $query = "DELETE FROM labels WHERE id= '$id'";
+        $statement= $this->db->conn_id->prepare($query);
+        $res = $statement->execute();
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+
+        }
+    }
 }

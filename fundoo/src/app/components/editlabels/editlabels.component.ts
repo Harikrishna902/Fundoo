@@ -25,7 +25,7 @@ export class EditlabelsComponent implements OnInit {
       labelname: '',
 
     });
-    this.getLabel;
+    this.getLabel();
   }
 
   /**
@@ -40,6 +40,7 @@ export class EditlabelsComponent implements OnInit {
     });
   }
 
+  
 
 /**
  * function to get labels
@@ -51,6 +52,21 @@ export class EditlabelsComponent implements OnInit {
     obj.subscribe((res: any) => {
       debugger
       this.label= res;
+      console.log("hv",this.label);
     })
   } 
+
+/**
+ * function to delete the label
+ * @param id 
+ */
+  deletelabel(id){
+    debugger
+    let labelobs = this.label.deletelabel(id);
+    labelobs.subscribe((res: any) => {
+
+        this.getLabel();
+    })
+  }
+
 }

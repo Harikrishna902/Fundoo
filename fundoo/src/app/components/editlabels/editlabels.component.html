@@ -21,16 +21,16 @@
 </div>
 
 <mat-dialog-actions>
-  <mat-nav-list>
+  <mat-nav-list >
 
-    <label role="listitem" *ngFor="let item of labels">
+    <label role="listitem"  *ngFor="let n of label" >
      <button mat-icon-button>
        <mat-icon >label</mat-icon>
      </button>
     <span class="notes">{{n.label}}</span>
-     <button mat-icon-button class="btnclose">
-       <mat-icon >delete_outline</mat-icon>
-     </button>
+    <button mat-icon-button (click)="deletelabel(n.id)">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
    </label >
 </mat-nav-list>
 </mat-dialog-actions>
