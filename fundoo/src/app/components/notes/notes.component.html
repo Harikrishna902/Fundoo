@@ -21,9 +21,7 @@
             <mat-icon matTooltip="New note with image" (click)="file.click()">insert_photo</mat-icon>
           </button>
           <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
-          <!-- <div *ngIf="Mainimage != ''">
-            <img src="{{ Mainimage }}"  alt="" class="noteImage" />
-          </div> -->
+       
         </div>
       </mat-card>
     </div>
@@ -211,6 +209,9 @@
             <mat-menu #More="matMenu">
               <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
               <button mat-menu-item>Add label</button>
+
+            
+        
               <button mat-menu-item>Add drawing</button>
               <button mat-menu-item>Show checkboxes</button>
             </mat-menu>

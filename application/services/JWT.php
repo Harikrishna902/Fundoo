@@ -5,7 +5,7 @@ use \DomainException;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
 use \DateTime;
-include '/var/www/html/codeigniter/application/services/Redish.php';
+include_once '/var/www/html/codeigniter/application/services/Redish.php';
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
 /**

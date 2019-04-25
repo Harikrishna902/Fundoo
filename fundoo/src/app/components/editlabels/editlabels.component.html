@@ -1,3 +1,4 @@
+
 <mat-dialog-content class="class" >
   <form [formGroup]="labelform">
     <mat-label>Edit Labels</mat-label>
@@ -9,29 +10,44 @@
         <input matInput placeholder="create new label" formControlName="labelname">
       </mat-form-field>
 
-      <button mat-icon-button  (click)="close(labelform.value)">
+      <button mat-icon-button  (click)="send(labelform.value)">
         <mat-icon>check</mat-icon>
       </button>
     </div>
   </form>
 </mat-dialog-content>
 <mat-divider></mat-divider>
-<div class="done">
-  <a mat-flat-button (click)="close(labelform.value)">Done</a>
-</div>
+
 
 <mat-dialog-actions>
-  <mat-nav-list >
+  <mat-nav-list *ngFor="let n of label" >
 
-    <label role="listitem"  *ngFor="let n of label" >
+    <a mat-list-item label role="listitem"   >
      <button mat-icon-button>
-       <mat-icon >label</mat-icon>
+       <mat-icon class="labelicon" routerLinkActive="mat-accent">label</mat-icon>
      </button>
-    <span class="notes">{{n.label}}</span>
+    <span class="notes"></span>
     <button mat-icon-button (click)="deletelabel(n.id)">
-      <mat-icon>delete_outline</mat-icon>
+      <mat-icon  class="" routerLinkActive="mat-accent">delete</mat-icon>
     </button>
-   </label >
+    <span class="labelname">
+    <!-- <input matInput  value="{{n.labelname}}" appearence="null" > -->
+    <input matInput [formControl]="updateLabel" value="{{n.labelname}}" appearence="null" >
+    </span>
+    <mat-icon class="editicon" (click)="editLabel(n.id)" routerLinkActive="mat-accent">
+     edit</mat-icon>
+  
+   </a>
 </mat-nav-list>
 </mat-dialog-actions>
+<mat-divider class="divider"></mat-divider>
+<div class="done">
+    <button mat-flat-button 
+    (click)="send(labelform.value)">
+   Done
+</button>
+
+  <!-- <a mat-flat-button (click)="send(labelform.value)">Done</a> -->
+</div>
+
 

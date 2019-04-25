@@ -22,7 +22,7 @@ class NoteService extends CI_Controller
      * @param email,title,desc
      *@return void
      */
-    public function addNotes($title, $email, $description, $reminder)
+    public function addNotes($title, $uid, $description, $reminder)
     {
         $reference = new JWT();
         $flag = 0;
@@ -42,7 +42,7 @@ class NoteService extends CI_Controller
                 $connection = $redis->connection();
                 $response = $connection->get('token');
 
-                $query = "INSERT into notes (title,description,email,reminder,archive,trash) values ('$title','$description','$email','$reminder',0,0)";
+                $query = "INSERT into Fnotes (title,description,uid,reminder,archive,trash) values ('$title','$description','$uid','$reminder',0,0)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
                 if ($res) {
@@ -65,9 +65,9 @@ class NoteService extends CI_Controller
      * @method to displaynotes
      * @param email
      */
-    public function dispalynotes($email)
+    public function dispalynotes($uid)
     {
-        $query = "SELECT * from notes Where email ='$email' And archive=0 AND trash=0 ORDER BY id DESC ";
+        $query = "SELECT * from Fnotes Where uid ='$uid' And archive=0 AND trash=0 ORDER BY id DESC ";
         
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
@@ -87,7 +87,7 @@ class NoteService extends CI_Controller
      */
     public function deleteNotes($id)
     {
-        $query = "DELETE from notes where id='$id'";
+        $query = "DELETE from Fnotes where id='$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {
@@ -113,7 +113,7 @@ class NoteService extends CI_Controller
      */
     public function changeColor($id, $colour)
     {
-        $query = "UPDATE  notes SET colour = '$colour' WHERE id ='$id'";
+        $query = "UPDATE  Fnotes SET colour = '$colour' WHERE id ='$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {
@@ -145,7 +145,7 @@ class NoteService extends CI_Controller
             $flag = 1;
         }
         if ($flag == 0) {
-            $query = "UPDATE notes SET title = '$title', description ='$description',reminder='$reminder' where id = '$id'";
+            $query = "UPDATE Fnotes SET title = '$title', description ='$description',reminder='$reminder' where id = '$id'";
             $statement = $this->db->conn_id->prepare($query);
             $res = $statement->execute();
             if ($res) {
@@ -175,7 +175,7 @@ class NoteService extends CI_Controller
     public function archive($id)
     {
 
-        $query = "UPDATE notes SET archive = '1' where id = '$id'";
+        $query = "UPDATE Fnotes SET archive = '1' where id = '$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {
@@ -201,7 +201,7 @@ class NoteService extends CI_Controller
      */
     public function trashNote($id)
     {
-        $query = "UPDATE notes set trash='1'  WHERE id = '$id'";
+        $query = "UPDATE Fnotes set trash='1'  WHERE id = '$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
 
@@ -228,7 +228,7 @@ class NoteService extends CI_Controller
      */
     public function restoreDeletedNote($id)
     {
-        $query = "UPDATE notes set trash='0'  WHERE id = '$id'";
+        $query = "UPDATE Fnotes set trash='0'  WHERE id = '$id'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
 
@@ -255,7 +255,7 @@ class NoteService extends CI_Controller
     *@return void
     */
     public function fetchnote($email){
-        $query = "SELECT * from notes where trash =1 And email='$email'";
+        $query = "SELECT * from Fnotes where trash =1 And uid='$email'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
 
@@ -283,8 +283,8 @@ class NoteService extends CI_Controller
      * @param base64,email,noteid
      * @return void
      */
-    public function imageNote($base64,$email,$noteid){
-        $query = "UPDATE notes SET image = '$base64'  where email = '$email' AND id='$noteid'";
+    public function imageNote($base64,$uid,$noteid){
+        $query = "UPDATE Fnotes SET image = '$base64'  where uid = '$uid' AND id='$noteid'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {

@@ -19,22 +19,11 @@ class Labels{
     protected $labelname;
   
     /**
-     * @ManyToOne(targetEntity="Users", inversedBy="userid")
+     *  @Column(type="integer" )
      */
-    protected $luid;
+    protected $uid;
     
-    /**
-     * @ManyToMany(targetEntity="Notes",mappedBy="labels")
-     */
-    protected $labeluid;
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->labeluid = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Get id.
@@ -71,62 +60,26 @@ class Labels{
     }
 
     /**
-     * Set luid.
+     * Set uid.
      *
-     * @param \Entity\Users|null $luid
+     * @param int $uid
      *
      * @return Labels
      */
-    public function setLuid(\Entity\Users $luid = null)
+    public function setUid($uid)
     {
-        $this->luid = $luid;
+        $this->uid = $uid;
 
         return $this;
     }
 
     /**
-     * Get luid.
+     * Get uid.
      *
-     * @return \Entity\Users|null
+     * @return int
      */
-    public function getLuid()
+    public function getUid()
     {
-        return $this->luid;
-    }
-
-    /**
-     * Add labeluid.
-     *
-     * @param \Entity\Notes $labeluid
-     *
-     * @return Labels
-     */
-    public function addLabeluid(\Entity\Notes $labeluid)
-    {
-        $this->labeluid[] = $labeluid;
-
-        return $this;
-    }
-
-    /**
-     * Remove labeluid.
-     *
-     * @param \Entity\Notes $labeluid
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeLabeluid(\Entity\Notes $labeluid)
-    {
-        return $this->labeluid->removeElement($labeluid);
-    }
-
-    /**
-     * Get labeluid.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLabeluid()
-    {
-        return $this->labeluid;
+        return $this->uid;
     }
 }

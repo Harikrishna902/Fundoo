@@ -15,7 +15,7 @@ include "/var/www/html/codeigniter/application/static/RabbitMQConstants.php";
 class Send
 {
  /**
- * @method sendEmail()
+ * @method sendEmail()                                      
  * @var connection creates the AMPQSTREAMconnection
  * @return void
  */

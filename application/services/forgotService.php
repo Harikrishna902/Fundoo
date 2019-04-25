@@ -20,7 +20,7 @@ class forgotService extends CI_controller
         if (forgotService::checkEmail($email)) {
             $ref = new Send();
             $token = md5($email);
-            $query = "UPDATE registrations SET reset_password= '$token' where email='$email'";
+            $query = "UPDATE registeruser SET reset_password= '$token' where email='$email'";
             $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
             $sub = 'password recovery mail';
@@ -49,7 +49,7 @@ class forgotService extends CI_controller
      */
     public function checkEmail($email)
     {
-        $query = "SELECT * FROM registrations WHERE email='$email'";
+        $query = "SELECT * FROM registeruser WHERE email='$email'";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);

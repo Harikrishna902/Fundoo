@@ -18,7 +18,7 @@ class archiveService extends CI_Controller
      * @return void
      */
     public function archivednotes($uid){
-        $query = "SELECT * from notes Where email ='$uid' AND archive= '1' ";
+        $query = "SELECT * from Fnotes Where uid ='$uid' AND archive= '1' ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -32,7 +32,7 @@ class archiveService extends CI_Controller
      * @return void
      */
     public function archive($uid){
-        $query = "UPDATE notes SET archive = 1  where id = '$uid'";
+        $query = "UPDATE Fnotes SET archive = 1  where uid = '$uid'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {

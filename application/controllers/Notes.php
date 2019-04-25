@@ -26,7 +26,7 @@ class Notes extends CI_Controller
      */
     public function createNotes()
     {
-        $email = $_POST['email'];
+        $uid = $_POST['uid'];
         $title = $_POST['title'];
 
         $description = $_POST['description'];
@@ -38,7 +38,7 @@ class Notes extends CI_Controller
         // if ($notes == "null" || $notes == "undefined") {
         //     $notes = "";
         // }
-        $this->serviceReference->addNotes($title, $email, $description, $reminder);
+        $this->serviceReference->addNotes($title, $uid, $description, $reminder);
     }
 
 
@@ -101,8 +101,8 @@ class Notes extends CI_Controller
      */
     public function getNotes()
     {
-        $email = $_POST['email'];
-        $this->serviceReference->dispalynotes($email);
+        $uid = $_POST['uid'];
+        $this->serviceReference->dispalynotes($uid);
     }
 
     /**
@@ -178,9 +178,9 @@ class Notes extends CI_Controller
     public function noteimage()
     { 
         $base64 = $_POST['base64']; 
-        $email = $_POST['email'];
+        $uid = $_POST['uid'];
         $id = $_POST['noteid'];
-        $this->serviceReference->imageNote($base64,$email,$id);
+        $this->serviceReference->imageNote($base64,$uid,$id);
     }
 
 }

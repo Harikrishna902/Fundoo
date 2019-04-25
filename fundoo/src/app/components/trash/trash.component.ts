@@ -23,8 +23,8 @@ export class TrashComponent implements OnInit {
 
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const email = tokenPayload.email;
-    let obj= this.noteser.trashnote(email);
+    const id = tokenPayload.id;
+    let obj= this.noteser.trashnote(id);
     obj.subscribe((res:any)=>{
       this.notes = res;
     })

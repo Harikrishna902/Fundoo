@@ -7,7 +7,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 //import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material'
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,MatDatepickerModule,MatNativeDateModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatCheckboxModule, MatInputModule, MatTableModule,MatDatepickerModule,MatNativeDateModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatSidenavModule, MatDrawerContainer, MatListModule, MatDialogRef, MAT_DIALOG_DATA,
 } from '@angular/material';
 
@@ -26,7 +26,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatDialogModule,
- 
+  MatCheckboxModule,
   MatListModule,
   MatDatepickerModule,
   MatNativeDateModule,
@@ -56,6 +56,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
    MatTooltipModule,
    MatDialogModule,
    DragDropModule,
+   MatCheckboxModule,
 
 ],
 

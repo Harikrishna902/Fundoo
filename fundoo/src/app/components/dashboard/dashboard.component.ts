@@ -40,16 +40,16 @@ export class DashboardComponent implements OnInit {
   FirstName:string;
   image: string;
   
-
+  uid
   ngOnInit() {
     const token = localStorage.getItem('token');
     var tokenpayload = decode(token);
-    this.email = tokenpayload .email;
+    this.uid = tokenpayload.id;
    // this.email = tokenpayload .id;
     this.FirstName = tokenpayload .FirstName;
     this.image = tokenpayload .image;
   
-    let labelobj= this.label.getLabel(this.email);
+    let labelobj= this.label.getLabel(this.uid);
     labelobj.subscribe((res:any)=>{
       debugger
       
@@ -92,11 +92,12 @@ export class DashboardComponent implements OnInit {
 
 
   openLabel(){
+    debugger
     const config = new MatDialogConfig();
     config.width="400px";
     config.height="auto";
     //config.overflow="hidden";
-    config.data ={data:this.email};
+    config.data ={data:this.uid};
     const label = this.dialog.open(EditlabelsComponent,config);
   }
 
@@ -136,7 +137,7 @@ export class DashboardComponent implements OnInit {
   }
 
   _handleReaderLoaded(readerEvt) {
-    debugger
+    debugger;
 		var binaryString = readerEvt.target.result;
 		console.log(binaryString);
 		this.base64textString = btoa(binaryString);
@@ -145,7 +146,7 @@ export class DashboardComponent implements OnInit {
       this.image = this.Mainimage;
       debugger;
       console.log(this.image);
-      let obss = this.S_register.addProfilePic(this.image,this.email);
+      let obss = this.S_register.addProfilePic(this.image,this.uid);
       
       obss.subscribe((res: any) => {});
       this.notes.forEach(element => {

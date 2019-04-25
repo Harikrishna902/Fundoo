@@ -19,7 +19,7 @@ export class ArchiveComponent implements OnInit {
     debugger
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const uid = tokenPayload.email;
+    const uid = tokenPayload.id;
 
     let obj = this.arch.getArchive(uid);
     obj.subscribe((res:any)=>{

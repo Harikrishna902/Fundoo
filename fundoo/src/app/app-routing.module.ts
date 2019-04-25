@@ -36,31 +36,31 @@ children: [
   },
   {
     path:"label",
-    component: LabelComponent
+    component: LabelComponent,
     
   },
   {
     path:"editlabels",
-    component:EditlabelsComponent
+    component:EditlabelsComponent,
     
   },
   {
     path:"archive",
-    component:ArchiveComponent
+    component:ArchiveComponent,
     
   },
   {
     path:"trash",
-    component: TrashComponent
+    component: TrashComponent,
     
   },
   
   {
 
   path:"search",
-  component: SearchComponent
+  component: SearchComponent,
   },
-
+  
 
 
 ]

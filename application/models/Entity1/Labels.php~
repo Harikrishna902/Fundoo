@@ -19,12 +19,12 @@ class Labels{
     protected $labelname;
   
     /**
-     *  @Column(type="integer" )
+     * @ManyToOne(targetEntity="Users", inversedBy="userid")
      */
-    protected $uid;
+    protected $luid;
     
-
+    /**
+     * @ManyToMany(targetEntity="Notes",mappedBy="labels")
+     */
+    protected $labeluid;
 }
-
-
-?>

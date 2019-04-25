@@ -22,9 +22,9 @@ export class NoteService {
    * @param time
    * @returns obseravble data 
    */
-  createNotes(note, email,time) {
+  createNotes(note, id,time) {
     let createnotes = new FormData();
-    createnotes.append("email", email);
+    createnotes.append("uid", id);
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
     createnotes.append("reminder",time);
@@ -54,7 +54,7 @@ console.log(headers_object);
   displayNotes(data) {
     debugger;
     let emaildata = new FormData();
-    emaildata.append("email", data);
+    emaildata.append("uid", data);
    // emaildata.append("id",id);
     return this.http.post(this.serviceUrl.host + this.serviceUrl.fetchnotes, emaildata);
   }
@@ -164,11 +164,11 @@ console.log(headers_object);
    * @param noteid 
    * @returns obseravble data
    */
-  imagesaver(base64,email,noteid){
+  imagesaver(base64,uid,noteid){
     debugger
     let image = new FormData();
     image.append("base64",base64);
-    image.append("email",email);
+    image.append("uid",uid);
     image.append("noteid",noteid);
 
     return this.http.post(this.serviceUrl.host+this.serviceUrl.noteimage,image);

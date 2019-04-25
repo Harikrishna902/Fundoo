@@ -27,7 +27,7 @@ class registerService extends CI_controller
         /**
          * query to insert the data
          */
-        $query = "INSERT INTO registrations(FirstName,Lastname,email,password) VALUES ('$FirstName','$LastName','$email','$password')";
+        $query = "INSERT INTO registeruser(FirstName,Lastname,email,password) VALUES ('$FirstName','$LastName','$email','$password')";
         $stat = $this->db->conn_id->prepare($query);
         $statement = $stat->execute($dataOne);
         if ($statement) {
@@ -60,7 +60,7 @@ class registerService extends CI_controller
      */
     public function addUImage($image, $email)
     {
-        $query = "UPDATE registrations SET image = '$image' WHERE email = '$email'";
+        $query = "UPDATE registeruser SET image = '$image' WHERE id = '$email'";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         if ($res) {
@@ -86,7 +86,7 @@ class registerService extends CI_controller
      */
     public function getImage($email)
     {
-        $query = "SELECT image FROM registrations WHERE email = '$email'";
+        $query = "SELECT image FROM registeruser WHERE id = '$email'";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
         $arr = $statement->fetch(PDO::FETCH_ASSOC);

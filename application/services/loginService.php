@@ -30,7 +30,7 @@ class loginService extends CI_controller
             'password' => $password,
         ];
 
-        $query = "SELECT * FROM registrations WHERE email='$email'AND password='$password'";
+        $query = "SELECT * FROM registeruser WHERE email='$email'AND password='$password'";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute($data);
         /**
@@ -40,12 +40,12 @@ class loginService extends CI_controller
         $arrOne = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($arrOne as $login) {
             $key = "krishna";
-            $email = $login['email'];
+            $id = $login['id'];
             $randomnum = rand(1111111111, 9999999999);
         }
         if ($arr > 0) {
             $token = array(
-                "email" => $email,
+                "id" => $id,
                 "random" => $randomnum,
             );
             $jwt = JWT::encode($token, $key);
@@ -70,9 +70,12 @@ class loginService extends CI_controller
         return $data;
     }
 
+
+    
+
     public function fetchemailid($token)
     {
-        $query = "SELECT * From registrations where reset_password ='$token' ";
+        $query = "SELECT * From registeruser where reset_password ='$token' ";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
         $arr = $statement->fetch(PDO::FETCH_ASSOC);
@@ -99,10 +102,10 @@ class loginService extends CI_controller
      */
     public function resetpass($password, $token)
     {
-        $query = "UPDATE registrations set password = '$password' where reset_password='$token' ";
+        $query = "UPDATE registeruser set password = '$password' where reset_password='$token' ";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
-        $queOne = "SELECT reset_password from registrations where password ='$password' ";
+        $queOne = "SELECT reset_password from registeruser where password ='$password' ";
         $statementOne = $this->db->conn_id->prepare($queOne);
         $statementOne->execute();
         $arr = $statementOne->fetch(PDO::FETCH_ASSOC);
@@ -111,7 +114,7 @@ class loginService extends CI_controller
                 'message' => 404,
             );
         } else {
-            $queryOne = "UPDATE registrations set reset_password='' where password='$password'";
+            $queryOne = "UPDATE registeruser set reset_password='' where password='$password'";
             $statementOne = $this->db->conn_id->prepare($queryOne);
             $statementOne->execute();
             $data = array(
@@ -127,7 +130,7 @@ class loginService extends CI_controller
      */
     public function emailpresent($email)
     {
-        $query = "SELECT * from registrations WHERE email = '$email'";
+        $query = "SELECT * from registeruser WHERE email = '$email'";
         $statement = $this->db->conn_id->prepare($query);
 
         $statement->execute();
@@ -164,7 +167,7 @@ class loginService extends CI_controller
             print json_encode($data);
         } else {
             //$uid = uniqid();
-            $query = "INSERT into registrations (FirstName,email) values ('$FirstName','$email')";
+            $query = "INSERT into registeruser (FirstName,email) values ('$FirstName','$email')";
             $statement = $this->db->conn_id->prepare($query);
             $res = $statement->execute();
             if ($res) {

@@ -76,8 +76,9 @@ wrap;
 
   }
 
-
-
+  token
+  uid
+  tokendecode
   ngOnInit() {
 
     this.noteform = this.formBuilder.group({
@@ -85,6 +86,11 @@ wrap;
       description: '',
 
     });
+
+
+    this.token = localStorage.getItem('token');
+    this.tokendecode = decode(this.token);
+    this.uid = this.tokendecode.id;
 
     /**
      * function to display the notes in grid and list
@@ -116,7 +122,7 @@ wrap;
     const tokenPayload = decode(token);
     const emailid = tokenPayload.email;
    // debugger
-    let noteobj = this.notes.displayNotes(emailid);
+    let noteobj = this.notes.displayNotes(this.uid);
     noteobj.subscribe((data: any) => {
       debugger   
       this.note = data;
@@ -167,8 +173,8 @@ wrap;
   notescreate(value: any) {
     debugger
 
-    const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, email, this.currentDateAndTime);
+    // const email = localStorage.getItem('email');
+    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime);
 
     obj.subscribe((res: any) => {
       debugger
@@ -240,6 +246,7 @@ wrap;
    * editNotes
    */
   openNotes(n) {
+    debugger
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
@@ -359,7 +366,7 @@ wrap;
     debugger;
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const email = tokenPayload.email;
+    const email= tokenPayload.email;
     debugger
     var binaryString = readerEvt.target.result;
     console.log(binaryString,"gfhgh");  
@@ -376,7 +383,7 @@ wrap;
       this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
       let obss = this.notes.imagesaver(
       	this.Mainimage,
-      	email,
+      	this.uid,
         this.imageNoteId
       );
       obss.subscribe((res: any) => {});

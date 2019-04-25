@@ -1,3 +1,254 @@
 <p>
   label works!
 </p>
+<div fxLayout="row wrap" style="width:100%; height: 90%;" >
+  <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 80%">
+<div *ngIf="flag==true" (click)="flip()">
+  <mat-card class="note">
+
+    <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
+      <mat-form-field appearance="null">
+        <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
+      </mat-form-field>
+    </div>
+
+    <div style="margin-top:-80px;" fxLayout="row" fxLayoutAlign="end start">
+      <button mat-icon-button>
+        <mat-icon matTooltip="New List">check_box</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon matTooltip="Drawing is not available">brush</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon matTooltip="New note with image" (click)="file.click()">insert_photo</mat-icon>
+      </button>
+      <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
+   
+    </div>
+  </mat-card>
+</div>
+
+
+<div>
+  <div *ngIf="flag===false" >
+
+    <mat-card class="notes">
+
+      <form class="example-form" [formGroup]="noteform" [ngStyle]="{ 'background-color':noteform.value.color}" >
+        <div>
+          <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px"
+            [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Title"  value="{{title}}"
+            formControlName="title" />
+          <button mat-icon-button style="padding-top:5px;">
+            <mat-icon matSuffix><img src="../../assets/pin.svg" /></mat-icon>
+          </button>
+
+
+             <div *ngIf="Mainimage != ''">
+          <img src="{{ Mainimage }}"  alt="" class="noteImage" />
+        </div> 
+
+          <input role="textarea" style="margin-top: 5px; margin-left: 10px;"
+            [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note" value="{{description}}"
+            formControlName="description" />
+        </div>
+        <div> <button mat-icon-button *ngIf="notes_timer && n.reminder!=null && n.reminder!='' " >
+
+            <mat-chip>
+
+              <p>
+              <mat-icon>schedule</mat-icon>
+             </p> 
+             {{currentDateAndTime}}
+             <!-- {{reminder}} -->
+              <mat-icon (click) = "closeDate()">cancel</mat-icon>
+            </mat-chip>
+
+
+
+          </button>
+        </div>
+        <div  *ngFor="let n of labelsNote; let i=index">
+         
+          <mat-chip-list>
+            <button mat-icon-button *ngIf="i<1">
+              <mat-chip style="background-color: rgba(0,0,0,0.08);"> 
+                {{n.labelname}}
+            </mat-chip>
+              
+            </button>
+           
+            <button *ngIf="i<1"
+            mat-icon-button class="remicon" (click)="labelname =null"><mat-icon style="margin-left:25px; font-size: 17px;" >close</mat-icon></button>
+          </mat-chip-list>
+        </div>
+    
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+          <button mat-icon-button>
+            <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="remainder">notification_important</mat-icon>
+          </button>
+
+          <mat-menu [overlapTrigger]="false" #remainder="matMenu">
+            <button mat-menu-item>Remainder:</button>
+            <button mat-menu-item (click)="today(01)">Later today 8:00AM</button>
+            <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00AM</button>
+            <button mat-menu-item (click)="nextWeek(01)">
+              Next week Mon,8:00AM
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="dates">
+
+              <mat-icon>schedule</mat-icon>Pick date & time
+            </button>
+            <mat-menu #dates="matMenu">
+              <mat-nav-list>
+                <mat-list role="List">
+                  <div class="pickdate">
+
+                    <mat-list-item id="pickAdjust">
+
+                      <mat-icon matDatepickerToggleIcon matTooltip="Go back">keyboard_backspace</mat-icon>
+                      <span>Pick date and Time </span>
+                    </mat-list-item>
+
+                  </div>
+
+                  <mat-list-item>
+                    <mat-form-field class="example-full-width">
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </mat-list-item>
+
+                  <button mat-menu-item [matMenuTriggerFor]="time">Pick Time </button>
+                  <mat-menu #time="matMenu">
+                    <button mat-menu-item>
+                      <span>Morning<span> 8:00AM</span></span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Afternoon 1:00PM</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Evening 6:00PM</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Night 8:00PM</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Custom</span>
+                    </button>
+                  </mat-menu>
+                  <mat-list-item>
+                    <button mat-menu-item [matMenuTriggerFor]="repeat">Does not repeat</button>
+                    <mat-menu #repeat="matMenu">
+                      <button mat-menu-item>
+                        <span>Does not repeat</span>
+                      </button>
+
+                      <button mat-menu-item>
+                        <span>Daily</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>weekly</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Monthly</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Yearly</span>
+                      </button>
+                      <button mat-menu-item>
+                        <span>Custom</span>
+                      </button>
+                    </mat-menu>
+
+                  </mat-list-item>
+
+                </mat-list>
+              </mat-nav-list>
+
+            </mat-menu>
+          </mat-menu>
+
+
+
+          <button mat-icon-button>
+            <mat-icon matTooltip="collaborator">person_add</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button>
+            <mat-icon>color_lens</mat-icon>
+          </button>
+
+
+
+
+          <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
+            <button matTooltip="Yellow" (click)="noteform.value.color = '#fcf476'" mat-mini-fab class="colorlens"
+              style="background-color:#fcf476"></button>
+            <button matTooltip="Orange" (click)="noteform.value.color=('#f8bc04')" mat-mini-fab class="colorlens"
+              style="background-color:#f8bc04 "></button>
+            <button matTooltip="Red" (click)="noteform.value.color =('#f28b82 ')" mat-mini-fab class="colorlens"
+              style="background-color:#f28b82 "></button>
+            <button matTooltip="White" (click)="noteform.value.color =('#ffffff ')" mat-mini-fab class="colorlens"
+              style="background-color:#ffffff "></button>
+            <br />
+            <button matTooltip="Dark blue" (click)="noteform.value.color =('#aecbfa ')" mat-mini-fab class="colorlens"
+              style="background-color:#aecbfa "></button>
+            <button matTooltip="Blue" (click)="noteform.value.color =('#cbf0f8 ')" mat-mini-fab class="colorlens"
+              style="background-color:#cbf0f8 "></button>
+            <button matTooltip="Teal" (click)="noteform.value.color =('#a7ffea ')" mat-mini-fab class="colorlens"
+              style="background-color:#a7ffea "></button>
+            <button matTooltip="Green" (click)="noteform.value.color =('#ccff90 ')" mat-mini-fab class="colorlens"
+              style="background-color:#ccff90 "></button>
+            <br/>
+            <button matTooltip="Gray" (click)="noteform.value.color =('#e8eaed')" mat-mini-fab class="colorlens"
+              style="background-color:#e8eaed "></button>
+            <button matTooltip="Brown" (click)="noteform.value.color =('#e6c9a8 ')" mat-mini-fab class="colorlens"
+              style="background-color:#e6c9a8 "></button>
+            <button matTooltip="Pink" (click)="noteform.value.color =('#fccfe8 ')" mat-mini-fab class="colorlens"
+              style="background-color:#fccfe8 "></button>
+            <button matTooltip="Purple" (click)="noteform.value.color =('#d7aefb ')" mat-mini-fab class="colorlens"
+              style="background-color:#d7aefb "></button>
+          </mat-menu>
+
+          <button mat-icon-button>
+            <mat-icon matTooltip="Add image" (click)="file.click()">insert_photo</mat-icon>
+          </button>
+          <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
+          <button mat-icon-button>
+            <mat-icon matTooltip="Archive">archive</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon matTooltip="more" (click)="noteform.value.id" [matMenuTriggerFor]="More">more_vert</mat-icon>
+          </button>
+          <mat-menu #More="matMenu">
+            <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
+            <button mat-menu-item [matMenuTriggerFor]="labelMenu">Add label</button>
+            <mat-menu [overlapTrigger]="false" #labelMenu="matMenu">
+              <div class="colorbtn">
+             
+                <mat-checkbox *ngFor="let l of labels" (click)="noteform.value.lid = l.id" (click)="labelname=l.labelname"
+                  (click)="addLabel(l.id,noteform.value.id)" (click)="lid=l.id"> {{ l.labelname }}</mat-checkbox>
+              </div>
+            </mat-menu>
+          
+
+          
+      
+            <button mat-menu-item>Add drawing</button>
+            <button mat-menu-item>Show checkboxes</button>
+          </mat-menu>
+        </div>
+        <div class="close" fxLayout="row" fxLayoutAlign="end  end">
+          <button mat-button color="primary" (click)="notescreate(noteform.value)">close</button>
+        </div>
+
+      </form>
+
+    </mat-card>
+  </div>
+</div>
+</div>

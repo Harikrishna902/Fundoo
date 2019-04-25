@@ -3,4 +3,61 @@
     margin-left: 280px;
 }
 
+.labelicon{
+    margin-left: 19px;
+    visibility: visible;
+    margin-right: 10px;
+    width:"20";
+    height:"20";
+  }
 
+  .delete{
+    margin-left: -35px;
+    visibility: hidden;
+    color: rgb(104, 101, 101);
+    margin-right: 10px;
+    width:"20";
+    height:"20";
+  }
+
+
+  .notes:hover .labelicon, .labelicon:hover{
+    visibility: hidden;
+    color: black;
+    }
+  
+    .notes:hover .delete, .delete:hover{
+      visibility: visible;
+      color: black;
+      }
+
+
+      .labelname{
+        background: transparent;
+        border: none;
+        height: 20px;
+        outline-color: opacify($color:white, $amount: -0);
+        // padding: 11px 16px 11px 18px;
+        width: 60%;
+        font: normal 16px Roboto, sans-serif;
+        font-size: 15px;
+        font-display:padding-left;
+        font-variant-ligatures: none;
+        margin-top: 7px;
+      }
+
+      .notes{
+        margin-left: 0px;
+        color: rgb(104, 101, 101);
+      }
+  
+  
+      .editicon{
+        margin-right: 0px;
+        color: rgb(104, 101, 101);
+      }
+  
+      .labelname{
+        color: rgb(104, 101, 101);
+      }
+  

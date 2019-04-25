@@ -16,7 +16,7 @@ class ReminderService extends CI_Controller
 
 
     public function reminderNotesFetch($id){
-        $query = "SELECT * from notes Where email='$id' AND reminder <> '' ";
+        $query = "SELECT * from Fnotes Where email='$id' AND reminder <> '' ";
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
