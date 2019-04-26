@@ -72,9 +72,7 @@ wrap;
       console.log("Layout is ", this.layout);
 
     }))
-
-
-  }
+}
 
   token
   uid

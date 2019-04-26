@@ -35,7 +35,7 @@ export class EditlabelsComponent implements OnInit {
   send(value: any) {
     debugger
     let obj = this.labelserv.setLabel(this.uid,value);
-    obj.subscribe((res: any) => {
+    obj.subscribe((res: any) => {                                                     
 
     });
   }
@@ -43,7 +43,7 @@ export class EditlabelsComponent implements OnInit {
   closeslabel(){
     this.dialogRef.close();
   }
-
+ 
   
   label
 /**label

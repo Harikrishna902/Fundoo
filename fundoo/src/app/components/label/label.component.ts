@@ -3,11 +3,12 @@ import { FormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@a
 import * as moment from "moment";
 import { Router } from '@angular/router';
 import { Note } from '../models/reminder';
+import { ViewserviceService } from '../../services/viewservice/viewservice.service';
 import { NoteService } from '../../services/noteservice/note.service';
 import decode from 'jwt-decode';
 import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
-
+import {LabelService} from '../../services/labels/label.service';
 import {EditlabelService } from '../../services/editlabels/editlabel.service';
 @Component({
   selector: 'app-label',
@@ -16,6 +17,7 @@ import {EditlabelService } from '../../services/editlabels/editlabel.service';
 })
 export class LabelComponent implements OnInit {
   flag = true;
+  notelist: any;
   email: string;
   response: any;
   note :Note[];
@@ -38,15 +40,79 @@ export class LabelComponent implements OnInit {
   timer: any;
 
   fulldate: any
+  /**
+	 * variable which holds the color of note
+	 */
+  // public color = "";
+  // colour = "";
+  rowcard
+  wrap: string = "wrap";
+  direction: string = "row";
+  layout: string = this.direction + " " + this.
+  
+wrap;
+
 
   noteform: FormGroup;
   constructor(private notes: NoteService,private dialog: MatDialog,
-    private route: Router,private formBuilder: FormBuilder,) { }
+    private labelid:LabelService,private viewChange: ViewserviceService,
+    private route: Router,private formBuilder: FormBuilder, private label:EditlabelService) { }
 
   token
   uid
   tokendecode
+
+   lablesss
   ngOnInit() {
+
+    this.labelid.getsetLabelName().subscribe((res => {
+      debugger
+     
+            this.lablesss = res;
+      
+            this.labelname = this.lablesss.data;
+            console.log("hhhhhhhhhhhhhhhhhh", this.labelname);
+            this.labeledNotesotesDisplaying();
+          
+          }));
+      
+   
+        
+    this.timer = false;
+    this.noteform = this.formBuilder.group({
+      title: '',
+      description: '',
+
+    });
+
+    /**
+     * function to display the notes in grid and list
+     *                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+     */
+    this.getNotes();
+    this.viewChange.getView().subscribe((res => {
+      this.view = res;
+      this.direction = this.view.data;
+
+      this.rowcard = this.view.class;
+      this.layout = this.direction + " " + this.wrap;
+    }))
+}
+  view;
+
+  labelname: string;
+  imagerOfNotes
+  labeledNotesotesDisplaying() {
+    debugger;
+    const email = localStorage.getItem('email');
+   let getnotes = this.label.fetchLabeledNotes(email, this.labelname);
+    getnotes.subscribe((res: any) => {
+      debugger
+      // console.log("resabghbv", res);
+      debugger;
+      this.notelist = res as string[];
+
+    });
   }
 
 
@@ -64,6 +130,7 @@ export class LabelComponent implements OnInit {
     debugger
 
   }
+
    /**
 	 * @method setColorToTitle()
 	 * @return void
@@ -91,6 +158,7 @@ export class LabelComponent implements OnInit {
     })
   }
 
+
   /**
    * function to get notes
    * return obseravble 
@@ -99,7 +167,7 @@ export class LabelComponent implements OnInit {
     //debugger
     const token = localStorage.getItem('token');
     // decode the token to get its payload
-    const tokenPayload = decode(token);
+    const tokenPayload = decode(token);   
     const emailid = tokenPayload.email;
    // debugger
     let noteobj = this.notes.displayNotes(this.uid);
@@ -109,6 +177,27 @@ export class LabelComponent implements OnInit {
 
 
     });
+  }
+
+    /**
+   * function to create notes
+   * @param value 
+   * @return obseravable data
+   */
+  notescreate(value: any) {
+    debugger
+
+    // const email = localStorage.getItem('email');
+    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime);
+
+    obj.subscribe((res: any) => {
+      debugger
+      console.log(res.status);
+      if (res.status == "200") {
+        this.tokenOne = res.token;
+      }
+    });
+
   }
 
 
@@ -208,5 +297,8 @@ export class LabelComponent implements OnInit {
     };
     this.dialog.open(EditnotesComponent, dialogConfig)
   }
+
+
+
 
 }

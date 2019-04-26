@@ -40,6 +40,7 @@ export class serviceUrl {
 	public fetchlabelnote="fetchlabelnote";
 	public addLabel="addLabel";
 	public labelnamebyid="labelnamebyid";
+	public getAllLabeledNotes="getAllLabeledNotes";
 }
 
 

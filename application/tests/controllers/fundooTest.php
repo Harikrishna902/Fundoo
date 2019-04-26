@@ -6,6 +6,9 @@ class register extends TestCase
 
     public function setUp()
     {
+        /**
+         * Guzzle is a PHP HTTP client that makes it easy to send HTTP requests and trivial to integrate with web services.
+         */
         $this->http = new GuzzleHttp\Client(['base_uri' => 'http://localhost/codeigniter/'], array(
             'request.options' => array(
                 'exceptions' => false,
@@ -25,7 +28,7 @@ class register extends TestCase
              * Associative array of form field names to values 
              * where each value is a string or array of strings
              */
-            'form_params' => [
+            'form_params' => [ 
                 'FirstName' => 'Harry',
                 'Lastname' => 'krishnan',
                 'email' => 'nalluri.kitt8@gmail.com',
