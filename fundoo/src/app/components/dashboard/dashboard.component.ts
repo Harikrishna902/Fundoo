@@ -19,7 +19,7 @@ import {EditlabelService } from '../../services/editlabels/editlabel.service';
 import { EditlabelsComponent } from '../editlabels/editlabels.component';
 import{ Label}from '../models/labels';
 import { RegisterService } from '../../services/registerservice/register.service';
-
+import { LabelService } from '../../services/labels/label.service';
 ;
 
 @Component({
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   email: string;
   isClicked = false;
   searchTerm: string;
-  constructor(private route: Router, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,
+  constructor(private route: Router, private labelid: LabelService, private viewChange: ViewserviceService,private data: searchService,private dialog:MatDialog,
     private label:EditlabelService, private S_register: RegisterService) { }
   grid: boolean = false;
   list: boolean = true;
@@ -179,9 +179,11 @@ export class DashboardComponent implements OnInit {
    * set label
    * @param labelname 
    */
-  setLabel(labelname){
-    debugger
-    this.label.labelnameSet(labelname);
+  setLabel(labelname)
+  {
+
+  debugger;
+  this.labelid.setLabelName(labelname);
   }
 
 }

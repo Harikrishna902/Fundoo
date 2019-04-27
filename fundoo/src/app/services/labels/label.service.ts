@@ -24,4 +24,5 @@ export class LabelService {
     this.setLabelName(this.word);
     return this.labelName.asObservable();
   }
+  
 }

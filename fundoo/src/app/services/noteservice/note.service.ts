@@ -22,21 +22,18 @@ export class NoteService {
    * @param time
    * @returns obseravble data 
    */
-  createNotes(note, id,time) {
+  createNotes(note, id,time,colour,image,labelid) {
+    debugger;
     let createnotes = new FormData();
     createnotes.append("uid", id);
     createnotes.append("title", note.title);
     createnotes.append("description", note.description);
     createnotes.append("reminder",time);
-    //createnotes.append("labelid",note.label);
-    //createnotes.append("color",colour);
-    //createnotes.append("image",image);
-  //   return this.http.post(this.serviceUrl.host + this.serviceUrl.createnotes, createnotes);
-
-  // }
-
-
-  let headers_object = new HttpHeaders().set("Authorization",
+     createnotes.append("label_id",note.label);
+    createnotes.append("color",colour);
+    createnotes.append("image",image);
+    createnotes.append("labelid",labelid);
+   let headers_object = new HttpHeaders().set("Authorization",
 			
   localStorage.getItem("token")
 );

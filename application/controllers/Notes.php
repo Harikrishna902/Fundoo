@@ -31,6 +31,7 @@ class Notes extends CI_Controller
 
         $description = $_POST['description'];
         $reminder = $_POST['reminder'];
+        $labelid=$_POST['labelid'];
         // $color = $_POST['color'];
         // if ($title == "null" || $title == "undefined") {
         //     $title = "";
@@ -38,7 +39,7 @@ class Notes extends CI_Controller
         // if ($notes == "null" || $notes == "undefined") {
         //     $notes = "";
         // }
-        $this->serviceReference->addNotes($title, $uid, $description, $reminder);
+        $this->serviceReference->addNotes($title, $uid, $description, $reminder,$labelid);
     }
 
 

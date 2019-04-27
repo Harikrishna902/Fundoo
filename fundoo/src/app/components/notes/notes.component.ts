@@ -77,6 +77,7 @@ wrap;
   token
   uid
   tokendecode
+  labels
   ngOnInit() {
 
     this.noteform = this.formBuilder.group({
@@ -102,6 +103,14 @@ wrap;
       this.rowcard = this.view.class;
       this.layout = this.direction + " " + this.wrap;
     }))
+
+    let labelobj= this.label.getLabel(this.uid);
+    labelobj.subscribe((res:any)=>{
+      debugger
+      
+      this.labels= res;
+      console.log("asdasd",this.labels);
+    })
 
     // setInterval(() => {
     //   this.getNotes();
@@ -168,11 +177,10 @@ wrap;
    * @param value 
    * @return obseravable data
    */
-  notescreate(value: any) {
-    debugger
-
-    // const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime);
+  image:string;
+  notescreate(value: any,labelid:any) {
+    debugger;
+    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,labelid);
 
     obj.subscribe((res: any) => {
       debugger
@@ -388,16 +396,13 @@ wrap;
     }
   }
 
-  /**
-   * set label
-   * @param labelname 
-   */
-  setLabel(labelname){
-    debugger
-    this.label.labelnameSet(labelname);
+
+addlabel(labelid)
+{
+ 
   }
+
+  
 
 
 }
-
-

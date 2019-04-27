@@ -8,8 +8,8 @@ import { NoteService } from '../../services/noteservice/note.service';
 import decode from 'jwt-decode';
 import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
-import {LabelService} from '../../services/labels/label.service';
-import {EditlabelService } from '../../services/editlabels/editlabel.service';
+import { LabelService } from '../../services/labels/label.service';
+import { EditlabelService } from '../../services/editlabels/editlabel.service';
 @Component({
   selector: 'app-label',
   templateUrl: './label.component.html',
@@ -20,11 +20,13 @@ export class LabelComponent implements OnInit {
   notelist: any;
   email: string;
   response: any;
-  note :Note[];
+  note: Note[];
   dateTime: any;
   description: "";
   tokenOne: "";
   date: any;
+
+  model: any = {};
   /**
 	 * variable which holds the color of note
 	 */
@@ -49,41 +51,44 @@ export class LabelComponent implements OnInit {
   wrap: string = "wrap";
   direction: string = "row";
   layout: string = this.direction + " " + this.
-  
-wrap;
+
+    wrap;
 
 
   noteform: FormGroup;
-  constructor(private notes: NoteService,private dialog: MatDialog,
-    private labelid:LabelService,private viewChange: ViewserviceService,
-    private route: Router,private formBuilder: FormBuilder, private label:EditlabelService) { }
+  constructor(private notes: NoteService, private dialog: MatDialog,
+    private labelid: LabelService, private viewChange: ViewserviceService,
+    private route: Router, private formBuilder: FormBuilder, private label: EditlabelService) { }
 
   token
   uid
   tokendecode
 
-   lablesss
+  lablesss
   ngOnInit() {
 
     this.labelid.getsetLabelName().subscribe((res => {
       debugger
-     
-            this.lablesss = res;
-      
-            this.labelname = this.lablesss.data;
-            console.log("hhhhhhhhhhhhhhhhhh", this.labelname);
-            this.labeledNotesotesDisplaying();
-          
-          }));
-      
-   
-        
+
+      this.lablesss = res;
+
+      this.labelname = this.lablesss.data;
+      console.log("hhhhhhhhhhhhhhhhhh", this.labelname);
+      this.labeledNotesotesDisplaying();
+
+    }));
+
+
+
     this.timer = false;
     this.noteform = this.formBuilder.group({
       title: '',
       description: '',
 
     });
+    this.token = localStorage.getItem('token');
+    this.tokendecode = decode(this.token);
+    this.uid = this.tokendecode.id;
 
     /**
      * function to display the notes in grid and list
@@ -97,15 +102,15 @@ wrap;
       this.rowcard = this.view.class;
       this.layout = this.direction + " " + this.wrap;
     }))
-}
+  }
   view;
 
   labelname: string;
   imagerOfNotes
   labeledNotesotesDisplaying() {
     debugger;
-    const email = localStorage.getItem('email');
-   let getnotes = this.label.fetchLabeledNotes(email, this.labelname);
+    const uid = localStorage.getItem('uid');
+    let getnotes = this.label.fetchLabeledNotes(uid, this.labelname);
     getnotes.subscribe((res: any) => {
       debugger
       // console.log("resabghbv", res);
@@ -116,6 +121,8 @@ wrap;
   }
 
 
+
+ 
   flip() {
     debugger;
     //this.timer = false;
@@ -131,16 +138,16 @@ wrap;
 
   }
 
-   /**
-	 * @method setColorToTitle()
-	 * @return void
-	 * @param changecolor
-	 * @description Function to set colour to title card
-	 */
+  /**
+  * @method setColorToTitle()
+  * @return void
+  * @param changecolor
+  * @description Function to set colour to title card
+  */
 
   setColor(n, colour) {
     debugger;
-   this.note.forEach(element => {
+    this.note.forEach(element => {
       if (element.id == n.id) {
         element.color = colour;
       }
@@ -167,28 +174,27 @@ wrap;
     //debugger
     const token = localStorage.getItem('token');
     // decode the token to get its payload
-    const tokenPayload = decode(token);   
+    const tokenPayload = decode(token);
     const emailid = tokenPayload.email;
-   // debugger
+    // debugger
     let noteobj = this.notes.displayNotes(this.uid);
     noteobj.subscribe((data: any) => {
-      debugger   
+      debugger
       this.note = data;
 
 
     });
   }
 
-    /**
-   * function to create notes
-   * @param value 
-   * @return obseravable data
-   */
+  /**
+ * function to create notes
+ * @param value 
+ * @return obseravable data
+ */
+image:string;
   notescreate(value: any) {
     debugger
-
-    // const email = localStorage.getItem('email');
-    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime);
+  let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,this.labelid);
 
     obj.subscribe((res: any) => {
       debugger
@@ -250,10 +256,10 @@ wrap;
     debugger;
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
-    const email= tokenPayload.email;
+    const email = tokenPayload.email;
     debugger
     var binaryString = readerEvt.target.result;
-    console.log(binaryString,"gfhgh");  
+    console.log(binaryString, "gfhgh");
     this.base64textString = btoa(binaryString);
     this.note.forEach(element => {
       if (element.id == this.imageNoteId) {
@@ -266,18 +272,18 @@ wrap;
     } else {
       this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
       let obss = this.notes.imagesaver(
-      	this.Mainimage,
-      	this.uid,
+        this.Mainimage,
+        this.uid,
         this.imageNoteId
       );
-      obss.subscribe((res: any) => {});
+      obss.subscribe((res: any) => { });
     }
   }
 
 
-   /**
-   * editNotes
-   */
+  /**
+  * editNotes
+  */
   openNotes(n) {
     debugger
     const dialogConfig = new MatDialogConfig();

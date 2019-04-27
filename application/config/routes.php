@@ -83,6 +83,7 @@ $route['setlabel'] ='Labels/addLabel';
 $route['getlabel'] ='Labels/getLabel';
 $route['deleteLabel']='Labels/deleteLabel';
 $route['updateLabel']='Labels/updateLabel';
+$route['getAllLabeledNotes']='Labels/getAllLabeledNotes';
 $route['archived']='Notes/archive';
 
 $route['getarchive'] = 'Archive/fetchArchive';

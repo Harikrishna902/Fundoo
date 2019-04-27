@@ -57,6 +57,7 @@
                 <mat-icon>schedule</mat-icon>
                </p> 
                {{currentDateAndTime}}
+               {{labelname}}
                <!-- {{reminder}} -->
                 <mat-icon (click) = "closeDate()">cancel</mat-icon>
               </mat-chip>
@@ -208,16 +209,23 @@
             </button>
             <mat-menu #More="matMenu">
               <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
-              <button mat-menu-item>Add label</button>
+              <button mat-menu-item [matMenuTriggerFor]="labelMenu">Add label</button>
+              <mat-menu [overlapTrigger]="false" #labelMenu="matMenu">
 
-            
-        
+                  <div class="label">
+                
+                    <button mat-menu-item *ngFor="let l of labels" (click)="noteform.value.labelname = l.labelname"
+                      (click)="labelname=l.labelname" (click)="labelid=l.id">
+                      {{ l.labelname }}
+                    </button>
+                  </div>
+                </mat-menu>
               <button mat-menu-item>Add drawing</button>
               <button mat-menu-item>Show checkboxes</button>
             </mat-menu>
           </div>
           <div class="close" fxLayout="row" fxLayoutAlign="end  end">
-            <button mat-button color="primary" (click)="notescreate(noteform.value)">close</button>
+            <button mat-button color="primary" (click)="notescreate(noteform.value,labelid)">close</button>
           </div>
 
         </form>
@@ -396,6 +404,7 @@
           <button (click)="deleteNote(n.id,'1')" mat-menu-item>Delete note</button>
           <button mat-menu-item (click)="addLabel(n.id)" [matMenuTriggerFor]="labelMenu">Add label</button>
           <mat-menu [overlapTrigger]="false" #labelMenu="matMenu">
+
             <div class="label">
           
               <button mat-menu-item *ngFor="let l of labels" (click)="noteform.value.labelname = l.labelname"

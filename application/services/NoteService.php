@@ -22,7 +22,7 @@ class NoteService extends CI_Controller
      * @param email,title,desc
      *@return void
      */
-    public function addNotes($title, $uid, $description, $reminder)
+    public function addNotes($title, $uid, $description, $reminder,$labelid)
     {
         $reference = new JWT();
         $flag = 0;
@@ -41,11 +41,17 @@ class NoteService extends CI_Controller
             if ($checktoken) {
                 $connection = $redis->connection();
                 $response = $connection->get('token');
-
                 $query = "INSERT into Fnotes (title,description,uid,reminder,archive,trash) values ('$title','$description','$uid','$reminder',0,0)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
+
+
+
+              
                 if ($res) {
+                    $query1="INSERT into label_notes (note_id,label_id) values (LAST_INSERT_ID(),'$labelid')";
+                    $statement1 = $this->db->conn_id->prepare($query1);
+                    $res1 = $statement1->execute();
                     $data = array(
                         "status" => "200",
                     );
@@ -57,9 +63,10 @@ class NoteService extends CI_Controller
                     print json_encode($data);
                     return "204";
                 }
-            }
+            
         }
     }
+}
 
     /**
      * @method to displaynotes
