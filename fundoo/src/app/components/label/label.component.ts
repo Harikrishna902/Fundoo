@@ -109,8 +109,8 @@ export class LabelComponent implements OnInit {
   imagerOfNotes
   labeledNotesotesDisplaying() {
     debugger;
-    const uid = localStorage.getItem('uid');
-    let getnotes = this.label.fetchLabeledNotes(uid, this.labelname);
+  
+    let getnotes = this.label.fetchLabeledNotes(this.uid, this.labelname);
     getnotes.subscribe((res: any) => {
       debugger
       // console.log("resabghbv", res);

@@ -1,177 +1,178 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="center center">
-  <mat-toolbar-row>
+<mat-toolbar style="background: white;" fxLayout="row" fxLayoutAlign="center center">
+  <!-- <mat-toolbar-row> -->
 
-    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 
-    </button>
-    <img src="../../../assets/keep_48dp.png " />
-    <!-- <div class="fundoo"> -->
-    <span class="blue">
-      F
-    </span>
-    <span class="orange">
+  </button>
+  <img src="../../../assets/keep_48dp.png " />
+  <!-- <div class="fundoo"> -->
+  <span class="blue">
+    F
+  </span>
+  <span class="orange">
 
-      u
-    </span>
-    <span class="black">
-      n
-    </span>
-    <span class="green">
-      d
-    </span>
-    <span class="blue">
-      o
-    </span>
-    <span class="orange">
-      o
-    </span>
-    <!-- </div> -->
+    u
+  </span>
+  <span class="black">
+    n
+  </span>
+  <span class="green">
+    d
+  </span>
+  <span class="blue">
+    o
+  </span>
+  <span class="orange">
+    o
+  </span>
+  <!-- </div> -->
 
 
-    <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="searchData()">
-      <mat-icon class="example-icon">search</mat-icon>
-    </button>
-   
-    <input [routerLink] = "['search']" class="ip" type="text" (keyup)="searchData()" [(ngModel)]="searchTerm" placeholder="Search"/>
-   
-    <button class="cancel-icon" mat-icon-button (click) = "closeSearch()">
-      <mat-icon><img src = "../../../assets/close.svg"/></mat-icon>
+  <button mat-icon-button matTooltip="Search" style="margin-left: 120px" (click)="searchData()">
+    <mat-icon class="example-icon">search</mat-icon>
+  </button>
+
+  <input [routerLink]="['search']" class="ip" type="text" (keyup)="searchData()" [(ngModel)]="searchTerm"
+    placeholder="Search" />
+
+  <button class="cancel-icon" mat-icon-button (click)="closeSearch()">
+    <mat-icon><img src="../../../assets/close.svg" /></mat-icon>
+  </button>
+
+  <div class=" icon-right" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
+
+
+
+    <div fxFlex="25" class="settingbtn">
+      <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
+        <mat-icon>refresh</mat-icon>
       </button>
+    </div>
 
-    <div class=" icon-right" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
 
 
-     
-      <div fxFlex="25" class="settingbtn">
-        <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
-          <mat-icon>refresh</mat-icon>
-        </button>
+    <button mat-icon-button *ngIf="list" (click)="changeView()" style="border:none ; background-color: white;">
+      <mat-icon matTooltip="Grid List" *ngIf="!grid" class="example-icon"><img
+          src="../../assets/outline-border_all-24px.svg" style="color: grey;margin-top: -30px;" /></mat-icon>
+    </button>
+
+    <button mat-icon-button *ngIf="grid" (click)="changeView()" style="border:none ; background-color: white;">
+
+      <mat-icon matTooltip="View_agenda" *ngIf="grid" class="example-icon"><img
+          src="../../assets/outline-view_agenda-24px.svg" style="color: grey;margin-top: -30px;" /></mat-icon>
+    </button>
+
+
+    <div class="settings">
+      <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Send feedback</button>
+        <button mat-menu-item>Help</button>
+        <button mat-menu-item>App downloads</button>
+        <button mat-menu-item>Keyboard Shaortcuts</button>
+      </mat-menu>
+
+    </div>
+
+  </div>
+  <span class="example-spacer"></span>
+  <div fxLayoutGap="40px" fxLayoutAlign="space-between center">
+    <mat-icon class="icon-left">apps</mat-icon>
+
+  </div>
+  <div [matMenuTriggerFor]="menuOne">
+    <!-- <img class="pic" src="../../../assets/profile.jpg" /> -->
+    <!-- <img class="pic" src = "{{image}}" /> -->
+    <mat-icon><img class="pic" src="{{image}}" /></mat-icon>
+
+    <!-- </button> -->
+
+
+  </div>
+
+  <mat-menu #menuOne="matMenu">
+    <div class="profileMenu">
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-icon (click)="file.click()"><img class="picture" src="{{image}}" /></mat-icon>
+        <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
+
       </div>
 
+      <!-- <p class="firstname">{{ firstname }}</p>
+
+            <p class="email">{{ email }}</p> -->
 
 
-        <button mat-icon-button *ngIf="list" (click)="changeView()" style="border:none ; background-color: white;">
-            <mat-icon matTooltip="Grid List" *ngIf="!grid" class="example-icon"><img src="../../assets/outline-border_all-24px.svg"
-                style="color: grey;margin-top: -30px;" /></mat-icon>
-          </button>
-      
-          <button mat-icon-button *ngIf="grid" (click)="changeView()" style="border:none ; background-color: white;">
-      
-            <mat-icon matTooltip="View_agenda" *ngIf="grid" class="example-icon"><img src="../../assets/outline-view_agenda-24px.svg"
-                style="color: grey;margin-top: -30px;" /></mat-icon>
-          </button>
-
-     
-      <div class="settings">
-        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="settings">
-          <mat-icon>settings</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Settings</button>
-          <button mat-menu-item>Send feedback</button>
-          <button mat-menu-item>Help</button>
-          <button mat-menu-item>App downloads</button>
-          <button mat-menu-item>Keyboard Shaortcuts</button>
-        </mat-menu>
-
-      </div>
-
-    </div>
-    <span class="example-spacer"></span>
-    <div  fxLayoutGap="40px" fxLayoutAlign="space-between center">
-      <mat-icon class="icon-left">apps</mat-icon>
-    
-    </div>
-    <div [matMenuTriggerFor]="menuOne">
-            <!-- <img class="pic" src="../../../assets/profile.jpg" /> -->
-            <!-- <img class="pic" src = "{{image}}" /> -->
-            <mat-icon ><img class="pic" src = "{{image}}"/></mat-icon>
-            
-          <!-- </button> -->
-      
-    
-    </div>
-
-    <mat-menu #menuOne="matMenu">
-      <div class="profileMenu">
-        <div fxLayout="row" fxLayoutAlign="start start">
-
+      <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
         
-            <!-- <button mat-icon-button> -->
-             
-              <mat-icon (click)="file.click()" ><img class="picture" src ="{{image}}" /></mat-icon>
-            <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
-          <!-- </button> -->
-      
-        </div>
-
-
-        <div fxLayout="row" fxLayoutAlign="end start" class="userInfo">
-           <!-- <p>harrykrishnan</p> -->
-           <p>{{FirstName}}</p>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center center">
-          
-          <p>{{email}}</p>
-
-        </div>
-
-        <mat-divider></mat-divider>
-        <button mat-flat-button (click)="addAccount()">Add account</button>
-        <button class="signout" mat-flat-button (click)="signout()">Sign out</button>
-
+        <p>{{fname}}</p>
       </div>
-    </mat-menu>
+      <div fxLayout="row" fxLayoutAlign="center center">
+
+        <p>{{email}}</p>
+
+      </div> 
+
+      <mat-divider></mat-divider>
+      <button mat-flat-button (click)="addAccount()">Add account</button>
+      <button class="signout" mat-flat-button (click)="signout()">Sign out</button>
+
+    </div>
+  </mat-menu>
 
 
-  </mat-toolbar-row>
+
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
 
   <mat-sidenav class="width" #drawer mode="side" role="navigation">
-    <div fxLayout="column" fxLayoutAlign="center center">
- 
-      <mat-nav-list>
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes">
-          <mat-icon>lightbulb_outline</mat-icon><span class="abc">Notes</span>
-        </a> <br> 
-        
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="reminder">
-            <mat-icon>notifications_none</mat-icon><span class="abc">Reminders</span>
-          </a> 
-        
-        <mat-divider></mat-divider>
-       
-        <label fxLayout="row" style="font-size: 12px">LABLES </label>
-        <a mat-list-item role="listitem" *ngFor="let n of labels" routerLink="label" (click)="setLabel(n.id)" >
-          <mat-icon class="icon">label</mat-icon><span class="lables">{{n.labelname}}</span>
+    <!-- <div fxLayout="column" fxLayoutAlign="center center"> -->
+
+    <mat-nav-list>
+      <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes">
+        <mat-icon>lightbulb_outline</mat-icon><span class="abc">Notes</span>
+      </a> <br>
+
+      <a mat-list-item [routerLinkActive]="['is-active']" routerLink="reminder">
+        <mat-icon>notifications_none</mat-icon><span class="abc">Reminders</span>
       </a>
 
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes" (click)="openLabel()">
+      <mat-divider></mat-divider>
 
-           <mat-icon> mode_edit</mat-icon><span class="abc"></span>EditLabels
-        </a> <br>
-        <mat-divider></mat-divider>
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="archive">
-            <mat-icon>archive</mat-icon><span class="abc">Archive</span>
-          </a> <br>
-        
-        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="trash">
-            <mat-icon>delete</mat-icon><span class="abc">Trash</span>
-          </a> <br> 
+      <label fxLayout="row" style="font-size: 12px ;margin-left: 20px;margin-top: 15px;">LABLES </label>
+      <a mat-list-item role="listitem" *ngFor="let n of labels" routerLink="label" (click)="setLabel(n.id)">
+        <mat-icon>label</mat-icon><span class="abc">{{n.labelname}}</span>
+      </a>
+
+      <a mat-list-item [routerLinkActive]="['is-active']" routerLink="notes" (click)="openLabel()">
+
+        <mat-icon> mode_edit</mat-icon><span class="abc"> EditLabels</span>
+      </a> <br>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLinkActive]="['is-active']" routerLink="archive">
+        <mat-icon>archive</mat-icon><span class="abc">Archive</span>
+      </a> <br>
+
+      <a mat-list-item [routerLinkActive]="['is-active']" routerLink="trash">
+        <mat-icon>delete</mat-icon><span class="abc">Trash</span>
+      </a> <br>
 
 
-          
-      </mat-nav-list>
 
-    </div>
+    </mat-nav-list>
+
+    <!-- </div> -->
   </mat-sidenav>
 
-  <mat-sidenav-content>
-    
+  <mat-sidenav-content fxLayout="column" fxLayoutAlign="start center" style="width: 1300px;left:50px;">
+
     <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 
 </mat-sidenav-container>

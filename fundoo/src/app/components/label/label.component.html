@@ -251,8 +251,8 @@
       </div>
     </div>
 </div>
-<!-- <div cdkDropList (cdkDropListDropped)="drop($event)" class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
-  <mat-card  cdkDrag *ngFor="let n of note" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
+<div cdkDropList (cdkDropListDropped)="drop($event)" class="note-mat" fxLayout={{layout}} fxLayoutAlign="center center">
+  <mat-card  cdkDrag *ngFor="let n of notelist" class="notescard" [ngClass]="direction == 'row' ? 'row': 'column'"
     [ngStyle]="{'background-color': n.colour}">
       <div  (click)=openNotes(n)>
        <div [ngClass]="direction == 'row' ? 'rowpin': 'columnpin'">
@@ -436,4 +436,4 @@
     </mat-card>
   
   
-  </div>  -->
+  </div> 

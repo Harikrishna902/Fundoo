@@ -177,7 +177,7 @@ class labels extends CI_Controller
     {
 
         $labelname = $_POST["labelname"];
-        $email = $_POST["email"];
+        $uid = $_POST["uid"];
         $secretkey = "krishna";
         $channel = new Redis();
         $client = $channel->connection();
@@ -185,10 +185,10 @@ class labels extends CI_Controller
         $array = array(
             'HS256',
         );
-        $payload = JWT::decode($token, $secretkey, $array);
+        // $payload = JWT::decode($token, $secretkey, $array);
 
-        $uid = $payload->uid;
-        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid ='$uid' and l.labelname ='$labelname'  and archive = 0 and trash = 0 ORDER BY n.id DESC";
+        // $uid = $payload->uid;
+        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,ln.note_id,l.labelname from Fnotes n JOIN label_notes ln ON ln.note_id=n.id JOIN Labels l on ln.label_id=l.id  where n.uid ='$uid' AND l.id='$labelname' ORDER BY n.id DESC";
         $statement = $this->db->conn_id->prepare($query);
 
         if ($statement->execute()) {

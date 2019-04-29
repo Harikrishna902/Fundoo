@@ -160,16 +160,18 @@ export class DashboardComponent implements OnInit {
 	 }
 	}
 
-
+  fname
+  lname
   getImage()
   {
     debugger;
-    let getimg = this.S_register.getImage(this.email);
-
+    let getimg = this.S_register.getImage(this.uid);
     getimg.subscribe((res: any) => {
       debugger
-      console.log(res.image);
-      this.image = res.image;
+      console.log(res[0].image);
+      this.image = res[0].image;
+      this.fname = res[0].FirstName;
+      this.lname = res[0].Lastname;
     })
      
   }

@@ -41,6 +41,7 @@ class NoteService extends CI_Controller
             if ($checktoken) {
                 $connection = $redis->connection();
                 $response = $connection->get('token');
+
                 $query = "INSERT into Fnotes (title,description,uid,reminder,archive,trash) values ('$title','$description','$uid','$reminder',0,0)";
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
@@ -49,9 +50,11 @@ class NoteService extends CI_Controller
 
               
                 if ($res) {
-                    $query1="INSERT into label_notes (note_id,label_id) values (LAST_INSERT_ID(),'$labelid')";
-                    $statement1 = $this->db->conn_id->prepare($query1);
-                    $res1 = $statement1->execute();
+
+                    if($res){
+                        $query="INSERT into label_notes (note_id,label_id) values (LAST_INSERT_ID(),'$labelid')";
+                        $statement= $this->db->conn_id->prepare($query);
+                        $res = $statement->execute();
                     $data = array(
                         "status" => "200",
                     );
@@ -63,6 +66,7 @@ class NoteService extends CI_Controller
                     print json_encode($data);
                     return "204";
                 }
+            }
             
         }
     }
@@ -74,7 +78,7 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($uid)
     {
-        $query = "SELECT * from Fnotes Where uid ='$uid' And archive=0 AND trash=0 ORDER BY id DESC ";
+        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,l.id,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.id DESC";
         
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
@@ -83,7 +87,7 @@ class NoteService extends CI_Controller
             $title = $notes['title'];
             $description = $notes['description'];
             // $colour=$notes['colour'];
-            // $date=$notes['date'];
+             //$date=$notes['date'];
         }
         print json_encode($arr);
     }

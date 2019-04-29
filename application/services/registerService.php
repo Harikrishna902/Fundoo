@@ -86,13 +86,13 @@ class registerService extends CI_controller
      */
     public function getImage($email)
     {
-        $query = "SELECT image FROM registeruser WHERE id = '$email'";
+        $query = "SELECT FirstName,Lastname,image FROM registeruser WHERE id = '$email'";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
-        $arr = $statement->fetch(PDO::FETCH_ASSOC);
-        $image = $arr['image'];
+        $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+ 
         print json_encode($arr);
-        return $image;
+       
     }
 
 }

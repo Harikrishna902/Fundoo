@@ -32,10 +32,10 @@ export class  EditlabelService{
     return this.http.post(this.serviceUrl.host+this.serviceUrl.deletelabel,label);
   }
 
-  fetchLabeledNotes(email, labelname) {
+  fetchLabeledNotes(id, labelname) {
 
     let userNotesdata = new FormData();
-    userNotesdata.append("email", email);
+    userNotesdata.append("uid", id);
     userNotesdata.append("labelname",labelname);
     return this.http.post(this.serviceUrl.host + this.serviceUrl.getAllLabeledNotes, userNotesdata);
 

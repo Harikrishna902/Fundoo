@@ -180,6 +180,7 @@ wrap;
   image:string;
   notescreate(value: any,labelid:any) {
     debugger;
+    this.flag = true;
     let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,labelid);
 
     obj.subscribe((res: any) => {
