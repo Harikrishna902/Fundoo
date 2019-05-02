@@ -357,6 +357,10 @@ wrap;
   public base64textString;
   Mainimage
   imageNoteId
+
+  dsf(sdf,dsf){
+debugger
+  }
   onSelectImage(event, noteId) {
     debugger;
     this.imageNoteId = noteId;

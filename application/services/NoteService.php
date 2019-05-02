@@ -78,7 +78,7 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($uid)
     {
-        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,l.id,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.id DESC";
+        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.id DESC";
         
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();

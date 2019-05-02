@@ -1,6 +1,6 @@
-<div>
+<!-- <div> -->
 
-<div fxLayout="row wrap" style="width:100%; height: 90%;    margin-left: -55px;">
+<div fxLayout="center center" fxLayoutAlign="center center" style="width:100%; height: 90%; margin-left: -205px;">
   <p  style="width:80%;height:10%"></p>
 
     <div *ngIf="flag==true" (click)="flip()">
@@ -8,7 +8,7 @@
 
         <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
           <mat-form-field appearance="null">
-            <input matInput style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
+            <input matInput   [ngStyle]="{'background-color': noteform.value.colour}" style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
           </mat-form-field>
         </div>
 
@@ -33,7 +33,7 @@
 
         <mat-card class="notes">
 
-          <form class="example-form" [formGroup]="noteform" [ngStyle]="{ 'background-color':noteform.value.color}">
+          <form class="example-form" [formGroup]="noteform" [ngStyle]="{'background-color':noteform.value.color}">
             <button mat-icon-button style="padding-top:5px;">
               <mat-icon matSuffix><img src="../../assets/pin.svg" style="padding-left: 600px;
                 padding-top: 19px;" /></mat-icon>
@@ -44,15 +44,11 @@
 
               <input style=" width: 91%;margin-left: 10px;margin-bottom: 2px"
                 [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Title" value="{{title}}"
-                formControlName="title" />
+                formControlName="title"/>
 
-
-
-
-
-              <input role="textarea" style="margin-top: 5px; margin-left: 10px;"
+             <input role="textarea" style="margin-top: 5px; margin-left: 10px;"
                 [ngStyle]="{'background-color': noteform.value.colour}" matInput placeholder="Take a note"
-                value="{{description}}" formControlName="description" />
+                value="{{description}}" formControlName="description"/>
             
             <div *ngIf="timer"> <button mat-icon-button>
 
@@ -63,7 +59,6 @@
                   </p>
                   {{currentDateAndTime}}
 
-                  <!-- {{reminder}} -->
                   <mat-icon (click)="closeDate()">cancel</mat-icon>
                 </mat-chip>
 
@@ -209,7 +204,7 @@
               <button mat-icon-button>
                 <mat-icon matTooltip="Add image" (click)="file.click()">insert_photo</mat-icon>
               </button>
-              <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')">
+              <input style="display: none;" type="file" #file (change)="onSelectImage($event, 'jh')">
               <button mat-icon-button>
                 <mat-icon matTooltip="Archive">archive</mat-icon>
               </button>
@@ -261,7 +256,7 @@
       <p style="word-break: break-all;">{{n.title}} </p>
 
       <p style="font-size: 20px;word-break: break-all;">{{n.description}}</p>
-      <!-- <img src="{{ element.image}}"> -->
+    
       <p style="font-size: 20px;" [ngClass]="n.reminder == 'undefined' ? 'dateVisOff': 'dateVisOn'">
         <mat-chip-list>
           <mat-chip>
@@ -438,3 +433,4 @@
 </div>
 
 </div>
+<!-- </div> -->

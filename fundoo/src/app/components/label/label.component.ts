@@ -113,7 +113,7 @@ export class LabelComponent implements OnInit {
     let getnotes = this.label.fetchLabeledNotes(this.uid, this.labelname);
     getnotes.subscribe((res: any) => {
       debugger
-      // console.log("resabghbv", res);
+       console.log("resabghbv", res);
       debugger;
       this.notelist = res as string[];
 
