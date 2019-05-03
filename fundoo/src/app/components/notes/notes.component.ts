@@ -157,7 +157,7 @@ wrap;
 
 
   flip() {
-    debugger;
+    // debugger;
     //this.timer = false;
     this.flag = !this.flag;
   }
@@ -179,7 +179,7 @@ wrap;
    */
   image:string;
   notescreate(value: any,labelid:any) {
-    debugger;
+    // debugger;
     this.flag = true;
     let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,labelid);
 

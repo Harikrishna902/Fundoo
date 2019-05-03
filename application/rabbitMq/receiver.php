@@ -33,8 +33,6 @@ class Receiver
 
             $RabbitMQConstantsObj = new RabbitMQConstants();
             $data = json_decode($msg->body, true);
-
-           
             $to_email   = $data['to_email'];
             $subject    = $data['subject'];
             $message    = $data['message'];
@@ -47,11 +45,13 @@ class Receiver
                 ->setPassword($RabbitMQConstantsObj->senderPassword);
             /**
              * Create the Mailer using your created Transport
+             * The Transport used to send messages
              */
             $mailer = new Swift_Mailer($transport);
 
             /**
              * Create a message
+             * and to buils emails
              */
             $message = (new Swift_Message($subject))
                 ->setFrom($RabbitMQConstantsObj->senderEmailID)
