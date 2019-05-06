@@ -314,5 +314,62 @@ class NoteService extends CI_Controller
         }
     }
 
+    
+/**
+ * @method dragDrop() drag and drop the card
+ * @return void
+ */
+public function dragDrop($diff, $currId, $direction, $email)
+{
+    $headers = apache_request_headers();
+    $token   = explode(" ", $headers['Authorization']);
+    $reff    = new JWT();
+    if ($reff->verify($token[0])) {
+        for ($i = 0; $i < $diff; $i++) {
+            if ($direction == "negative") {
+                /**
+                 * @var string $query has query to select the next max note id of the notes
+                 */
+                $query = "SELECT MAX(dragId) dragId FROM Fnotes where dragId <'$currId' and email='$email'";
+            } else {
+                /**
+                 * @var string $query has query to select the next min note id of the notes
+                 */
+                $query = "SELECT MIN(dragId) dragId FROM Fnotes where dragId > '$currId' and email='$email'";
+            }
+            $statement = $this->connect->prepare($query);
+            $statement->execute();
+            $swapId = $statement->fetch(PDO::FETCH_ASSOC);
+            /**  
+             * @var swapId to store the next id
+             */
+            $swapId = $swapId['dragId'];
+            /**
+             * @var string $query has query to swap the tow rows
+             */
+            $query = "UPDATE Fnotes a INNER JOIN notes b on a.dragId <> b.dragId set a.dragId = b.dragId
+                WHERE a.dragId in ('$swapId','$currId') and b.dragId in ('$swapId','$currId')";
+            $statement = $this->connect->prepare($query);
+            $temp = $statement->execute();
+
+            /**
+             * storing in the next id
+             */
+            $currId = $swapId;
+        }
+
+    } else
+     {
+        $data = array(
+            "error" => "404",
+        );
+        /**
+         * returns json array response
+         */
+        print json_encode($data);
+    }
+
+}
+
 
 }

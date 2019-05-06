@@ -3,6 +3,7 @@ import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {MatChipsModule} from '@angular/material/chips';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+//import { MessagingService } from "./messaging.service";
 
 
 //import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material'

@@ -102,4 +102,7 @@ $route ['noteimage']='Notes/noteimage';
 
 $route['addUImage'] = 'RegisterController/addUImage';
 $route['getImage'] = 'RegisterController/getImage';
+
+$route['dragDrop']= 'Notes/dragDrop';
+
 //$route['addUImageNote'] = 'Note/addUImageNote';

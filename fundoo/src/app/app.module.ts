@@ -35,6 +35,11 @@ import { AuthService as auth } from './services/auth/auth.servicee';
 import { CookieService } from 'ngx-cookie-service';
 import { TrashComponent } from './components/trash/trash.component';
 import { SearchComponent } from './components/search/search.component';
+import { MessagingService } from './services/messaging/messaging.service';
+
+// import { MessagingService } from "./services/messaging/messaging.service";
+// import { AngularFireModule } from "angularfire2";
+// import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/database";
 
 //import {MatDialogRef} from '@angular/material';
 @NgModule({
@@ -76,19 +81,23 @@ import { SearchComponent } from './components/search/search.component';
     MatDatepickerModule,
     MatDialogModule,
     SocialLoginModule,
-    
+    // MessagingService,
+    // AngularFireModule,
+    // AngularFireDatabaseModule, AngularFireDatabase
     //GoogleLoginProvider,
     //FacebookLoginProvider,
   ],
   /**
    * includes the services created
    */
-  providers: [{ provide: MatDialogRef, useValue: {} },
+  providers: [{ provide: MatDialogRef, useValue: {}  },
   { provide: MAT_DIALOG_DATA, useValue: [] },CookieService,
  auth, {
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  }],
+  },
+  {provide:MessagingService},
+],
   
   /**
    * main component for starting the excution

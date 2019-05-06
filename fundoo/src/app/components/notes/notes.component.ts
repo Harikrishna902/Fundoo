@@ -43,6 +43,14 @@ export class NotesComponent implements OnInit {
   currentDateAndTime: any;
   //color:any;
   timer: any;
+  /**
+	 * variable to check the error
+	 */
+  public iserror = false;
+  /**
+	 * to show error message
+	 */
+	public errorMessage = "";
 
   fulldate: any
   /**
@@ -320,34 +328,50 @@ wrap;
 
 
 
- /**
+/**
 	 * @var difference intger having the difference
-	 * @var direction string having the direction of drag
+	 * @var dirrection string having the direction of drag
 	 */
-  difference;
-  dirrection;
+	difference;
+	dirrection;
 	/**
 	 * @method drop
 	 * @description function to drag and drop the card
 	 * @param CdkDragDrop array
 	 */
-  drop(event: CdkDragDrop<string[]>) {
-    debugger
-    /**
-     * moveItemInArray used to cal the new index of the dropped item inside the array
-     */
-    moveItemInArray(this.note, event.previousIndex, event.currentIndex);
-    if (event.previousIndex - event.currentIndex >= 0) {
-      this.difference = event.previousIndex - event.currentIndex;
-      // alert("pas");
-      this.dirrection = "positive";
-    } else {
-      this.difference = (event.previousIndex - event.currentIndex) * -1;
-      // alert("neg");
-      this.dirrection = "negative";
-    }
+	drop(event: CdkDragDrop<string[]>) {
+		moveItemInArray(this.note, event.previousIndex, event.currentIndex);
+		if (event.previousIndex - event.currentIndex >= 0) {
+			this.difference = event.previousIndex - event.currentIndex;
+			// alert("pas");
+			this.dirrection = "positive";
+		} else {
+			this.difference = (event.previousIndex - event.currentIndex) * -1;
+			// alert("neg");
+			this.dirrection = "negative";
+		}
+		// console.log(event.currentIndex);
 
-}
+		// console.log(this.notes[event.currentIndex]);
+
+		let obbs = this.notes.dragAndDrop(
+			this.difference,
+			this.notes[event.currentIndex].dragId,
+			this.dirrection,
+			this.email
+		);
+		obbs.subscribe(
+			(res: any) => {
+				//   obbs.unsubscribe();
+			},
+			error => {
+				this.iserror = true;
+				this.errorMessage = error.message;
+			}
+		);
+	}
+
+
 
 
 

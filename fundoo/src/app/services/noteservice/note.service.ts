@@ -171,6 +171,29 @@ console.log(headers_object);
     return this.http.post(this.serviceUrl.host+this.serviceUrl.noteimage,image);
 
   }
+  /**
+	 * @method dragAndDrop()
+	 * @return observable data
+	 * @param prevId
+	 * @param currId
+	 * @description Function to drag and drop the card
+	 */
+	dragAndDrop(diff, currId, direction, email) {
+		let headers_object = new HttpHeaders().set(
+			"Authorization",
+			localStorage.getItem("token")
+		);
+		let dragAndDropData = new FormData();
+		dragAndDropData.append("diff", diff);
+		dragAndDropData.append("currId", currId);
+		dragAndDropData.append("direction", direction);
+		dragAndDropData.append("email", email);
+		return this.http.post(
+			this.serviceUrl.host + this.serviceUrl.dragAndDropData,
+			dragAndDropData,
+			{ headers: headers_object }
+		);
+	}
 
 }
 

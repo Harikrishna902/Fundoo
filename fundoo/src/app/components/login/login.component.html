@@ -49,7 +49,7 @@
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input  matInput placeholder="password" formControlName="password" type="password" required>
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :'visibility'}} </mat-icon>
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :'visibility'}} </mat-icon> -->
         <mat-error *ngIf="LoginForm.controls['password'].invalid">
           enter valid password
         </mat-error>
@@ -58,8 +58,7 @@
        <a routerLink="/forgot" style="color:  #3373e8;" href="">Forgot Password?</a>
        <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="center center" >
         <a><button mat-raised-button color="primary" (click)="login(LoginForm.value)">Login</button></a>
-       
-        <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
+       <a routerLink="../register"> <button mat-raised-button color="primary">Register</button></a>
 
       </div>
       <!-- form ends -->

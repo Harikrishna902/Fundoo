@@ -30,9 +30,9 @@
 
     <mat-menu [overlapTrigger]="false" #remainder="matMenu">
       <button mat-menu-item>Remainder:</button>
-      <button mat-menu-item (click)="today(01)">Later today 8:00AM</button>
-      <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00AM</button>
-      <button mat-menu-item (click)="nextWeek(01)">
+      <button mat-menu-item (click)="today()">Later today 8:00AM</button>
+      <button mat-menu-item (click)="tomorrow()">Tomorrow 8:00AM</button>
+      <button mat-menu-item (click)="nextWeek()">
         Next week Mon,8:00AM
       </button>
       <button mat-menu-item [matMenuTriggerFor]="dates">
@@ -117,10 +117,10 @@
     <button mat-icon-button>
       <mat-icon matTooltip="collaborator">person_add</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button>
+    <button mat-icon-button matTooltip="change color"  mat-icon-button>
       <mat-icon>color_lens</mat-icon>
     </button>
-    <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
+    <!-- <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
       <button matTooltip="Yellow" (click)="noteform.value.color = '#fcf476'" mat-mini-fab class="colorlens"
         style="background-color:#fcf476"></button>
       <button matTooltip="Orange" (click)="noteform.value.color=('#f8bc04')" mat-mini-fab class="colorlens"
@@ -147,7 +147,7 @@
         style="background-color:#fccfe8 "></button>
       <button matTooltip="Purple" (click)="noteform.value.color =('#d7aefb ')" mat-mini-fab class="colorlens"
         style="background-color:#d7aefb "></button>
-    </mat-menu>
+    </mat-menu> -->
     <button mat-icon-button>
       <mat-icon matTooltip="Add image">insert_photo</mat-icon>
     </button>
@@ -158,7 +158,7 @@
       <mat-icon matTooltip="more" [matMenuTriggerFor]="More">more_vert</mat-icon>
     </button>
     <mat-menu #More="matMenu">
-      <button (click)="deleteNote(n)" mat-menu-item>Delete note</button>
+      <button  mat-menu-item>Delete note</button>
       <button mat-menu-item>Add label</button>
       <button mat-menu-item>Add drawing</button>
       <button mat-menu-item>Show checkboxes</button>

@@ -41,6 +41,7 @@ export class serviceUrl {
 	public addLabel="addLabel";
 	public labelnamebyid="labelnamebyid";
 	public getAllLabeledNotes="getAllLabeledNotes";
+	public dragAndDropData="dragAndDropData";
 }
 
 

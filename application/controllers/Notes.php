@@ -184,4 +184,20 @@ class Notes extends CI_Controller
         $this->serviceReference->imageNote($base64,$uid,$id);
     }
 
+
+    /**
+     * @method dragDrop() drag and drop the card
+     * @return void
+     */
+    public function dragDrop()
+    {
+
+        $diff      = $_POST["diff"];
+        $currId    = $_POST["currId"];
+        $direction = $_POST["direction"];
+        $email     = $_POST["email"];
+        $this->serviceReference->dragDrop($diff, $currId, $direction, $email);
+
+    }
+
 }
