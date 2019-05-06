@@ -118,7 +118,7 @@ class NoteService extends CI_Controller
     }
 
     /**
-     * function to change color
+     * function to change color                         
      * @param id,colour
      * @return void
      */

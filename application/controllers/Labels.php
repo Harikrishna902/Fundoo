@@ -189,7 +189,7 @@ class labels extends CI_Controller
 
         // $uid = $payload->uid;
         $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,ln.note_id,l.labelname from Fnotes n JOIN label_notes ln ON ln.note_id=n.id JOIN Labels l on ln.label_id=l.id  where n.uid ='$uid' AND l.id='$labelname' ORDER BY n.id DESC";
-        $statement = $this->db->conn_id->prepare($query);
+         $statement = $this->db->conn_id->prepare($query);
 
         if ($statement->execute()) {
             $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
