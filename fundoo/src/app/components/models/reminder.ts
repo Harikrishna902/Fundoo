@@ -8,4 +8,5 @@ export interface Note{
     user_id:string;
     trash:string;
     image:string;
+    drag:number;
 }

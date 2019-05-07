@@ -191,10 +191,11 @@ export class LabelComponent implements OnInit {
  * @param value 
  * @return obseravable data
  */
+drag:any;
 image:string;
-  notescreate(value: any) {
+  notescreate(value: any,drag) {
     debugger
-  let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,this.labelid);
+  let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,this.labelid,drag);
 
     obj.subscribe((res: any) => {
       debugger

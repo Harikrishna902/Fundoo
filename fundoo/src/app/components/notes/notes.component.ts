@@ -185,11 +185,12 @@ wrap;
    * @param value 
    * @return obseravable data
    */
+  //drag:any;
   image:string;
-  notescreate(value: any,labelid:any) {
+  notescreate(value: any,labelid:any,drag) {
     // debugger;
     this.flag = true;
-    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,labelid);
+    let obj = this.notes.createNotes(value, this.uid, this.currentDateAndTime,this.colour,this.image,labelid,drag);
 
     obj.subscribe((res: any) => {
       debugger
@@ -340,6 +341,7 @@ wrap;
 	 * @param CdkDragDrop array
 	 */
 	drop(event: CdkDragDrop<string[]>) {
+    debugger;
 		moveItemInArray(this.note, event.previousIndex, event.currentIndex);
 		if (event.previousIndex - event.currentIndex >= 0) {
 			this.difference = event.previousIndex - event.currentIndex;
@@ -356,9 +358,9 @@ wrap;
 
 		let obbs = this.notes.dragAndDrop(
 			this.difference,
-			this.notes[event.currentIndex].dragId,
+			this.note[event.currentIndex].drag,
 			this.dirrection,
-			this.email
+			this.uid
 		);
 		obbs.subscribe(
 			(res: any) => {

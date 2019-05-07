@@ -32,6 +32,7 @@ class Notes extends CI_Controller
         $description = $_POST['description'];
         $reminder = $_POST['reminder'];
         $labelid=$_POST['labelid'];
+        $drag=$_POST['drag'];
         // $color = $_POST['color'];
         // if ($title == "null" || $title == "undefined") {
         //     $title = "";
@@ -39,7 +40,7 @@ class Notes extends CI_Controller
         // if ($notes == "null" || $notes == "undefined") {
         //     $notes = "";
         // }
-        $this->serviceReference->addNotes($title, $uid, $description, $reminder,$labelid);
+        $this->serviceReference->addNotes($title, $uid, $description, $reminder,$labelid,$drag);
     }
 
 
@@ -195,8 +196,8 @@ class Notes extends CI_Controller
         $diff      = $_POST["diff"];
         $currId    = $_POST["currId"];
         $direction = $_POST["direction"];
-        $email     = $_POST["email"];
-        $this->serviceReference->dragDrop($diff, $currId, $direction, $email);
+        $uid     = $_POST["uid"];
+        $this->serviceReference->dragDrop($diff, $currId, $direction, $uid);
 
     }
 

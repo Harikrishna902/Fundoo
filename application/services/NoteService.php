@@ -46,6 +46,15 @@ class NoteService extends CI_Controller
                 $statement = $this->db->conn_id->prepare($query);
                 $res = $statement->execute();
 
+                $query     = " SELECT MAX(id) id FROM Fnotes WHERE uid ='$uid' ";
+                $statement = $this->db->conn_id->prepare($query);
+                $res = $statement->execute();
+                 $drag   = $statement->fetchColumn();
+             
+           
+                 $query     = "UPDATE Fnotes SET drag = '$drag' where id = '$drag' ";
+                 $statement = $this->db->conn_id->prepare($query);
+                 $res = $statement->execute();
 
 
               
@@ -78,7 +87,7 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($uid)
     {
-        $query = "SELECT n.title, n.id, n.description, n.reminder, n.colour,n.image,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.id DESC";
+        $query = "SELECT n.title,n.drag,n.id, n.description, n.reminder, n.colour,n.image,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.drag DESC";
         
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
@@ -319,38 +328,41 @@ class NoteService extends CI_Controller
  * @method dragDrop() drag and drop the card
  * @return void
  */
-public function dragDrop($diff, $currId, $direction, $email)
+public function dragDrop($diff, $currId, $direction, $uid)
 {
     $headers = apache_request_headers();
-    $token   = explode(" ", $headers['Authorization']);
-    $reff    = new JWT();
-    if ($reff->verify($token[0])) {
+    $token = $headers['Authorization'];
+    $redis = new Redis();
+    $checktoken = JWT::verifytoken($token);
+    if ($checktoken){
         for ($i = 0; $i < $diff; $i++) {
             if ($direction == "negative") {
                 /**
                  * @var string $query has query to select the next max note id of the notes
                  */
-                $query = "SELECT MAX(dragId) dragId FROM Fnotes where dragId <'$currId' and email='$email'";
+                $query = "SELECT MAX(drag) drag FROM Fnotes where drag <'$currId' and uid='$uid'";
             } else {
                 /**
                  * @var string $query has query to select the next min note id of the notes
                  */
-                $query = "SELECT MIN(dragId) dragId FROM Fnotes where dragId > '$currId' and email='$email'";
+                $query = "SELECT MIN(drag) drag FROM Fnotes where drag > '$currId' and uid='$uid'";
             }
-            $statement = $this->connect->prepare($query);
+            $statement = $this->db->conn_id->prepare($query);
+           // $res = $statement->execute();
+            //$statement = $this->connect->prepare($query);
             $statement->execute();
             $swapId = $statement->fetch(PDO::FETCH_ASSOC);
             /**  
              * @var swapId to store the next id
              */
-            $swapId = $swapId['dragId'];
+            $swapId = $swapId['drag'];
             /**
              * @var string $query has query to swap the tow rows
              */
-            $query = "UPDATE Fnotes a INNER JOIN notes b on a.dragId <> b.dragId set a.dragId = b.dragId
-                WHERE a.dragId in ('$swapId','$currId') and b.dragId in ('$swapId','$currId')";
-            $statement = $this->connect->prepare($query);
-            $temp = $statement->execute();
+            $query = "UPDATE Fnotes a INNER JOIN Fnotes b on a.drag <> b.drag set a.drag = b.drag
+                WHERE a.drag in ('$swapId','$currId') and b.drag in ('$swapId','$currId')";
+          $statement = $this->db->conn_id->prepare($query);
+            $res = $statement->execute();
 
             /**
              * storing in the next id

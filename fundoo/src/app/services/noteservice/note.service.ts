@@ -22,7 +22,7 @@ export class NoteService {
    * @param time
    * @returns obseravble data 
    */
-  createNotes(note, id,time,colour,image,labelid) {
+  createNotes(note, id,time,colour,image,labelid,drag) {
     debugger;
     let createnotes = new FormData();
     createnotes.append("uid", id);
@@ -33,6 +33,7 @@ export class NoteService {
     createnotes.append("color",colour);
     createnotes.append("image",image);
     createnotes.append("labelid",labelid);
+    createnotes.append("drag",drag)
    let headers_object = new HttpHeaders().set("Authorization",
 			
   localStorage.getItem("token")
@@ -178,7 +179,7 @@ console.log(headers_object);
 	 * @param currId
 	 * @description Function to drag and drop the card
 	 */
-	dragAndDrop(diff, currId, direction, email) {
+	dragAndDrop(diff, currId, direction, uid) {
 		let headers_object = new HttpHeaders().set(
 			"Authorization",
 			localStorage.getItem("token")
@@ -187,7 +188,7 @@ console.log(headers_object);
 		dragAndDropData.append("diff", diff);
 		dragAndDropData.append("currId", currId);
 		dragAndDropData.append("direction", direction);
-		dragAndDropData.append("email", email);
+		dragAndDropData.append("uid", uid);
 		return this.http.post(
 			this.serviceUrl.host + this.serviceUrl.dragAndDropData,
 			dragAndDropData,

@@ -38,8 +38,8 @@ import { SearchComponent } from './components/search/search.component';
 import { MessagingService } from './services/messaging/messaging.service';
 
 // import { MessagingService } from "./services/messaging/messaging.service";
-// import { AngularFireModule } from "angularfire2";
-// import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/database";
+ //import { AngularFireModule } from "angularfire2"; 
+ //import { AngularFireDatabaseModule, AngularFireDatabase } from "angularfire2/database";
 
 //import {MatDialogRef} from '@angular/material';
 @NgModule({
@@ -82,8 +82,8 @@ import { MessagingService } from './services/messaging/messaging.service';
     MatDialogModule,
     SocialLoginModule,
     // MessagingService,
-    // AngularFireModule,
-    // AngularFireDatabaseModule, AngularFireDatabase
+    //AngularFireModule,
+    //AngularFireDatabaseModule, AngularFireDatabase
     //GoogleLoginProvider,
     //FacebookLoginProvider,
   ],
@@ -96,7 +96,7 @@ import { MessagingService } from './services/messaging/messaging.service';
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
   },
-  {provide:MessagingService},
+  MessagingService
 ],
   
   /**

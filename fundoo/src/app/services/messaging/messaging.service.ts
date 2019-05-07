@@ -1,6 +1,6 @@
 import { Injectable }          from '@angular/core';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 // import { } from 'rxjs/add/operator/take';
 import { BehaviorSubject } from 'rxjs'
 
@@ -16,10 +16,14 @@ export class MessagingService {
   constructor() {
     try{
       firebase.initializeApp({
-        'messagingSenderId': '437917998902'
+        'messagingSenderId': '551416182126'
       });
       this.messaging=firebase.messaging();
     }catch(err){
+      firebase.initializeApp({
+       // console.log('Firebase intial',err.stack);
+        'messagingSenderId': '551416182126'
+      });
       console.log('Firebase intial',err.stack);
       
     }
@@ -30,11 +34,11 @@ export class MessagingService {
   getPermission() {
       this.messaging.requestPermission()
       .then(() => {
-        // console.log('Notification permission granted.');
+         console.log('Notification permission granted.');
         return this.messaging.getToken()
       })
       .then(token => {
-        console.log(token)
+        console.log("",token)
         // this.updateToken(token)
       })
       .catch((err) => {
