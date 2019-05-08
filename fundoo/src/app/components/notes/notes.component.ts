@@ -358,7 +358,7 @@ wrap;
 
 		let obbs = this.notes.dragAndDrop(
 			this.difference,
-			this.note[event.currentIndex].drag,
+			this.note[event.currentIndex].drag, 
 			this.dirrection,
 			this.uid
 		);

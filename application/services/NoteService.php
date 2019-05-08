@@ -87,8 +87,15 @@ class NoteService extends CI_Controller
      */
     public function dispalynotes($uid)
     {
+        $redis = new Redis();
+        $rediskey="sharon";
+        $connection = $redis->connection();
+        $start=0;
+        $stop=-1;
+        $info=$connection->lrange($rediskey,$start,$stop);
+        if($info==null)
+        {
         $query = "SELECT n.title,n.drag,n.id, n.description, n.reminder, n.colour,n.image,l.labelname from Fnotes n Left JOIN label_notes ln ON ln.note_id=n.id left JOIN Labels l on ln.label_id=l.id where n.uid = '$uid'   And archive=0 AND trash=0 ORDER BY n.drag DESC";
-        
         $statement = $this->db->conn_id->prepare($query);
         $res = $statement->execute();
         $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -97,8 +104,21 @@ class NoteService extends CI_Controller
             $description = $notes['description'];
             // $colour=$notes['colour'];
              //$date=$notes['date'];
+             $connection->rpush($rediskey,json_encode($notes));
         }
         print json_encode($arr);
+    }
+    else
+    {
+        $str=array();
+        $var=$connection->lrange($rediskey,$start,$stop);
+        foreach($var as $datas)
+        {
+            $myredis=json_decode($datas);
+                array_push($str,$myredis);
+        }
+        print json_encode($str);
+    }
     }
 
     /**
