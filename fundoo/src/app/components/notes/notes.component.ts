@@ -131,12 +131,13 @@ wrap;
    * return obseravble 
    */
    getNotes() {
-    //debugger
+    debugger
+    
     const token = localStorage.getItem('token');
     // decode the token to get its payload
     const tokenPayload = decode(token);
-    const emailid = tokenPayload.email;
-   // debugger
+    const uid = tokenPayload.id;
+   debugger
     let noteobj = this.notes.displayNotes(this.uid);
     noteobj.subscribe((data: any) => {
       debugger   

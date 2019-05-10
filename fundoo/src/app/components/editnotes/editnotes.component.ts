@@ -120,7 +120,8 @@ export class EditnotesComponent implements OnInit {
 
   //     }
   //   })
-  }
+  // }
+}
 
 
   

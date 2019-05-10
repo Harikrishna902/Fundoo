@@ -31,7 +31,7 @@ export class MessagingService {
 
 
 
-  getPermission() {
+  getPermission() {      
       this.messaging.requestPermission()
       .then(() => {
          console.log('Notification permission granted.');
